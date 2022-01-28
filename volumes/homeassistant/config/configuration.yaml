@@ -1,4 +1,4 @@
 sensor:
   - platform: mqtt
     name: "Children Bedroom Temperature"
-    state_topic: "usensor/system/getstatus"
+    state_topic: "usensor/system/getonline"
