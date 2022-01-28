@@ -3,6 +3,12 @@ run: install start
 start:
 	sudo docker-compose up -d
 
+restart:
+	sudo docker-compose restart
+
+status:
+	sudo docker-compose ps
+
 password:
 	sudo docker-compose exec mosquitto mosquitto_passwd -c /mosquitto/config/mosquitto.passwd mosquitto
 
