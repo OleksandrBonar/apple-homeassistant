@@ -11,46 +11,34 @@ sensor:
 
 light:
   - platform: mqtt
-    schema: template
     name: "Kitchen Light"
-    state_topic: "udimmer/channel1/geton"
-    state_template: "{% if value == 'true' %}on{% else %}off{% endif %}"
-    command_topic: "udimmer/channel1/seton"
-    command_on_template: "true"
-    command_off_template: "false"
+    state_topic: "udimmer/channel1/getstate"
+    command_topic: "udimmer/channel1/setstate"
     brightness_state_topic: "udimmer/channel1/getbrightness"
     brightness_command_topic: "udimmer/channel1/setbrightness"
-    brightness_scale: 127
+    brightness_scale: 100
     qos: 1
     retain: true
     optimistic: false
 
   - platform: mqtt
-    schema: template
     name: "Children Bedroom Light"
-    state_topic: "udimmer/channel2/geton"
-    state_template: "{% if value == 'true' %}on{% else %}off{% endif %}"
-    command_topic: "udimmer/channel2/seton"
-    command_on_template: "true"
-    command_off_template: "false"
+    state_topic: "udimmer/channel2/getstate"
+    command_topic: "udimmer/channel2/setstate"
     brightness_state_topic: "udimmer/channel2/getbrightness"
     brightness_command_topic: "udimmer/channel2/setbrightness"
-    brightness_scale: 127
+    brightness_scale: 100
     qos: 1
     retain: true
     optimistic: false
     
   - platform: mqtt
-    schema: template
     name: "Parents Bedroom Light"
-    state_topic: "udimmer/channel3/geton"
-    state_template: "{% if value == 'true' %}on{% else %}off{% endif %}"
-    command_topic: "udimmer/channel3/seton"
-    command_on_template: "true"
-    command_off_template: "false"
+    state_topic: "udimmer/channel3/getstate"
+    command_topic: "udimmer/channel3/setstate"
     brightness_state_topic: "udimmer/channel3/getbrightness"
     brightness_command_topic: "udimmer/channel3/setbrightness"
-    brightness_scale: 127
+    brightness_scale: 100
     qos: 1
     retain: true
     optimistic: false
