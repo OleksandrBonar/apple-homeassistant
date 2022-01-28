@@ -1,11 +1,27 @@
-sensor_temperature:
+sensor:
   - platform: mqtt
     name: "Children Bedroom Temperature"
     state_topic: "usensor/temperature/getvalue"
     unit_of_measurement: "ºC"
-    
-sensor_humidity:
+
   - platform: mqtt
     name: "Children Bedroom Humidity"
     state_topic: "usensor/humidity/getvalue"
     unit_of_measurement: "%"
+
+light:    
+  - platform: mqtt
+    name: "Children Bedroom Light"
+    state_topic: "udimmer/channel1/geton"
+    command_topic: "udimmer/channel1/seton"
+    # on_command_type: brightness
+    payload_on: "true"
+    payload_off: "false"
+    brightness_state_topic: "udimmer/channel1/getbrightness"
+    brightness_command_topic: "udimmer/channel1/setbrightness"
+    brightness_scale: 127
+    qos: 1
+    retain: true
+    optimistic: false
+    
+    
