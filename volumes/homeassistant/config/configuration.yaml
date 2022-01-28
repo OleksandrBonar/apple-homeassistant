@@ -9,9 +9,9 @@ sensor:
     state_topic: "usensor/humidity/getvalue"
     unit_of_measurement: "%"
 
-light:    
+light:
   - platform: mqtt
-    name: "Children Bedroom Light"
+    name: "Kitchen Light"
     state_topic: "udimmer/channel1/geton"
     command_topic: "udimmer/channel1/seton"
     # on_command_type: brightness
@@ -19,6 +19,34 @@ light:
     payload_off: "false"
     brightness_state_topic: "udimmer/channel1/getbrightness"
     brightness_command_topic: "udimmer/channel1/setbrightness"
+    brightness_scale: 127
+    qos: 1
+    retain: true
+    optimistic: false
+
+  - platform: mqtt
+    name: "Children Bedroom Light"
+    state_topic: "udimmer/channel2/geton"
+    command_topic: "udimmer/channel2/seton"
+    # on_command_type: brightness
+    payload_on: "true"
+    payload_off: "false"
+    brightness_state_topic: "udimmer/channel2/getbrightness"
+    brightness_command_topic: "udimmer/channel2/setbrightness"
+    brightness_scale: 127
+    qos: 1
+    retain: true
+    optimistic: false
+    
+  - platform: mqtt
+    name: "Parents Bedroom Light"
+    state_topic: "udimmer/channel3/geton"
+    command_topic: "udimmer/channel3/seton"
+    # on_command_type: brightness
+    payload_on: "true"
+    payload_off: "false"
+    brightness_state_topic: "udimmer/channel3/getbrightness"
+    brightness_command_topic: "udimmer/channel3/setbrightness"
     brightness_scale: 127
     qos: 1
     retain: true
