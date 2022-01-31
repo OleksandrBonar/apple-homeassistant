@@ -1,13 +1,19 @@
-sensor:
-  - platform: mqtt
-    name: "Children Bedroom Temperature"
-    state_topic: "usensor/temperature/getvalue"
-    unit_of_measurement: "ºC"
+homeassistant:
+  name: "My Home Assistant Instance"
+  latitude: 50.5
+  longitude: 30.766667
+  unit_system: metric
+  time_zone: "Europe/Kiev"
+  customize: !include customize.yaml
+  
+mqtt:
+  broker: 127.0.0.1
 
-  - platform: mqtt
-    name: "Children Bedroom Humidity"
-    state_topic: "usensor/humidity/getvalue"
-    unit_of_measurement: "%"
+automation: !include automation.yaml
+zone: !include zone.yaml
+sensor: !include sensor.yaml
+switch: !include switch.yaml
+device_tracker: !include device_tracker.yaml
 
 light:
   - platform: mqtt
