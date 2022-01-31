@@ -1,0 +1,32 @@
+  - platform: mqtt
+    name: "Kitchen Light"
+    state_topic: "udimmer/channel1/getstate"
+    command_topic: "udimmer/channel1/setstate"
+    brightness_state_topic: "udimmer/channel1/getbrightness"
+    brightness_command_topic: "udimmer/channel1/setbrightness"
+    brightness_scale: 100
+    qos: 1
+    retain: true
+    optimistic: false
+
+  - platform: mqtt
+    name: "Children Bedroom Light"
+    state_topic: "udimmer/channel2/getstate"
+    command_topic: "udimmer/channel2/setstate"
+    brightness_state_topic: "udimmer/channel2/getbrightness"
+    brightness_command_topic: "udimmer/channel2/setbrightness"
+    brightness_scale: 100
+    qos: 1
+    retain: true
+    optimistic: false
+    
+  - platform: mqtt
+    name: "Parents Bedroom Light"
+    state_topic: "udimmer/channel3/getstate"
+    command_topic: "udimmer/channel3/setstate"
+    brightness_state_topic: "udimmer/channel3/getbrightness"
+    brightness_command_topic: "udimmer/channel3/setbrightness"
+    brightness_scale: 100
+    qos: 1
+    retain: true
+    optimistic: false
