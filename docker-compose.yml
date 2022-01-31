@@ -11,8 +11,16 @@ services:
     environment:
       - DISABLE_JEMALLOC=true
     volumes:
-      - ./volumes/homeassistant/config:/config
-      - /etc/localtime:/etc/localtime:ro
+      - type: bind
+        source: ./volumes/homeassistant/config/configuration.yaml
+        target: /config/configuration.yaml
+      - type: bind
+        source: ./volumes/homeassistant/config/sensor.yaml
+        target: /config/sensor.yaml
+      - type: bind
+        source: /etc/localtime
+        target: /etc/localtime
+        read_only: true
   mosquitto:
     image: eclipse-mosquitto:latest    
     restart: unless-stopped
@@ -30,7 +38,9 @@ services:
     depends_on:
       - mosquitto
     volumes:
-      - ./volumes/zigbee2mqtt/data:/app/data
+      - type: bind
+        source: ./volumes/zigbee2mqtt/data/configuration.yaml
+        target: /app/data/configuration.yaml
       - /run/udev:/run/udev:ro
     environment:
       - TZ=Europe/Kiev
