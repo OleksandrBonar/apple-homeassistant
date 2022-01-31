@@ -18,5 +18,4 @@ mqtt:
 sensor: !include sensor.yaml
 #switch: !include switch.yaml
 #device_tracker: !include device_tracker.yaml
-
 light: !include light.yaml
