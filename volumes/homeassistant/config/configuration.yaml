@@ -7,7 +7,7 @@ homeassistant:
   #customize: !include customize.yaml
   
 mqtt:
-  broker: 127.0.0.1
+  broker: localhost
   username: mosquitto
   password: password
 
