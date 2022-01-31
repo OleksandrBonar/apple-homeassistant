@@ -1,10 +1,16 @@
-run: install start
+run: install update
 
 start:
-	sudo docker-compose up -d
+	sudo docker-compose start
+
+stop:
+	sudo docker-compose stop
 
 restart:
 	sudo docker-compose restart
+
+update:
+	sudo docker-compose up -d
 
 status:
 	sudo docker-compose ps
