@@ -1,0 +1,10 @@
+sensor:
+  - platform: mqtt
+    name: "Children Bedroom Temperature"
+    state_topic: "usensor/temperature/getvalue"
+    unit_of_measurement: "ºC"
+
+  - platform: mqtt
+    name: "Children Bedroom Humidity"
+    state_topic: "usensor/humidity/getvalue"
+    unit_of_measurement: "%"
