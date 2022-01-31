@@ -18,6 +18,9 @@ services:
         source: ./volumes/homeassistant/config/sensor.yaml
         target: /config/sensor.yaml
       - type: bind
+        source: ./volumes/homeassistant/config/light.yaml
+        target: /config/light.yaml
+      - type: bind
         source: /etc/localtime
         target: /etc/localtime
         read_only: true
