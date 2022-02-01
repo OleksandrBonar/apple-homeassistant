@@ -10,6 +10,7 @@ restart:
 	sudo docker-compose restart
 
 update:
+	git pull
 	sudo docker-compose up -d
 
 status:
