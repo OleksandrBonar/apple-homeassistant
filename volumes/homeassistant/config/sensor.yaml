@@ -7,3 +7,8 @@
   name: "Children Bedroom Humidity"
   state_topic: "usensor/humidity/getvalue"
   unit_of_measurement: "%"
+
+- platform: mqtt
+  name: "Mains Frequency"
+  state_topic: "udimmer/system/getfrequency"
+  unit_of_measurement: "Hz"
