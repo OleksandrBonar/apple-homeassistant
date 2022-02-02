@@ -8,3 +8,32 @@
       target:
         entity_id:
           - light.children_bedroom_light
+
+- id: System startup report
+  alias: start_message
+  initial_state: true
+  trigger:
+    - platform: homeassistant
+      event: start
+  action:
+    - service: notify.telegram_user_id_1
+      data:
+        message: |
+          {{ "\U0001F567" }} Start at {{ states('sensor.time_date') }}
+          {{ "\U0001F4C3" }} Report generating... }}
+    - delay: 00:01:10
+    - service: script.turn_on
+      entity_id: script.system_report
+
+- id: Ondemand report
+  alias: send_report
+  initial_state: true
+  trigger:
+    - platform: event
+      event_type: telegram_command
+      event_data:
+        command: '/report'
+  action:
+    - service: script.turn_on
+      entity_id:
+        - script.system_report
