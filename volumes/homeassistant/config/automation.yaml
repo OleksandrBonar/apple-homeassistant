@@ -1,5 +1,4 @@
-- id: 1
-  alias: "Turn on the light in children bedroom"
+- alias: "Turn on the light in children bedroom"
   trigger:
     - platform: state
       entity_id: binary_sensor.children_bedroom_motion
