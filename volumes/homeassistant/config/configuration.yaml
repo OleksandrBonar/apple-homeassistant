@@ -9,7 +9,7 @@ frontend:
 homekit:
 
 tts:
-  -platform: google_translate
+  - platform: google_translate
 
 mqtt:
   broker: localhost
@@ -62,7 +62,6 @@ telegram:
         - service: notify.telegram_user_id_1
           data:
             message: "Current time - {{ states('sensor.time') }}. All right"
-
     system_report:
       alias: Report of system state
       sequence:
