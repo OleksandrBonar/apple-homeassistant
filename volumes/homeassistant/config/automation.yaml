@@ -1,13 +1,13 @@
-- alias: "Turn on the light in children bedroom"
+- id: Turn on light in children bedroom
+  alias: turn_on_children_bedroom_light
   trigger:
     - platform: state
       entity_id: binary_sensor.children_bedroom_motion
-      to: "ON"
+      to: "on"
   action:
     - service: light.turn_on
-      target:
-        entity_id:
-          - light.children_bedroom_light
+      entity_id:
+        - light.children_bedroom_light
 
 - id: System startup report
   alias: start_message
