@@ -4,16 +4,16 @@ homeassistant:
   longitude: 30.79095544917174
   unit_system: metric
   time_zone: "Europe/Kiev"
-  #customize: !include customize.yaml
 
 frontend:
+homekit:
 
 mqtt:
   broker: localhost
   username: mosquitto
   password: password
 
-#automation: !include automation.yaml
+automation: !include automation.yaml
 #zone: !include zone.yaml
 sensor: !include sensor.yaml
 binary_sensor: !include binary_sensor.yaml
