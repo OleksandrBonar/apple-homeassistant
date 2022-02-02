@@ -8,10 +8,15 @@ homeassistant:
 frontend:
 homekit:
 
+tts:
+  -platform: google_translate
+
 mqtt:
   broker: localhost
   username: mosquitto
   password: password
+  discovery: true
+  discovery_prefix: homeassistant
 
 automation: !include automation.yaml
 #zone: !include zone.yaml
@@ -21,8 +26,64 @@ binary_sensor: !include binary_sensor.yaml
 #device_tracker: !include device_tracker.yaml
 light: !include light.yaml
 
+telegram:
+  sensor:
+    - platform: template
+      sensors:
+        unavailable_lights:
+          friendly_name: "All unavailable lights: "
+          entity_id:
+            - sensor.time
+          value_template: "{{ states.light | selectattr('state', 'equalto', 'unavailable') | list | lenght }}"
+          icon_template: mdi:counter
+        unavailable_switches:
+          friendly_name: "All unavailable switches: "
+          entity_id:
+            - sensor.time
+          value_template: "{{ states.switch | selectattr('state', 'equalto', 'unavailable') | list | lenght }}"
+          icon_template: mdi:counter
+        unavailable_sensors:
+          friendly_name: "All unavailable sensors: "
+          entity_id:
+            - sensor.time
+          value_template: "{{ states.sensor | selectattr('state', 'equalto', 'unavailable') | list | lenght }}"
+          icon_template: mdi:counter
+        unavailable_binary_sensors:
+          friendly_name: "All unavailable binary sensors: "
+          entity_id:
+            - sensor.time
+          value_template: "{{ states.binary_sensor | selectattr('state', 'equalto', 'unavailable') | list | lenght }}"
+          icon_template: mdi:counter
+
+  script:
+    send_message_1:
+      alias: Send via notification service
+      sequence:
+        - service: notify.telegram_user_id_1
+          data:
+            message: "Current time - {{ states('sensor.time') }}. All right"
+
+  system_report:
+    alias: Report of system state
+    sequence:
+      - service: notify.telegram_user_id_1
+        data:
+          message: |
+            {{ "\U0001F4AC" }} System state
+            {{ "\U0001F567" }} Report {{ states('sensor.time_date') }}
+            {{ "\U0001F4A1" }} Unavailable lights: {{ states('sensor.unavailable_lights') }}
+            {{ "\U0001F50C" }} Unavailable switches: {{ states('sensor.unavailable_switches') }}
+            {{ "\U0001F321" }} Unavailable sensors: {{ states('sensor.unavailable_sensors') }}
+            {{ "\U0001F51F" }} Unavailable binary sensors: {{ states('sensor.unavailable_binary_sensors') }}
+            
+
 telegram_bot:
   - platform: polling
     api_key: !secret telegram_api_key
     allowed_chat_ids:
       - !secret telegram_user_id_1
+
+notify:
+  - name: telegram_user_id_1
+    platform: telegram
+    chat_id: !secret telegram_user_id_1
