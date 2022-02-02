@@ -20,3 +20,9 @@ binary_sensor: !include binary_sensor.yaml
 #switch: !include switch.yaml
 #device_tracker: !include device_tracker.yaml
 light: !include light.yaml
+
+telegram_bot:
+  - platform: polling
+    api_key: !secret telegram_api_key
+    allowed_chat_ids:
+      - !secret telegram_user_id_1
