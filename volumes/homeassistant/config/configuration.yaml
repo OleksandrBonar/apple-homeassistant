@@ -2,10 +2,17 @@ homeassistant:
   name: "My Home Assistant Instance"
   latitude: 50.511079642761075
   longitude: 30.79095544917174
+  elevation: 0
   unit_system: metric
   time_zone: "Europe/Kiev"
 
+introduction:
 frontend:
+config:
+discovery:
+conversation:
+#history:
+sun:
 homekit:
 
 tts:
