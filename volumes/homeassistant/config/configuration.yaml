@@ -6,16 +6,18 @@ homeassistant:
   unit_system: metric
   time_zone: "Europe/Kiev"
 
-frontend:
 config:
-discovery:
-conversation:
+#ssdp:
+frontend:
+map:
 #history:
+#logbook:
 sun:
 homekit:
 
 tts:
   - platform: google_translate
+    service_name: google_say
 
 mqtt:
   broker: localhost
