@@ -12,3 +12,30 @@
   name: "Mains Frequency"
   state_topic: "udimmer/system/getfrequency"
   unit_of_measurement: "Hz"
+
+- platform: template
+  sensors:
+    unavailable_lights:
+      friendly_name: "All unavailable lights: "
+      entity_id:
+        - sensor.time
+      value_template: "{{ states.light | selectattr('state', 'equalto', 'unavailable') | list | lenght }}"
+      icon_template: mdi:counter
+    unavailable_switches:
+      friendly_name: "All unavailable switches: "
+      entity_id:
+        - sensor.time
+      value_template: "{{ states.switch | selectattr('state', 'equalto', 'unavailable') | list | lenght }}"
+      icon_template: mdi:counter
+    unavailable_sensors:
+      friendly_name: "All unavailable sensors: "
+      entity_id:
+        - sensor.time
+      value_template: "{{ states.sensor | selectattr('state', 'equalto', 'unavailable') | list | lenght }}"
+      icon_template: mdi:counter
+    unavailable_binary_sensors:
+      friendly_name: "All unavailable binary sensors: "
+      entity_id:
+        - sensor.time
+      value_template: "{{ states.binary_sensor | selectattr('state', 'equalto', 'unavailable') | list | lenght }}"
+      icon_template: mdi:counter
