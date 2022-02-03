@@ -29,7 +29,7 @@ send_message_motion_detected:
 all_lights_off:
   sequence:
     sequence:
-    - service: light.turn_on
+    - service: light.turn_off
       entity_id:
         - light.hallway
         - light.kitchen
