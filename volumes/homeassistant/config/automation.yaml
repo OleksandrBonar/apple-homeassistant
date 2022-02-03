@@ -47,3 +47,15 @@
   action:
     - service: script.turn_on
       entity_id: script.system_report
+
+- id: All Lights Off
+  alias: all_lights_off
+  initial_state: true
+  trigger:
+    - platform: event
+      event_type: telegram_command
+      event_data:
+        command: '/light/all/off'
+  action:
+    - service: script.turn_on
+      entity_id: script.all_lights_off
