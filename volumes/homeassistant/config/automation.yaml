@@ -19,8 +19,7 @@
       to: "on"
   action:
     - service: light.turn_on
-      entity_id:
-        - light.children_bedroom_light
+      entity_id: light.children_bedroom_light
     - service: script.turn_on
       entity_id: script.send_message_motion_detected
 
