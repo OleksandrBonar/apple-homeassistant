@@ -36,6 +36,3 @@ all_lights_off:
         - light.children_bedroom
         - light.parents_bedroom
         - light.balcony
-    - service: notify.telegram_user_id_1
-      data:
-        message: "All lights are off"
