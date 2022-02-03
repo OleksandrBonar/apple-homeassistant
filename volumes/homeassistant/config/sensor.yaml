@@ -22,7 +22,7 @@
 
 - platform: template
   sensors:
-    all_lightes:
+    all_lights:
       friendly_name: "All lights: "
       value_template: >
         {%- set domains = ['light'] -%}
