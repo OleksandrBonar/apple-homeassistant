@@ -5,6 +5,15 @@ send_message_1:
       data:
         message: "Current time - {{ states('sensor.time') }}. All right."
 
+send_message_motion_detected:
+  alias: Motion detection notifier
+  sequence:
+    - service: notify.telegram_user_id_1
+      data:
+        message: |
+          Motion Detected!
+          Time: {{ states('sensor.time') }}
+
 system_report:
   alias: Report of system state
   sequence:
