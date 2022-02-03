@@ -21,6 +21,9 @@
     - service: light.turn_on
       entity_id:
         - light.children_bedroom_light
+    - service: script.turn_on
+      entity_id:
+        - script.send_message_motion_detected
 
 - id: System startup report
   alias: start_message
