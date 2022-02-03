@@ -59,3 +59,6 @@
   action:
     - service: script.turn_on
       entity_id: script.all_lights_off
+    - service: notify.telegram_user_id_1
+      data:
+        message: "All lights are off"
