@@ -1,5 +1,6 @@
 - platform: mqtt
-  name: "Kitchen Light"
+  name: kitchen
+  friendly_name: "Kitchen Light"
   state_topic: "udimmer/channel1/getstate"
   command_topic: "udimmer/channel1/setstate"
   brightness_state_topic: "udimmer/channel1/getbrightness"
@@ -10,7 +11,8 @@
   optimistic: false
 
 - platform: mqtt
-  name: "Children Bedroom Light"
+  name: children_bedroom
+  friendly_name: "Children Bedroom Light"
   state_topic: "udimmer/channel2/getstate"
   command_topic: "udimmer/channel2/setstate"
   brightness_state_topic: "udimmer/channel2/getbrightness"
@@ -21,11 +23,36 @@
   optimistic: false
 
 - platform: mqtt
-  name: "Parents Bedroom Light"
+  name: parents_bedroom
+  friendly_name: "Parents Bedroom Light"
   state_topic: "udimmer/channel3/getstate"
   command_topic: "udimmer/channel3/setstate"
   brightness_state_topic: "udimmer/channel3/getbrightness"
   brightness_command_topic: "udimmer/channel3/setbrightness"
+  brightness_scale: 100
+  qos: 1
+  retain: true
+  optimistic: false
+  
+- platform: mqtt
+  name: hallway
+  friendly_name: "Hallway Light"
+  state_topic: "udimmer/channel4/getstate"
+  command_topic: "udimmer/channel4/setstate"
+  brightness_state_topic: "udimmer/channel4/getbrightness"
+  brightness_command_topic: "udimmer/channel4/setbrightness"
+  brightness_scale: 100
+  qos: 1
+  retain: true
+  optimistic: false
+
+- platform: mqtt
+  name: balcony
+  friendly_name: "Balcony Light"
+  state_topic: "udimmer/channel5/getstate"
+  command_topic: "udimmer/channel5/setstate"
+  brightness_state_topic: "udimmer/channel5/getbrightness"
+  brightness_command_topic: "udimmer/channel5/setbrightness"
   brightness_scale: 100
   qos: 1
   retain: true
