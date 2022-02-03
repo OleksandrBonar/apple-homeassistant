@@ -1,3 +1,15 @@
+system_report:
+  alias: Report of system state
+  sequence:
+    - service: notify.telegram_user_id_1
+      data:
+        message: |
+          {{ "\U0001F4AC" }} System State
+          {{ "\U0001F4A1" }} Lights: {{ states('sensor.all_lights') }} / {{ states('sensor.unavailable_lights') }}
+          {{ "\U0001F50C" }} Switches: {{ states('sensor.all_switches') }} / {{ states('sensor.unavailable_switches') }}
+          {{ "\U0001F321" }} Sensors: {{ states('sensor.all_sensors') }} / {{ states('sensor.unavailable_sensors') }}
+          {{ "\U0001F51F" }} Binary Sensors: {{ states('sensor.all_binary_sensors') }} / {{ states('sensor.unavailable_binary_sensors') }}
+
 send_message_1:
   alias: Send via notification service
   sequence:
@@ -14,14 +26,12 @@ send_message_motion_detected:
           Motion Detected!
           Time: {{ states('sensor.time') }}
 
-system_report:
-  alias: Report of system state
+all_lights_off:
   sequence:
-    - service: notify.telegram_user_id_1
-      data:
-        message: |
-          {{ "\U0001F4AC" }} System State
-          {{ "\U0001F4A1" }} Lights: {{ states('sensor.all_lights') }} / {{ states('sensor.unavailable_lights') }}
-          {{ "\U0001F50C" }} Switches: {{ states('sensor.all_switches') }} / {{ states('sensor.unavailable_switches') }}
-          {{ "\U0001F321" }} Sensors: {{ states('sensor.all_sensors') }} / {{ states('sensor.unavailable_sensors') }}
-          {{ "\U0001F51F" }} Binary Sensors: {{ states('sensor.all_binary_sensors') }} / {{ states('sensor.unavailable_binary_sensors') }}
+    - service: light.turn_on
+      entity_id:
+        - light.hallway
+        - light.kitchen
+        - light.children_bedroom
+        - light.parents_bedroom
+        - light.balcony
