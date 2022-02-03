@@ -48,8 +48,8 @@
     - service: script.turn_on
       entity_id: script.system_report
 
-- id: All Lights Off
-  alias: all_lights_off
+- id: Turn off all lights
+  alias: turn_off_all_lights
   initial_state: true
   trigger:
     - platform: event
