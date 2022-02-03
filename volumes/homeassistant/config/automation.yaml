@@ -22,8 +22,7 @@
       entity_id:
         - light.children_bedroom_light
     - service: script.turn_on
-      entity_id:
-        - script.send_message_motion_detected
+      entity_id: script.send_message_motion_detected
 
 - id: System startup report
   alias: start_message
@@ -35,11 +34,7 @@
     - service: notify.telegram_user_id_1
       data:
         message: |
-          {{ "\U0001F567" }} Start at {{ states('sensor.time_date') }}
-          {{ "\U0001F4C3" }} Report generating...
-    - delay: 00:01:10
-    - service: script.turn_on
-      entity_id: script.system_report
+          {{ "\U0001F567" }} System startup at {{ states('sensor.time_date') }}
 
 - id: Ondemand report
   alias: send_report
@@ -51,5 +46,4 @@
         command: '/report'
   action:
     - service: script.turn_on
-      entity_id:
-        - script.system_report
+      entity_id: script.system_report
