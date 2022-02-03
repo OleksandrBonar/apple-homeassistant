@@ -33,7 +33,7 @@
       data:
         message: |
           {{ "\U0001F567" }} Start at {{ states('sensor.time_date') }}
-          {{ "\U0001F4C3" }} Report generating... }}
+          {{ "\U0001F4C3" }} Report generating...
     - delay: 00:01:10
     - service: script.turn_on
       entity_id: script.system_report
