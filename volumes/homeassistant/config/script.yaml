@@ -3,7 +3,8 @@ send_message_1:
   sequence:
     - service: notify.telegram_user_id_1
       data:
-        message: "Current time - {{ states('sensor.time') }}. All right"
+        message: "Current time - {{ states('sensor.time') }}. All right."
+
 system_report:
   alias: Report of system state
   sequence:
@@ -12,7 +13,7 @@ system_report:
         message: |
           {{ "\U0001F4AC" }} System state
           {{ "\U0001F567" }} Report {{ states('sensor.time_date') }}
-          {{ "\U0001F4A1" }} Unavailable lights: {{ states('sensor.unavailable_lights') }}
-          {{ "\U0001F50C" }} Unavailable switches: {{ states('sensor.unavailable_switches') }}
-          {{ "\U0001F321" }} Unavailable sensors: {{ states('sensor.unavailable_sensors') }}
-          {{ "\U0001F51F" }} Unavailable binary sensors: {{ states('sensor.unavailable_binary_sensors') }}
+          {{ "\U0001F4A1" }} All\Unavailable lights: {{ states('sensor.all_lights') }}/{{ states('sensor.unavailable_lights') }}
+          {{ "\U0001F50C" }} All\Unavailable switches: {{ states('sensor.all_switches') }}/{{ states('sensor.unavailable_switches') }}
+          {{ "\U0001F321" }} All\Unavailable sensors: {{ states('sensor.all_sensors') }}/{{ states('sensor.unavailable_sensors') }}
+          {{ "\U0001F51F" }} All\Unavailable binary sensors: {{ states('sensor.all_binary_sensors') }}/{{ states('sensor.unavailable_binary_sensors') }}
