@@ -121,3 +121,27 @@
           keyboard:
             - '/light/kitchen/on, /light/kitchen/off'
             - '/light'
+
+- id: Telegeram light-kitchen-on keyboard
+  alias: telegram_light_kitchen_on_keyboard
+  initial_state: true
+  trigger:
+    - platform: event
+      event_type: telegram_command
+      event_data:
+        command: '/light/kitchen/on'
+  action:
+    - service: light.turn_on
+      entity_id: light.kitchen
+
+- id: Telegeram light-kitchen-off keyboard
+  alias: telegram_light_kitchen_off_keyboard
+  initial_state: true
+  trigger:
+    - platform: event
+      event_type: telegram_command
+      event_data:
+        command: '/light/kitchen/off'
+  action:
+    - service: light.turn_off
+      entity_id: light.kitchen
