@@ -117,7 +117,7 @@
     - service: notify.telegram_user_id_1
       data:
         message: |
-          Kitchen Light: {{ states('light.kitchen') }}
+          Kitchen Light is {{ states('light.kitchen') }}
         data:
           keyboard:
             - '/light/kitchen/on, /light/kitchen/off'
@@ -148,3 +148,6 @@
     - service: light.turn_off
       entity_id:
         - light.kitchen
+    - service: notify.telegram_user_id_1
+      data:
+        message: "Kitchen Light is {{ states('light.kitchen') }}"
