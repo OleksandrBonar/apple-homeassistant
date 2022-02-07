@@ -82,10 +82,9 @@
   action:
     - service: notify.telegram_user_id_1
       data:
-        message: "Start message"
         data:
           keyboard:
-            - '/report, /light'
+            - 'reports:/report, lights:/light'
 
 - id: Telegeram light keyboard
   alias: telegram_light_keyboard
@@ -98,13 +97,12 @@
   action:
     - service: notify.telegram_user_id_1
       data:
-        message: "All Lights"
         data:
           keyboard:
-            - '/light/kitchen, /light/hallway'
-            - '/light/children_bedroom, /light/parents_bedroom'
-            - '/light/balcony'
-            - '/start'
+            - 'hallway:/light/hallway, kitchen:/light/kitchen'
+            - 'children bedroom:/light/children_bedroom, parents bedroom:/light/parents_bedroom'
+            - 'balcony:/light/balcony'
+            - 'back:/start'
 
 - id: Telegeram light-kitchen keyboard
   alias: telegram_light_kitchen_keyboard
@@ -120,9 +118,9 @@
         message: "Kitchen Light is {{ states('light.kitchen') }}"
         data:
           keyboard:
-            - '/light/kitchen/on, /light/kitchen/off'
-            - '/light/kitchen/switch, /light/kitchen/status'
-            - '/light'
+            - 'on:/light/kitchen/on, off:/light/kitchen/off'
+            - 'switch:/light/kitchen/switch, status:/light/kitchen/status'
+            - 'back:/light'
 
 - id: Telegeram light-kitchen-on keyboard
   alias: telegram_light_kitchen_on_keyboard
