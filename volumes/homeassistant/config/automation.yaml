@@ -69,3 +69,54 @@
     - service: notify.telegram_user_id_1
       data:
         message: "All lights are off"
+
+- id: Telegeram start keyboard
+  alias: telegram_start_keyboard
+  initial_state: true
+  trigger:
+    - platform: event
+      event_type: telegram_command
+      event_data:
+        command: '/start'
+  action:
+    - service: notify.telegram_user_id_1
+      data:
+        message: 'commands'
+        data:
+          keyboard:
+            - '/report, /light'
+
+- id: Telegeram light keyboard
+  alias: telegram_light_keyboard
+  initial_state: true
+  trigger:
+    - platform: event
+      event_type: telegram_command
+      event_data:
+        command: '/light'
+  action:
+    - service: notify.telegram_user_id_1
+      data:
+        message: 'commands'
+        data:
+          keyboard:
+            - '/light/kitchen, /light/hallway'
+            - '/light/children_bedroom, /light/parents_bedroom'
+            - '/light/balcony'
+
+- id: Telegeram light-kitchen keyboard
+  alias: telegram_light_kitchen_keyboard
+  initial_state: true
+  trigger:
+    - platform: event
+      event_type: telegram_command
+      event_data:
+        command: '/light/kitchen'
+  action:
+    - service: notify.telegram_user_id_1
+      data:
+        message: 'commands'
+        data:
+          message: 'Kitchen Light'
+          keyboard:
+            - '/light/kitchen/on, /light/kitchen/off'
