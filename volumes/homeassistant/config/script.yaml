@@ -26,6 +26,16 @@ send_message_motion_detected:
           Motion Detected!
           Time: {{ states('sensor.time') }}
 
+kitchen_on:
+  sequence:
+    - service: light.turn_on
+      entity_id: light.kitchen
+
+kitchen_off:
+  sequence:
+    - service: light.turn_off
+      entity_id: light.kitchen
+
 all_lights_off:
   sequence:
     - service: light.turn_off
