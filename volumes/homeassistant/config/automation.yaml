@@ -133,7 +133,8 @@
         command: '/light/kitchen/on'
   action:
     - service: light.turn_on
-      entity_id: light.kitchen
+      entity_id:
+        - light.kitchen
 
 - id: Telegeram light-kitchen-off keyboard
   alias: telegram_light_kitchen_off_keyboard
@@ -145,4 +146,5 @@
         command: '/light/kitchen/off'
   action:
     - service: light.turn_off
-      entity_id: light.kitchen
+      entity_id:
+        - light.kitchen
