@@ -82,6 +82,7 @@
   action:
     - service: notify.telegram_user_id_1
       data:
+        message: "Start message"
         data:
           inline_keyboard:
             - "reports:/report, lights:/light"
@@ -97,6 +98,7 @@
   action:
     - service: notify.telegram_user_id_1
       data:
+        message: "All Lights"
         data:
           inline_keyboard:
             - "hallway:/light/hallway, kitchen:/light/kitchen"
