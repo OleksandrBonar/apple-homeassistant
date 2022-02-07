@@ -78,13 +78,13 @@
     - platform: event
       event_type: telegram_command
       event_data:
-        command: '/start'
+        command: "/start"
   action:
     - service: notify.telegram_user_id_1
       data:
         data:
-          keyboard:
-            - 'reports:/report, lights:/light'
+          inline_keyboard:
+            - "reports:/report, lights:/light"
 
 - id: Telegeram light keyboard
   alias: telegram_light_keyboard
@@ -93,16 +93,16 @@
     - platform: event
       event_type: telegram_command
       event_data:
-        command: '/light'
+        command: "/light"
   action:
     - service: notify.telegram_user_id_1
       data:
         data:
-          keyboard:
-            - 'hallway:/light/hallway, kitchen:/light/kitchen'
-            - 'children bedroom:/light/children_bedroom, parents bedroom:/light/parents_bedroom'
-            - 'balcony:/light/balcony'
-            - 'back:/start'
+          inline_keyboard:
+            - "hallway:/light/hallway, kitchen:/light/kitchen"
+            - "children bedroom:/light/children_bedroom, parents bedroom:/light/parents_bedroom"
+            - "balcony:/light/balcony"
+            - "back:/start"
 
 - id: Telegeram light-kitchen keyboard
   alias: telegram_light_kitchen_keyboard
@@ -111,16 +111,16 @@
     - platform: event
       event_type: telegram_command
       event_data:
-        command: '/light/kitchen'
+        command: "/light/kitchen"
   action:
     - service: notify.telegram_user_id_1
       data:
         message: "Kitchen Light is {{ states('light.kitchen') }}"
         data:
-          keyboard:
-            - 'on:/light/kitchen/on, off:/light/kitchen/off'
-            - 'switch:/light/kitchen/switch, status:/light/kitchen/status'
-            - 'back:/light'
+          inline_keyboard:
+            - "on:/light/kitchen/on, off:/light/kitchen/off"
+            - "switch:/light/kitchen/switch, status:/light/kitchen/status"
+            - "back:/light"
 
 - id: Telegeram light-kitchen-on keyboard
   alias: telegram_light_kitchen_on_keyboard
@@ -129,7 +129,7 @@
     - platform: event
       event_type: telegram_command
       event_data:
-        command: '/light/kitchen/on'
+        command: "/light/kitchen/on"
   action:
     - service: light.turn_on
       entity_id: light.kitchen
@@ -141,7 +141,7 @@
     - platform: event
       event_type: telegram_command
       event_data:
-        command: '/light/kitchen/off'
+        command: "/light/kitchen/off"
   action:
     - service: light.turn_off
       entity_id: light.kitchen
@@ -153,7 +153,7 @@
     - platform: event
       event_type: telegram_command
       event_data:
-        command: '/light/kitchen/switch'
+        command: "/light/kitchen/switch"
   action:
     - service: light.turn_switch
       entity_id: light.kitchen
@@ -165,7 +165,7 @@
     - platform: event
       event_type: telegram_command
       event_data:
-        command: '/light/kitchen/status'
+        command: "/light/kitchen/status"
   action:
     - service: notify.telegram_user_id_1
       data:
