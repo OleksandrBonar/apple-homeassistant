@@ -172,4 +172,4 @@
     - service: telegram_bot.answer_callback_query
       data:
         callback_query_id: "{{ trigger.event.data.id }}"
-        message: "OK, you said no!"
+        message: "Kitchen Light is {{ states('light.kitchen') }}"
