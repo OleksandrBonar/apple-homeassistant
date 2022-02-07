@@ -132,9 +132,8 @@
       event_data:
         command: '/light/kitchen/on'
   action:
-    - service: light.turn_on
-      entity_id:
-        - light.kitchen
+    - service: script.turn_on
+      entity_id: script.kitchen_on
     - service: notify.telegram_user_id_1
       data:
         message: "Kitchen Light is {{ states('light.kitchen') }}"
@@ -148,9 +147,8 @@
       event_data:
         command: '/light/kitchen/off'
   action:
-    - service: light.turn_off
-      entity_id:
-        - light.kitchen
+    - service: script.turn_off
+      entity_id: scritp.kitchen_off
     - service: notify.telegram_user_id_1
       data:
         message: "Kitchen Light is {{ states('light.kitchen') }}"
