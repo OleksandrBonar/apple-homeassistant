@@ -165,10 +165,11 @@
   initial_state: true
   trigger:
     - platform: event
-      event_type: telegram_command
+      event_type: telegram_callback
       event_data:
         command: "/light/kitchen/status"
   action:
-    - service: notify.telegram_user_id_1
+    - service: telegram_bot.answer_callback_query
       data:
-        message: "Kitchen Light is {{ states('light.kitchen') }}"
+        callback_query_id: "{{ trigger.event.data.id }}"
+        message: "OK, you said no!"
