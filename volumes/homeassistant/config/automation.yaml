@@ -135,6 +135,9 @@
     - service: light.turn_on
       entity_id:
         - light.kitchen
+    - service: notify.telegram_user_id_1
+      data:
+        message: "Kitchen Light is {{ states('light.kitchen') }}"
 
 - id: Telegeram light-kitchen-off keyboard
   alias: telegram_light_kitchen_off_keyboard
