@@ -14,6 +14,13 @@ map:
 #logbook:
 sun:
 homekit:
+  name: "Home Assistant Bridge"
+  mode: bridge
+  filter:
+    include_domains:
+      - light
+      - sensor
+      - binary_sensor
 
 tts:
   - platform: google_translate
