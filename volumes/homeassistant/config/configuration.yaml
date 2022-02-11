@@ -1,5 +1,5 @@
 homeassistant:
-  name: "My Home Assistant Instance"
+  name: "Home Assistant"
   latitude: 50.511079642761075
   longitude: 30.79095544917174
   elevation: 0
