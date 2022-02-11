@@ -7,6 +7,7 @@
 
 - platform: mqtt
   name: "Children Bedroom Temperature"
+  object_id: temperature
   state_topic: "usensor/temperature/getvalue"
   unit_of_measurement: "°C"
   device_class: temperature
@@ -14,6 +15,7 @@
 
 - platform: mqtt
   name: "Children Bedroom Humidity"
+  object_id: humidity
   state_topic: "usensor/humidity/getvalue"
   unit_of_measurement: "%"
   device_class: humidity
@@ -21,6 +23,7 @@
 
 - platform: mqtt
   name: "Mains Frequency"
+  object_id: frequency
   state_topic: "udimmer/system/getfrequency"
   unit_of_measurement: "Hz"
   device_class: frequency
