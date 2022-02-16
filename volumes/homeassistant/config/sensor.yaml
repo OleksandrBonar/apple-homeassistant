@@ -103,10 +103,10 @@
       friendly_name: "Balcony Temperature"
       unit_of_measurement: "°C"
       device_class: temperature
-      value_template: "{{ states('weather.korolenka.temperature') | float }}"
+      value_template: "{{ state_attr('weather.korolenka', 'temperature') }}"
 
     humidity_balcony:
       friendly_name: "Balcony Humidity"
       unit_of_measurement: "%"
       device_class: humidity
-      value_template: "{{ states('weather.korolenka.humidity') | float }}"
+      value_template: "{{ state_attr('weather.korolenka', 'humidity') }}"
