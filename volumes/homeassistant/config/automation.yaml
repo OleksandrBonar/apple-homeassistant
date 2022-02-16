@@ -9,7 +9,7 @@
   action:
     - service: light.turn_on
       entity_id:
-        - light.hallway_light
+        - light.hallway
 
 - id: Turn on light in children bedroom
   alias: turn_on_children_bedroom_light
@@ -20,7 +20,7 @@
       to: "on"
   action:
     - service: light.turn_on
-      entity_id: light.children_bedroom_light
+      entity_id: light.children_bedroom
     - service: script.turn_on
       entity_id: script.send_message_motion_detected
 
