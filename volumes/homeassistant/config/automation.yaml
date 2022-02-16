@@ -165,7 +165,7 @@
   initial_state: true
   trigger:
     - platform: event
-      event_type: telegram_callback
+      event_type: telegram_command
       event_data:
         command: "/light/kitchen/status"
   action:
