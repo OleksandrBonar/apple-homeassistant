@@ -98,9 +98,15 @@
       friendly_name: "All unavailable binary sensors: "
       value_template: "{{ states.binary_sensor | selectattr('state', 'equalto', 'unavailable') | list | length }}"
       icon_template: mdi:counter
+      
+    temperature_balcony:
+      friendly_name: "Balcony Temperature"
+      unit_of_measurement: "°C"
+      device_class: temperature
+      value_template: "{{ states('weather.korolenka.temperature') | float }}"
 
     humidity_balcony:
-      friendly_name: "Balcony humidity"
+      friendly_name: "Balcony Humidity"
       unit_of_measurement: "%"
       device_class: humidity
-      value_template: "{{ states('weatcher.korolenko.humidity') | float }}"
+      value_template: "{{ states('weather.korolenka.humidity') | float }}"
