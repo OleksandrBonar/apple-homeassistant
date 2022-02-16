@@ -23,6 +23,17 @@ report_light:
           {{ "\U0001F4A1" }} Parents Bedroom is {{ states('light.parents_bedroom') }}
           {{ "\U0001F4A1" }} Balcony is {{ states('light.balcony') }}
 
+report_sensor:
+  alias: Report of sensor state
+  sequence:
+    - service: notify.telegram_user_id_1
+      data:
+        message: |
+          {{ "\U0001F4AC" }} Sensor State
+          {{ "\U0001F321" }} Mains Frequency is {{ states('sensor.frequency') }}
+          {{ "\U0001F321" }} Temperature is {{ states('sensor.temperature') }}
+          {{ "\U0001F321" }} Humidity is {{ states('sensor.humidity') }}
+
 send_message_1:
   alias: Send via notification service
   sequence:
