@@ -36,17 +36,17 @@
         message: |
           {{ "\U0001F567" }} System startup at {{ states('sensor.time_date') }}
 
-- id: Ondemand report
-  alias: send_report
+- id: Ondemand system report
+  alias: send_report_system
   initial_state: true
   trigger:
     - platform: event
       event_type: telegram_command
       event_data:
-        command: '/report'
+        command: '/report/system'
   action:
     - service: script.turn_on
-      entity_id: script.system_report
+      entity_id: script.report_system
 
 - id: Ondemand light report
   alias: send_report_light
@@ -58,7 +58,7 @@
         command: '/report/light'
   action:
     - service: script.turn_on
-      entity_id: script.system_report_light
+      entity_id: script.report_light
 
 - id: Turn off all lights
   alias: turn_off_all_lights
