@@ -10,6 +10,15 @@ system_report:
           {{ "\U0001F321" }} Sensors: {{ states('sensor.all_sensors') }} / {{ states('sensor.unavailable_sensors') }}
           {{ "\U0001F51F" }} Binary Sensors: {{ states('sensor.all_binary_sensors') }} / {{ states('sensor.unavailable_binary_sensors') }}
 
+system_report_light:
+  alias: Report of light state
+  sequence:
+    - service: notify.telegram_user_id_1
+      data:
+        message: |
+          {{ "\U0001F4A1" }} Light State
+          Hallway is  {{ states('light.hallway') }}
+
 send_message_1:
   alias: Send via notification service
   sequence:
