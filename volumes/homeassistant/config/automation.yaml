@@ -99,6 +99,23 @@
           keyboard:
             - "/report, /light"
 
+- id: Telegeram report keyboard
+  alias: telegram_report_keyboard
+  initial_state: true
+  trigger:
+    - platform: event
+      event_type: telegram_command
+      event_data:
+        command: "/report"
+  action:
+    - service: notify.telegram_user_id_1
+      data:
+        message: "All Reports"
+        data:
+          keyboard:
+            - "/report/system, /report/light"
+            - "/start"
+
 - id: Telegeram light keyboard
   alias: telegram_light_keyboard
   initial_state: true
