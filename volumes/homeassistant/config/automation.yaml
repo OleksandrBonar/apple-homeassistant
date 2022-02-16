@@ -60,6 +60,18 @@
     - service: script.turn_on
       entity_id: script.report_light
 
+- id: Ondemand sensor report
+  alias: send_report_sensor
+  initial_state: true
+  trigger:
+    - platform: event
+      event_type: telegram_command
+      event_data:
+        command: '/report/sensor'
+  action:
+    - service: script.turn_on
+      entity_id: script.report_sensor
+
 - id: Turn off all lights
   alias: turn_off_all_lights
   initial_state: true
@@ -113,7 +125,7 @@
         message: "All Reports"
         data:
           keyboard:
-            - "/report/system, /report/light"
+            - "/report/system, /report/light, /report/sensor"
             - "/start"
 
 - id: Telegeram light keyboard
