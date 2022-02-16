@@ -17,7 +17,11 @@ system_report_light:
       data:
         message: |
           {{ "\U0001F4A1" }} Light State
-          Hallway is  {{ states('light.hallway') }}
+          Hallway is {{ states('light.hallway') }}
+          Kitchen is {{ states('light.kitchen') }}
+          Children Bedroom is {{ states('light.children_bedroom') }}
+          Parent Bedroom is {{ states('light.parent_bedroom') }}
+          Balcony is {{ states('light.balcony') }}
 
 send_message_1:
   alias: Send via notification service
