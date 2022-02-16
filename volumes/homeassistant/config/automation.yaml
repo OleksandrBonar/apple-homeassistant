@@ -20,9 +20,7 @@
       to: "on"
   action:
     - service: light.turn_on
-      data:
-        entity_id: light.children_bedroom
-        brightness: 80
+      entity_id: light.children_bedroom
     - service: script.turn_on
       entity_id: script.send_message_motion_detected
 
@@ -86,8 +84,8 @@
       data:
         message: "Start message"
         data:
-          inline_keyboard:
-            - "reports:/report, lights:/light"
+          keyboard:
+            - "/report, /light"
 
 - id: Telegeram light keyboard
   alias: telegram_light_keyboard
@@ -102,11 +100,11 @@
       data:
         message: "All Lights"
         data:
-          inline_keyboard:
-            - "hallway:/light/hallway, kitchen:/light/kitchen"
-            - "children bedroom:/light/children_bedroom, parents bedroom:/light/parents_bedroom"
-            - "balcony:/light/balcony"
-            - "back:/start"
+          keyboard:
+            - "/light/hallway, /light/kitchen"
+            - "/light/children_bedroom, /light/parents_bedroom"
+            - "/light/balcony"
+            - "/start"
 
 - id: Telegeram light-kitchen keyboard
   alias: telegram_light_kitchen_keyboard
@@ -121,10 +119,10 @@
       data:
         message: "Kitchen Light is {{ states('light.kitchen') }}"
         data:
-          inline_keyboard:
-            - "on:/light/kitchen/on, off:/light/kitchen/off"
-            - "switch:/light/kitchen/switch, status:/light/kitchen/status"
-            - "back:/light"
+          keyboard:
+            - "/light/kitchen/on, /light/kitchen/off"
+            - "/light/kitchen/switch, /light/kitchen/status"
+            - "/light"
 
 - id: Telegeram light-kitchen-on keyboard
   alias: telegram_light_kitchen_on_keyboard
@@ -151,7 +149,7 @@
       entity_id: light.kitchen
 
 - id: Telegeram light-kitchen-switch keyboard
-  alias: telegram_light_kitchen_off_keyboard
+  alias: telegram_light_kitchen_switch_keyboard
   initial_state: true
   trigger:
     - platform: event
