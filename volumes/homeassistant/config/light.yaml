@@ -11,7 +11,8 @@
   optimistic: false
 
 - platform: mqtt
-  name: children_bedroom
+  name: "Children Bedroom Light"
+  object_id: children_bedroom
   state_topic: "udimmer/channel2/getstate"
   command_topic: "udimmer/channel2/setstate"
   brightness_state_topic: "udimmer/channel2/getbrightness"
