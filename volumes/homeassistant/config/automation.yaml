@@ -48,6 +48,18 @@
     - service: script.turn_on
       entity_id: script.system_report
 
+- id: Ondemand light report
+  alias: send_report_light
+  initial_state: true
+  trigger:
+    - platform: event
+      event_type: telegram_command
+      event_data:
+        command: '/report/light'
+  action:
+    - service: script.turn_on
+      entity_id: script.system_report_light
+
 - id: Turn off all lights
   alias: turn_off_all_lights
   initial_state: true
