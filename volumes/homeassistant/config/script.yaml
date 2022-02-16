@@ -16,12 +16,12 @@ system_report_light:
     - service: notify.telegram_user_id_1
       data:
         message: |
-          {{ "\U0001F4A1" }} Light State
-          Hallway is {{ states('light.hallway') }}
-          Kitchen is {{ states('light.kitchen') }}
-          Children Bedroom is {{ states('light.children_bedroom') }}
-          Parent Bedroom is {{ states('light.parent_bedroom') }}
-          Balcony is {{ states('light.balcony') }}
+          {{ "\U0001F4AC" }} Light State
+          {{ "\U0001F4A1" }} Hallway is {{ states('light.hallway') }}
+          {{ "\U0001F4A1" }} Kitchen is {{ states('light.kitchen') }}
+          {{ "\U0001F4A1" }} Children Bedroom is {{ states('light.children_bedroom') }}
+          {{ "\U0001F4A1" }} Parent Bedroom is {{ states('light.parent_bedroom') }}
+          {{ "\U0001F4A1" }} Balcony is {{ states('light.balcony') }}
 
 send_message_1:
   alias: Send via notification service
