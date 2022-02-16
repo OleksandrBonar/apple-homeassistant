@@ -6,9 +6,7 @@
   brightness_state_topic: "udimmer/channel1/getbrightness"
   brightness_command_topic: "udimmer/channel1/setbrightness"
   brightness_scale: 100
-  qos: 1
   retain: true
-  optimistic: false
 
 - platform: mqtt
   name: "Children Bedroom Light"
@@ -18,9 +16,7 @@
   brightness_state_topic: "udimmer/channel2/getbrightness"
   brightness_command_topic: "udimmer/channel2/setbrightness"
   brightness_scale: 100
-  qos: 1
   retain: true
-  optimistic: false
 
 - platform: mqtt
   name: "Parents Bedroom Light"
@@ -30,9 +26,7 @@
   brightness_state_topic: "udimmer/channel3/getbrightness"
   brightness_command_topic: "udimmer/channel3/setbrightness"
   brightness_scale: 100
-  qos: 1
   retain: true
-  optimistic: false
   
 - platform: mqtt
   name: "Hallway Light"
@@ -42,9 +36,7 @@
   brightness_state_topic: "udimmer/channel4/getbrightness"
   brightness_command_topic: "udimmer/channel4/setbrightness"
   brightness_scale: 100
-  qos: 1
   retain: true
-  optimistic: false
 
 - platform: mqtt
   name: "Balcony Light"
@@ -54,6 +46,4 @@
   brightness_state_topic: "udimmer/channel5/getbrightness"
   brightness_command_topic: "udimmer/channel5/setbrightness"
   brightness_scale: 100
-  qos: 1
   retain: true
-  optimistic: false
