@@ -20,7 +20,7 @@ report_light:
           {{ "\U0001F4A1" }} Hallway is {{ states('light.hallway') }}
           {{ "\U0001F4A1" }} Kitchen is {{ states('light.kitchen') }}
           {{ "\U0001F4A1" }} Children Bedroom is {{ states('light.children_bedroom') }}
-          {{ "\U0001F4A1" }} Parent Bedroom is {{ states('light.parent_bedroom') }}
+          {{ "\U0001F4A1" }} Parents Bedroom is {{ states('light.parents_bedroom') }}
           {{ "\U0001F4A1" }} Balcony is {{ states('light.balcony') }}
 
 send_message_1:
