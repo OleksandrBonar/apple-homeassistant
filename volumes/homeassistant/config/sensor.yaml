@@ -103,6 +103,4 @@
       friendly_name: "Balcony humidity"
       unit_of_measurement: "%"
       device_class: humidity
-      state_class: measurement
-      state: >
-        {{ states('weatcher.korolenko.humidity') | float }}
+      value_template: "{{ states('weatcher.korolenko.humidity') | float }}"
