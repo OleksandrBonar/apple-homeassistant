@@ -20,7 +20,7 @@
       to: "on"
   condition:
     - condition: state
-      entity_id: device_tracker.user_1
+      entity_id: device_tracker.oleksandr_iphone
       state: "not_home"
   action:
     - service: light.turn_on
