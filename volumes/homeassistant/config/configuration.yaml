@@ -12,6 +12,7 @@ frontend:
 map:
 #history:
 #logbook:
+mobile_app:
 sun:
 homekit:
   name: "Home Assistant Bridge"
