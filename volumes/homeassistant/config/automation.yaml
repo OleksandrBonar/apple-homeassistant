@@ -18,7 +18,10 @@
       entity_id: binary_sensor.children_bedroom_motion
       from: "off"
       to: "on"
-  condition: "{{ states('sensor.oleksandr_iphone_ssid') == 'Cookie' }}"
+  condition:
+    - condition: state
+      entity_id: device_tracker.oleksandr_iphone
+      state: "not_home"
   action:
     - service: light.turn_on
       entity_id: light.children_bedroom
