@@ -1,7 +1,7 @@
 homeassistant:
   name: "Home Assistant"
-  latitude: 50.511079642761075
-  longitude: 30.79095544917174
+  latitude: !secret home_latitude
+  longitude: !secret home_longitude
   elevation: 0
   unit_system: metric
   time_zone: "Europe/Kiev"
