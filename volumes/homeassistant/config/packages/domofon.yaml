@@ -1,60 +1,134 @@
 domofon:
 
   automation:
-  - alias: Domofon - Open Once for Couriers
-    trigger:
-      - platform: state
-        entity_id:
-          - sensor.oleksandr_iphone_last_notification
-    condition:
-      condition: or
-      conditions:
-        - condition: template
-          value_template: >-
-            {{ trigger.to_state.state | regex_search('Text .* string .*') }}
-        - condition: template
-          value_template: >-
-            {{ trigger.to_state.state | regex_search('Message') }}
-    action:
-      - service: switch.turn_on
+    - alias: Domofon - Incoming Call Notification
+      initial_state: true
+      trigger:
+        platform: state
+        entity_id: binary_sensor.domofon_incoming_call
+        to: "on"
+      action:
+        service: notify.telegram_user_id_1
         data:
-          entity_id: switch.domofon_automatically_open_once
-      - service: notify.telegram
-        data:
-          message: "The courier is on the way, the one-time auto-opening mode is enabled for the intercom."
+          message: "_Intercom_: incoming call... {% if is_state('switch.domofon_automatically_open', 'on') or is_state('switch.domofon_automatically_open_once', 'on') %}(*will open automatically*){% endif %}"
+          data:
+            inline_keyboard:
+              - "{{ '-' if is_state('switch.domofon_automatically_open', 'on') or is_state('switch.domofon_automatically_open_once', 'on') else 'Open:/domofon_open, Reject:/domofon_reject' }}"
 
-  - alias: Domofon - Open Once at Enter to Home Zone
-    trigger: 
-      - platform: zone
-        entity_id:
-          - person.oleksandr
-        zone: zone.domofon
-        event: enter
-    action:
-      - service: switch.turn_on
-        data:
-          entity_id: switch.domofon_automatically_open_once
-      - service: switch.turn_on
-        data:
-          entity_id: switch.domofon_mute_sound_once
-      - service: notify.telegram_stall
-        data:
-          message: "_Intercom_: single auto-opening mode is enabled."
-      - wait_for_trigger:
+    - alias: Domofon - Telegram Control - domofon_open
+      initial_state: true
+      trigger:
+        platform: event
+        event_type: telegram_callback
+        event_data:
+          data: "/domofon_open"
+      action:
+        - service: telegram_bot.answer_callback_query
+          data:
+            callback_query_id: "{{ trigger.event.data.id }}"
+            message: "{{ 'Opening...' if is_state('binary_sensor.domofon_incoming_call', 'on') else 'No incoming call' }}"
+        - service: esphome.domofon_accept_call
+        - service: telegram_bot.edit_message
+          data:
+            message_id: "{{ trigger.event.data.message.message_id }}"
+            chat_id: "{{ trigger.event.data.chat_id }}"
+            message: |
+              _Intercom_: incoming call...
+              {{ 'Intercom *open*!' if is_state('binary_sensor.domofon_incoming_call', 'on') else '' }}
+
+    - alias: Domofon - Telegram Control - domofon_reject
+      initial_state: true
+      trigger:
+        platform: event
+        event_type: telegram_callback
+        event_data:
+          data: "/domofon_reject"
+      action:
+        - service: telegram_bot.answer_callback_query
+          data:
+            callback_query_id: "{{ trigger.event.data.id }}"
+            message: "{{ 'Rejecting...' if is_state('binary_sensor.domofon_incoming_call', 'on') else 'No incoming call' }}"
+        - service: esphome.domofon_reject_call
+        - service: telegram_bot.edit_message
+          data:
+            message_id: "{{ trigger.event.data.message.message_id }}"
+            chat_id: "{{ trigger.event.data.chat_id }}"
+            message: |
+              _Intercom_: incoming call...
+              {{ 'Call *rejected*!' if is_state('binary_sensor.domofon_incoming_call', 'on') else '' }}
+
+    - alias: Domofon - Mute and UnMute by Time
+      trigger:
+        - platform: time
+          at: "23:00:00"
+        - platform: time
+          at: "07:00:00"
+      action:
+        - service: >-
+            {% if trigger.now.hour == 23 -%}
+              switch.turn_on
+            {% elif trigger.now.hour == 7 -%}
+              switch.turn_off
+            {% endif %}
+          data:
+            entity_id: switch.domofon_mute_sound
+
+    - alias: Domofon - Open Once for Couriers
+      initial_state: true
+      trigger:
         - platform: state
-          entity_id: binary_sensor.domofon_contact
-          to: 'on'
-        timeout: "00:10:00"
-      - choose:
-        - conditions: >-
-            {{ is_state('switch.domofon_automatically_open_once', 'on') }}
-          sequence:
-            - service: switch.turn_off
-              data:
-                entity_id: switch.domofon_automatically_open_once
-            - service: switch.turn_off
-              data:
-                entity_id: switch.domofon_mute_sound_once
-            - service: notify.telegram
-              data:
-                message: "_Intercom_: Disabled single auto-opening mode."
+          entity_id:
+            - sensor.oleksandr_iphone_last_notification
+      condition:
+        condition: or
+        conditions:
+          - condition: template
+            value_template: >-
+              {{ trigger.to_state.state | regex_search('Text .* string .*') }}
+          - condition: template
+            value_template: >-
+              {{ trigger.to_state.state | regex_search('Message') }}
+      action:
+        - service: switch.turn_on
+          data:
+            entity_id: switch.domofon_automatically_open_once
+        - service: notify.telegram_user_id_1
+          data:
+            message: "The courier is on the way, the one-time auto-opening mode is enabled for the intercom."
+
+    - alias: Domofon - Open Once at Enter to Home Zone
+      initial_state: true
+      trigger: 
+        - platform: zone
+          entity_id:
+            - person.oleksandr
+          zone: zone.domofon
+          event: enter
+      action:
+        - service: switch.turn_on
+          data:
+            entity_id: switch.domofon_automatically_open_once
+        - service: switch.turn_on
+          data:
+            entity_id: switch.domofon_mute_sound_once
+        - service: notify.telegram_user_id_1
+          data:
+            message: "_Intercom_: single auto-opening mode is enabled."
+        - wait_for_trigger:
+          - platform: state
+            entity_id: binary_sensor.domofon_contact
+            to: 'on'
+          timeout: "00:10:00"
+        - choose:
+          - conditions: >-
+              {{ is_state('switch.domofon_automatically_open_once', 'on') }}
+            sequence:
+              - service: switch.turn_off
+                data:
+                  entity_id: switch.domofon_automatically_open_once
+              - service: switch.turn_off
+                data:
+                  entity_id: switch.domofon_mute_sound_once
+              - service: notify.telegram_user_id_1
+                data:
+                  message: "_Intercom_: Disabled single auto-opening mode."
