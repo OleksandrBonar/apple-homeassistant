@@ -17,3 +17,7 @@ serial:
 
 frontend:
   port: 8080
+  
+devices:
+  '0x00124b00246ea33a':
+    friendly_name: domofon
