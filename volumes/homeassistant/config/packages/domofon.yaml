@@ -135,11 +135,11 @@ domofon:
           - conditions: >-
               {{ is_state('sensor.domofon_mode', 'once') }}
             sequence:
-            - service: input_select.select_option
-              target:
-                entity_id: select.domofon_mode
-              data:
-                option: never
+              - service: input_select.select_option
+                target:
+                  entity_id: select.domofon_mode
+                data:
+                  option: never
               - service: switch.turn_off
                 data:
                   entity_id: switch.domofon_sound
