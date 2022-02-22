@@ -10,10 +10,10 @@ domofon:
       action:
         service: notify.telegram_user_id_1
         data:
-          message: "_Intercom_: incoming call... {% if is_state('switch.domofon_mode', 'alway') or is_state('switch.domofon_mode', 'once') %}(*will open automatically*){% endif %}"
+          message: "_Intercom_: incoming call... {% if is_state('sensor.domofon_mode', 'always') or is_state('sensor.domofon_mode', 'once') %}(*will open automatically*){% endif %}"
           data:
             inline_keyboard:
-              - "{{ '-' if is_state('switch.domofon_mode', 'always') or is_state('switch.domofon_mode', 'once') else 'Open:/domofon_open, Reject:/domofon_reject' }}"
+              - "{{ '-' if is_state('sensor.domofon_mode', 'always') or is_state('sensor.domofon_mode', 'once') else 'Open:/domofon_open, Reject:/domofon_reject' }}"
 
     - alias: Domofon - Telegram Control - domofon_open
       initial_state: true
@@ -27,7 +27,11 @@ domofon:
           data:
             callback_query_id: "{{ trigger.event.data.id }}"
             message: "{{ 'Opening...' if is_state('sensor.domofon_state', 'ring') else 'No incoming call' }}"
-        - service: switch.domofon_mode
+        - service: input_select.select_option
+          target:
+            entity_id: select.domofon_mode
+          data:
+            option: once
         - service: telegram_bot.edit_message
           data:
             message_id: "{{ trigger.event.data.message.message_id }}"
@@ -48,7 +52,11 @@ domofon:
           data:
             callback_query_id: "{{ trigger.event.data.id }}"
             message: "{{ 'Rejecting...' if is_state('sensor.domofon_state', 'ring') else 'No incoming call' }}"
-        - service: esphome.domofon_reject_call
+        - service: input_select.select_option
+          target:
+            entity_id: select.domofon_mode
+          data:
+            option: drop
         - service: telegram_bot.edit_message
           data:
             message_id: "{{ trigger.event.data.message.message_id }}"
@@ -89,9 +97,11 @@ domofon:
             value_template: >-
               {{ trigger.to_state.state | regex_search('Message') }}
       action:
-        - service: switch.turn_on
+        - service: input_select.select_option
+          target:
+            entity_id: select.domofon_mode
           data:
-            entity_id: switch.domofon_mode # once
+            option: once
         - service: notify.telegram_user_id_1
           data:
             message: "The courier is on the way, the one-time auto-opening mode is enabled for the intercom."
@@ -105,9 +115,11 @@ domofon:
           zone: zone.domofon
           event: enter
       action:
-        - service: switch.turn_on
+        - service: input_select.select_option
+          target:
+            entity_id: select.domofon_mode
           data:
-            entity_id: switch.domofon_mode # once
+            option: once
         - service: switch.turn_on
           data:
             entity_id: switch.domofon_sound
@@ -121,11 +133,13 @@ domofon:
           timeout: "00:10:00"
         - choose:
           - conditions: >-
-              {{ is_state('switch.domofon_mode', 'once') }}
+              {{ is_state('sensor.domofon_mode', 'once') }}
             sequence:
-              - service: switch.turn_off
-                data:
-                  entity_id: switch.domofon_mode # once
+            - service: input_select.select_option
+              target:
+                entity_id: select.domofon_mode
+              data:
+                option: never
               - service: switch.turn_off
                 data:
                   entity_id: switch.domofon_sound
