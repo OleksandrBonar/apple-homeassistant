@@ -66,6 +66,7 @@ domofon:
               {{ 'Call *rejected*!' if is_state('sensor.domofon_state', 'ring') else '' }}
 
     - alias: Domofon - Mute and UnMute by Time
+      initial_state: true
       trigger:
         - platform: time
           at: "23:00:00"
