@@ -1,0 +1,60 @@
+domofon:
+
+  automation:
+  - alias: Domofon - Open Once for Couriers
+    trigger:
+      - platform: state
+        entity_id:
+          - sensor.oleksandr_iphone_last_notification
+    condition:
+      condition: or
+      conditions:
+        - condition: template
+          value_template: >-
+            {{ trigger.to_state.state | regex_search('Text .* string .*') }}
+        - condition: template
+          value_template: >-
+            {{ trigger.to_state.state | regex_search('Message') }}
+    action:
+      - service: switch.turn_on
+        data:
+          entity_id: switch.domofon_automatically_open_once
+      - service: notify.telegram
+        data:
+          message: "The courier is on the way, the one-time auto-opening mode is enabled for the intercom."
+
+  - alias: Domofon - Open Once at Enter to Home Zone
+    trigger: 
+      - platform: zone
+        entity_id:
+          - person.oleksandr
+        zone: zone.domofon
+        event: enter
+    action:
+      - service: switch.turn_on
+        data:
+          entity_id: switch.domofon_automatically_open_once
+      - service: switch.turn_on
+        data:
+          entity_id: switch.domofon_mute_sound_once
+      - service: notify.telegram_stall
+        data:
+          message: "_Intercom_: single auto-opening mode is enabled."
+      - wait_for_trigger:
+        - platform: state
+          entity_id: binary_sensor.domofon_contact
+          to: 'on'
+        timeout: "00:10:00"
+      - choose:
+        - conditions: >-
+            {{ is_state('switch.domofon_automatically_open_once', 'on') }}
+          sequence:
+            - service: switch.turn_off
+              data:
+                entity_id: switch.domofon_automatically_open_once
+            - service: switch.turn_off
+              data:
+                entity_id: switch.domofon_mute_sound_once
+            - service: notify.telegram
+              data:
+                message: "_Intercom_: Disabled single auto-opening mode."
