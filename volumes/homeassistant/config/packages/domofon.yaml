@@ -52,8 +52,8 @@ domofon:
             callback_query_id: "{{ trigger.event.data.id }}"
             message: "{{ 'Rejecting...' if is_state('sensor.domofon_state', 'ring') else 'No incoming call' }}"
         - service: input_select.select_option
+          entity_id: select.domofon_mode
           data:
-            entity_id: select.domofon_mode
             option: drop
         - delay:
             seconds: 2
@@ -63,7 +63,7 @@ domofon:
             chat_id: "{{ trigger.event.data.chat_id }}"
             message: |
               _Intercom_: incoming call...
-              {{ 'Call *rejected*!' if is_state('sensor.domofon_state', 'ring') else '' }}
+              {{ 'Call *rejected*!' if is_state('sensor.domofon_state', 'idle') else '' }}
 
     - alias: Domofon - Mute and UnMute by Time
       initial_state: true
