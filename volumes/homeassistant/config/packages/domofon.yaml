@@ -23,14 +23,16 @@ domofon:
         event_data:
           data: "/domofon_open"
       action:
-        - service: input_select.select_option
-          data:
-            entity_id: select.domofon_mode
-            option: once
         - service: telegram_bot.answer_callback_query
           data:
             callback_query_id: "{{ trigger.event.data.id }}"
             message: "{{ 'Opening...' if is_state('sensor.domofon_state', 'ring') else 'No incoming call' }}"
+        - service: select.select_option
+          data:
+            entity_id: select.domofon_mode
+            option: once
+        - delay:
+            seconds: 2
         - service: telegram_bot.edit_message
           data:
             message_id: "{{ trigger.event.data.message.message_id }}"
@@ -47,14 +49,14 @@ domofon:
         event_data:
           data: "/domofon_reject"
       action:
-        - service: input_select.select_option
-          entity_id: select.domofon_mode
-          data:
-            option: drop
         - service: telegram_bot.answer_callback_query
           data:
             callback_query_id: "{{ trigger.event.data.id }}"
             message: "{{ 'Rejecting...' if is_state('sensor.domofon_state', 'ring') else 'No incoming call' }}"
+        - service: select.select_option
+          entity_id: select.domofon_mode
+          data:
+            option: drop
         - delay:
             seconds: 2
         - service: telegram_bot.edit_message
