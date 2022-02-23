@@ -28,9 +28,8 @@ domofon:
             callback_query_id: "{{ trigger.event.data.id }}"
             message: "{{ 'Opening...' if is_state('sensor.domofon_state', 'ring') else 'No incoming call' }}"
         - service: input_select.select_option
-          target:
-            entity_id: select.domofon_mode
           data:
+            entity_id: select.domofon_mode
             option: once
         - service: telegram_bot.edit_message
           data:
@@ -53,10 +52,11 @@ domofon:
             callback_query_id: "{{ trigger.event.data.id }}"
             message: "{{ 'Rejecting...' if is_state('sensor.domofon_state', 'ring') else 'No incoming call' }}"
         - service: input_select.select_option
-          target:
-            entity_id: select.domofon_mode
           data:
+            entity_id: select.domofon_mode
             option: drop
+        - delay:
+            seconds: 2
         - service: telegram_bot.edit_message
           data:
             message_id: "{{ trigger.event.data.message.message_id }}"
@@ -99,9 +99,8 @@ domofon:
               {{ trigger.to_state.state | regex_search('Message') }}
       action:
         - service: input_select.select_option
-          target:
-            entity_id: select.domofon_mode
           data:
+            entity_id: select.domofon_mode
             option: once
         - service: notify.telegram_user_id_1
           data:
@@ -117,9 +116,8 @@ domofon:
           event: enter
       action:
         - service: input_select.select_option
-          target:
-            entity_id: select.domofon_mode
           data:
+            entity_id: select.domofon_mode
             option: once
         - service: switch.turn_on
           data:
@@ -137,9 +135,8 @@ domofon:
               {{ is_state('sensor.domofon_mode', 'once') }}
             sequence:
               - service: input_select.select_option
-                target:
-                  entity_id: select.domofon_mode
                 data:
+                  entity_id: select.domofon_mode
                   option: never
               - service: switch.turn_off
                 data:
