@@ -31,15 +31,13 @@ domofon:
           data:
             entity_id: select.domofon_mode
             option: once
-        - delay:
-            seconds: 2
         - service: telegram_bot.edit_message
           data:
             message_id: "{{ trigger.event.data.message.message_id }}"
             chat_id: "{{ trigger.event.data.chat_id }}"
             message: |
               _Intercom_: incoming call...
-              {{ 'Intercom *open*!' if is_state('sensor.domofon_state', 'ring') else '' }}
+              {{ 'Intercom *open*!' if is_state('sensor.domofon_state', 'open') else '' }}
 
     - alias: Domofon - Telegram Control - domofon_reject
       initial_state: true
@@ -54,11 +52,9 @@ domofon:
             callback_query_id: "{{ trigger.event.data.id }}"
             message: "{{ 'Rejecting...' if is_state('sensor.domofon_state', 'ring') else 'No incoming call' }}"
         - service: select.select_option
-          entity_id: select.domofon_mode
           data:
+            entity_id: select.domofon_mode
             option: drop
-        - delay:
-            seconds: 2
         - service: telegram_bot.edit_message
           data:
             message_id: "{{ trigger.event.data.message.message_id }}"
@@ -100,7 +96,7 @@ domofon:
             value_template: >-
               {{ trigger.to_state.state | regex_search('Message') }}
       action:
-        - service: input_select.select_option
+        - service: select.select_option
           data:
             entity_id: select.domofon_mode
             option: once
@@ -117,7 +113,7 @@ domofon:
           zone: zone.domofon
           event: enter
       action:
-        - service: input_select.select_option
+        - service: select.select_option
           data:
             entity_id: select.domofon_mode
             option: once
@@ -136,7 +132,7 @@ domofon:
           - conditions: >-
               {{ is_state('sensor.domofon_mode', 'once') }}
             sequence:
-              - service: input_select.select_option
+              - service: select.select_option
                 data:
                   entity_id: select.domofon_mode
                   option: never
