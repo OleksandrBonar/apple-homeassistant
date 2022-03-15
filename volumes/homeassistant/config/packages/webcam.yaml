@@ -1,0 +1,4 @@
+camera:
+  - platform: local_file
+    name: Webcam
+    file_path: /tmp/lastspan.jpg
