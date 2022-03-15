@@ -12,7 +12,10 @@ services:
       - DISABLE_JEMALLOC=true
     volumes:
       - ./volumes/homeassistant/config:/config
+      - ./volumes/homeassistant/etc/motion:/etc/motion
       - /etc/localtime:/etc/localtime:ro
+    devices:
+      - /dev/video1:/dev/video1
   mosquitto:
     image: eclipse-mosquitto:latest    
     restart: unless-stopped
