@@ -20,9 +20,11 @@ password:
 	sudo docker-compose exec mosquitto mosquitto_passwd -c /mosquitto/config/mosquitto.passwd mosquitto
 
 install:
+	sudo dnf -y install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
 	sudo dnf -y install dnf-plugins-core
 	sudo dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
 	sudo dnf -y install docker-ce docker-ce-cli containerd.io
+	sudo dnf -y install motion
 	sudo dnf clean all
 	sudo systemctl enable docker.service
 	sudo systemctl enable containerd.service
