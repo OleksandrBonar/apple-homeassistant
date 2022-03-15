@@ -1,5 +1,8 @@
 webcam:
   camera:
     - platform: mjpeg
-      name: Webcam
+      name: Webcam Live
       mjpeg_url: http://localhost:8081
+    - platform: local_file
+      name: Webcam Snapshot
+      file_path: /tmp/lastsnap.jpg
