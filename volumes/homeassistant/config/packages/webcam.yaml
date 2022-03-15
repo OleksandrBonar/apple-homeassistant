@@ -1,4 +1,5 @@
-camera:
-  - platform: mjpeg
-    name: Webcam
-    mjpeg_url: http://localhost:8081
+webcam:
+  camera:
+    - platform: mjpeg
+      name: Webcam
+      mjpeg_url: http://localhost:8081
