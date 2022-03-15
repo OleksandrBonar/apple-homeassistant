@@ -1,4 +1,4 @@
 camera:
-  - platform: local_file
+  - platform: mjpeg
     name: Webcam
-    file_path: /tmp/lastspan.jpg
+    mjpeg_url: http://localhost:8081
