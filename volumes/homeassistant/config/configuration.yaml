@@ -20,6 +20,7 @@ homekit:
   mode: bridge
   filter:
     include_domains:
+      - camera
       - light
       - sensor
       - binary_sensor
