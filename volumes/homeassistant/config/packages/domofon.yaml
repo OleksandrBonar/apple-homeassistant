@@ -117,7 +117,7 @@ domofon:
           data:
             entity_id: select.domofon_mode
             option: once
-        - service: switch.turn_on
+        - service: switch.turn_off
           data:
             entity_id: switch.domofon_sound
         - service: notify.telegram_user_id_1
@@ -128,6 +128,11 @@ domofon:
             entity_id: sensor.domofon_state
             to: 'ring'
           timeout: "00:10:00"
+        - wait_for_trigger:
+          - platform: state
+            entity_id: sensor.domofon_state
+            to: 'idle'
+          timeout: "00:1:00"
         - choose:
           - conditions: >-
               {{ is_state('sensor.domofon_mode', 'once') }}
@@ -136,7 +141,7 @@ domofon:
                 data:
                   entity_id: select.domofon_mode
                   option: never
-              - service: switch.turn_off
+              - service: switch.turn_on
                 data:
                   entity_id: switch.domofon_sound
               - service: notify.telegram_user_id_1
