@@ -1,0 +1,7 @@
+person:
+
+  person:
+    - name: Oleksandr
+      id: oleksandr
+      device_trackers:
+        - device_tracker.oleksandr_iphone
