@@ -110,7 +110,7 @@ domofon:
         - platform: zone
           entity_id:
             - person.oleksandr
-          zone: zone.domofon
+          zone: zone.Home
           event: enter
       action:
         - service: select.select_option
@@ -142,9 +142,3 @@ domofon:
               - service: notify.telegram_user_id_1
                 data:
                   message: "_Intercom_: Disabled single auto-opening mode."
-
-  zone:
-    - name: domofon
-      latitude: !secret home_latitude
-      longitude: !secret home_longitude
-      radius: 50
