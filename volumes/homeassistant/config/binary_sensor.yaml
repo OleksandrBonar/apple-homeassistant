@@ -1,4 +1,1 @@
-- platform: mqtt
-  name: "Children Bedroom Motion"
-  state_topic: "usensor/motion/getvalue"
-  device_class: motion
+
