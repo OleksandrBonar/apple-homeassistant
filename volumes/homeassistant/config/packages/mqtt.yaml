@@ -1,0 +1,7 @@
+mqtt:
+  mqtt:
+    broker: localhost
+    username: mosquitto
+    password: password
+    discovery: true
+    discovery_prefix: homeassistant
