@@ -73,9 +73,9 @@ domofon:
       action:
         - service: >-
             {% if trigger.now.hour == 23 -%}
-              switch.turn_on
-            {% elif trigger.now.hour == 7 -%}
               switch.turn_off
+            {% elif trigger.now.hour == 7 -%}
+              switch.turn_on
             {% endif %}
           data:
             entity_id: switch.domofon_sound
@@ -126,12 +126,12 @@ domofon:
         - wait_for_trigger:
           - platform: state
             entity_id: sensor.domofon_state
-            to: 'ring'
+            to: "ring"
           timeout: "00:10:00"
         - wait_for_trigger:
           - platform: state
             entity_id: sensor.domofon_state
-            to: 'idle'
+            to: "idle"
           timeout: "00:1:00"
         - choose:
           - conditions: >-
