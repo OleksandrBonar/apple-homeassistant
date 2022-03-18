@@ -1,0 +1,11 @@
+homekit:
+
+  homekit:
+    name: "Home Assistant Bridge"
+    mode: bridge
+    filter:
+      include_domains:
+        - camera
+        - light
+        - sensor
+        - binary_sensor
