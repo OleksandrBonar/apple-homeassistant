@@ -35,9 +35,7 @@ domofon:
           data:
             message_id: "{{ trigger.event.data.message.message_id }}"
             chat_id: "{{ trigger.event.data.chat_id }}"
-            message: |
-              _Intercom_: incoming call...
-              {{ 'Intercom *open*!' if is_state('sensor.domofon_state', 'open') else '' }}
+            message: "_Intercom_: incoming call... {% if is_state('sensor.domofon_state', 'open') %}*open!*{% endif %}"
 
     - alias: Domofon - Telegram Control - domofon_reject
       initial_state: true
@@ -59,9 +57,7 @@ domofon:
           data:
             message_id: "{{ trigger.event.data.message.message_id }}"
             chat_id: "{{ trigger.event.data.chat_id }}"
-            message: |
-              _Intercom_: incoming call...
-              {{ 'Call *rejected*!' if is_state('sensor.domofon_state', 'idle') else '' }}
+            message: "_Intercom_: incoming call... {% if is_state('sensor.domofon_state', 'idle') %}*rejected!*{% endif %}"
 
     - alias: Domofon - Mute and UnMute by Time
       initial_state: true
