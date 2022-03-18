@@ -20,13 +20,6 @@ tts:
   - platform: google_translate
     service_name: google_say
 
-mqtt:
-  broker: localhost
-  username: mosquitto
-  password: password
-  discovery: true
-  discovery_prefix: homeassistant
-
 zone: !include zone.yaml
 sensor: !include sensor.yaml
 binary_sensor: !include binary_sensor.yaml
