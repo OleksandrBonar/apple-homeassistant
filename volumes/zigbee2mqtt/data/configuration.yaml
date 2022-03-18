@@ -16,7 +16,7 @@ serial:
   port: /dev/ttyACM0
 
 frontend:
-  port: 8080
+  port: 8090
   
 devices:
   '0x00124b00246ea33a':
