@@ -131,12 +131,8 @@ domofon:
           timeout: "00:1:00"
         - choose:
           - conditions: >-
-              {{ is_state('sensor.domofon_mode', 'once') }}
+              {{ is_state('sensor.domofon_state', 'idle') }}
             sequence:
-              - service: select.select_option
-                data:
-                  entity_id: select.domofon_mode
-                  option: never
               - service: switch.turn_on
                 data:
                   entity_id: switch.domofon_sound
