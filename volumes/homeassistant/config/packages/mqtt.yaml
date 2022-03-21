@@ -1,4 +1,5 @@
 mqtt:
+
   mqtt:
     broker: localhost
     username: mosquitto
