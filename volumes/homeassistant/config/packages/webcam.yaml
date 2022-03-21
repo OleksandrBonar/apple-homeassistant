@@ -1,4 +1,5 @@
 webcam:
+
   camera:
     - platform: mjpeg
       name: Webcam Live
