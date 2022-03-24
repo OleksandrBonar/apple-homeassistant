@@ -128,7 +128,7 @@ domofon:
           - platform: state
             entity_id: sensor.domofon_state
             to: "idle"
-          timeout: "00:1:00"
+          timeout: "00:00:30"
         - choose:
           - conditions: >-
               {{ is_state('sensor.domofon_state', 'idle') }}
