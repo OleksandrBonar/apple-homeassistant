@@ -68,7 +68,7 @@ domofon:
           at: "07:00:00"
       action:
         - service: >-
-            {% if trigger.now.hour == 23 -%}
+            {% if trigger.now.hour == 21 -%}
               switch.turn_off
             {% elif trigger.now.hour == 7 -%}
               switch.turn_on
