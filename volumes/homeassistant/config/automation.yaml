@@ -25,6 +25,7 @@
   action:
     - service: notify.telegram_user_id_1
       data:
+        title: Send a snapshot
         message: "Motion Detected!"
         photo:
           - url: https://onlinejpgtools.com/images/examples-onlinejpgtools/mountain-scene.jpg
