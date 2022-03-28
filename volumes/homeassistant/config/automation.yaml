@@ -23,5 +23,14 @@
       entity_id: device_tracker.oleksandr_iphone
       state: "home"
   action:
-    - service: script.turn_on
-      entity_id: script.send_message_motion_detected
+    - service: camera.snapshot
+      data:
+        filename: /webcam_live_snapshot.jpg
+      target:
+        entity_id: camera.webcam_live
+    - service: notify.telegram_user_id_1
+      data:
+        message: "Motion Detected!"
+        photo:
+          - file: /webcam_live_snapshot.jpg
+            caption: Movement
