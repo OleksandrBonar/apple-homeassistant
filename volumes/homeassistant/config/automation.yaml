@@ -27,6 +27,7 @@
       data:
         title: Send a snapshot
         message: "Motion Detected!"
-        photo:
-          - url: https://onlinejpgtools.com/images/examples-onlinejpgtools/mountain-scene.jpg
-            caption: Movement
+        data:
+          photo:
+            - url: https://onlinejpgtools.com/images/examples-onlinejpgtools/mountain-scene.jpg
+              caption: Movement
