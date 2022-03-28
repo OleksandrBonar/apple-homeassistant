@@ -21,7 +21,7 @@
   condition:
     - condition: state
       entity_id: person.oleksandr
-      state: "home"
+      state: "not_home"
   action:
     - service: notify.telegram_user_id_1
       data:
