@@ -3,4 +3,4 @@ webcam:
   camera:
     - platform: mjpeg
       name: Webcam Live
-      mjpeg_url: http://localhost:8081
+      mjpeg_url: http://localhost:8081/0/stream
