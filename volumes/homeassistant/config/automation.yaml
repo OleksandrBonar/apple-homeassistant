@@ -29,5 +29,5 @@
         message: "Motion Detected!"
         data:
           photo:
-            - url: https://onlinejpgtools.com/images/examples-onlinejpgtools/mountain-scene.jpg
+            - url: http://localhost:8081/0/current
               caption: Movement
