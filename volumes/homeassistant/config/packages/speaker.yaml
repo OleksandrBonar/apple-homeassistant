@@ -16,8 +16,8 @@ speaker:
           entity_id: binary_sensor.children_bedroom_motion
           from: "off"
           to: "on"
-#       action:
-#         - service: tts.google_translate_say
-#           data:
-#             entity_id: media_player.cmus
-#             message: "Motion detected!"
+      action:
+        - service: tts.google_translate_say
+          data:
+            entity_id: media_player.cmus
+            message: "Motion detected!"
