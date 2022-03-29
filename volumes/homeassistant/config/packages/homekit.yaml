@@ -9,4 +9,3 @@ homekit:
         - light
         - sensor
         - binary_sensor
-        - media_player
