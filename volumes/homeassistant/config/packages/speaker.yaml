@@ -1,5 +1,8 @@
 speaker:
 
+  tts:
+    - platform: google_translate
+
   media_player:
     - platform: cmus
       name: cmus
@@ -15,6 +18,6 @@ speaker:
           to: "on"
       action:
         - service: tts.google_translate_say
-          entity_id: media_player.cmus
           data:
-            message: Motion Detected!
+            entity_id: media_player.cmus
+            message: "Motion detected!"
