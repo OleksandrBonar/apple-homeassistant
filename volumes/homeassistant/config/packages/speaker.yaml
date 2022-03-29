@@ -2,11 +2,9 @@ speaker:
 
   tts:
     - platform: google_translate
-      service_name: google_translate_say
 
   media_player:
     - platform: cmus
-      name: cmus
       host: localhost
       
   automation:
