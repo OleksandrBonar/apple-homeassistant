@@ -1,8 +1,11 @@
 speaker:
 
   media_player:
+    - platform: cmus
+      name: cmus
+      host: localhost
     - platform: mpd
-      name: speaker
+      name: mpd
       host: localhost
       
   automation:
@@ -15,6 +18,6 @@ speaker:
           to: "on"
       action:
         - service: tts.google_translate_say
-          entity_id: media_player.speaker
+          entity_id: media_player.cmus
           data:
             message: Motion Detected!
