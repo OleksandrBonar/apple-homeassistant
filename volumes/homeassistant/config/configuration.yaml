@@ -18,7 +18,6 @@ sun:
 
 tts:
   - platform: google_translate
-    service_name: google_say
 
 zone: !include zone.yaml
 sensor: !include sensor.yaml
