@@ -202,6 +202,34 @@ telegram:
           data:
             message: "Kitchen Light is {{ states('light.kitchen') }}"
 
+    - id: telegram_balcony_climate_speaker
+      alias: Telegram - Balcony climate speaker
+      trigger:
+        - platform: event
+          event_type: telegram_command
+          event_data:
+            command: "/climate/balcony/speaker"
+      action:
+        - service: tts.google_translate_say
+          entity_id: media_player.cmus
+          data:
+            cache: false
+            message: "Сейчас на улице температура {{ states('sensor.temperature_balcony') }} градусов и влажность {{ states('sensor.humidity_balcony') }} процентов."
+            
+    - id: telegram_children_bedroom_climate_speaker
+      alias: Telegram - Children bedroom climate speaker
+      trigger:
+        - platform: event
+          event_type: telegram_command
+          event_data:
+            command: "/climate/children_bedroom/speaker"
+      action:
+        - service: tts.google_translate_say
+          entity_id: media_player.cmus
+          data:
+            cache: false
+            message: "Сейчас в комнтае температура {{ states('sensor.temperature_children_bedroom') }} градусов и влажность {{ states('sensor.humidity_children_bedroom') }} процентов."
+
   script:
     report_system:
       alias: Report of system state
