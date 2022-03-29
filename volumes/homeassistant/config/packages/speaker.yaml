@@ -1,0 +1,20 @@
+speaker:
+
+  media_player:
+    - platform: mpd
+      name: speaker
+      host: localhost
+      
+  automations:
+    - id: Test_Speaker_Automation
+      alias: Test Speaker Automation
+      trigger:
+        - platform: state
+          entity_id: binary_sensor.children_bedroom_motion
+          from: "off"
+          to: "on"
+      action:
+        - service: tts.google_translate_say
+          entity_id: media_player.speaker
+          data:
+            message: Motion Detected!
