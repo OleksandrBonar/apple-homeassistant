@@ -97,7 +97,7 @@ telegram:
             message: "Start message"
             data:
               keyboard:
-                - "/report, /light"
+                - "/report, /light, /climate"
 
     - id: Telegeram report keyboard
       alias: telegram_report_keyboard
@@ -202,8 +202,44 @@ telegram:
           data:
             message: "Kitchen Light is {{ states('light.kitchen') }}"
 
-    - id: telegram_balcony_climate_speaker
-      alias: Telegram - Balcony climate speaker
+    - id: telegeram_climate_keyboard
+      alias: Telegeram - Climate keyboard
+      initial_state: true
+      trigger:
+        - platform: event
+          event_type: telegram_command
+          event_data:
+            command: "/climate"
+      action:
+        - service: notify.telegram_user_id_1
+          data:
+            message: "All Climates"
+            data:
+              keyboard:
+                - "/climate/hallway, /climate/kitchen"
+                - "/climate/children_bedroom, /climate/parents_bedroom"
+                - "/climate/balcony"
+                - "/start"
+
+    - id: telegeram_climate_balcony_keyboard
+      alias: Telegeram - Climate balcony keyboard
+      initial_state: true
+      trigger:
+        - platform: event
+          event_type: telegram_command
+          event_data:
+            command: "/climate/balcony"
+      action:
+        - service: notify.telegram_user_id_1
+          data:
+            message: "Balcony climate"
+            data:
+              keyboard:
+                - "/climate/balcony/report, /climate/balcony/speaker"
+                - "/climate"
+
+    - id: telegram_climate_balcony_speaker
+      alias: Telegram - Climate balcony speaker
       trigger:
         - platform: event
           event_type: telegram_command
@@ -215,9 +251,26 @@ telegram:
           data:
             cache: false
             message: "Сейчас на улице температура {{ states('sensor.temperature_balcony') }} градусов и влажность {{ states('sensor.humidity_balcony') }} процентов."
+
+    - id: telegeram_climate_children_bedroom_keyboard
+      alias: Telegeram - Climate children bedroom keyboard
+      initial_state: true
+      trigger:
+        - platform: event
+          event_type: telegram_command
+          event_data:
+            command: "/climate/children_bedroom"
+      action:
+        - service: notify.telegram_user_id_1
+          data:
+            message: "Children bedroom climate"
+            data:
+              keyboard:
+                - "/climate/children_bedroom/report, /climate/children_bedroom/speaker"
+                - "/climate"
             
-    - id: telegram_children_bedroom_climate_speaker
-      alias: Telegram - Children bedroom climate speaker
+    - id: telegram_climate_children_bedroom_speaker
+      alias: Telegram - Climate children bedroom speaker
       trigger:
         - platform: event
           event_type: telegram_command
@@ -228,7 +281,7 @@ telegram:
           entity_id: media_player.cmus
           data:
             cache: false
-            message: "Сейчас в комнтае температура {{ states('sensor.temperature_children_bedroom') }} градусов и влажность {{ states('sensor.humidity_children_bedroom') }} процентов."
+            message: "Сейчас в комнате температура {{ states('sensor.temperature') }} градусов и влажность {{ states('sensor.humidity') }} процентов."
 
   script:
     report_system:
