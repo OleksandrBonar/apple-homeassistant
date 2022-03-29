@@ -6,6 +6,7 @@ speaker:
   media_player:
     - platform: cmus
       host: localhost
+      password: password
       
   automation:
     - id: Test_Speaker_Automation
