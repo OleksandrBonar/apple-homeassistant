@@ -16,9 +16,6 @@ map:
 mobile_app:
 sun:
 
-tts:
-  - platform: google_translate
-
 zone: !include zone.yaml
 sensor: !include sensor.yaml
 binary_sensor: !include binary_sensor.yaml
