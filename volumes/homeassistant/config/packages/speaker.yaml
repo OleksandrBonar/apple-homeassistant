@@ -27,19 +27,3 @@ speaker:
           data:
             cache: false
             message: "Привет незнакомец! Я тебя сфотографировала и передала снимок в полицию."
-
-
-    - id: speaker_temperature_balcony
-      alias: Speaker - Temperature balcony
-      trigger:
-        - platform: event
-          event_type: telegram_command
-          event_data:
-            command: "/speaker/temperature/balcony"
-      action:
-        - service: tts.google_translate_say
-          entity_id: media_player.cmus
-          data:
-            cache: false
-            message: "Температура на улице {{states('sensor.temperature_balcony')}} градусов."
-            
