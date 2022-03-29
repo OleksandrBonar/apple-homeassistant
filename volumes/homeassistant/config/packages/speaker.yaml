@@ -2,7 +2,6 @@ speaker:
 
   tts:
     - platform: google_translate
-      language: "ru"
 
   media_player:
     - platform: cmus
@@ -19,6 +18,7 @@ speaker:
           to: "on"
       action:
         - service: tts.google_translate_say
+          entity_id: media_player.cmus
           data:
-            entity_id: media_player.cmus
-            message: "Стой! Кто идет?"
+            message: "Привет незнакомец! Я тебя сфотографировала и передала снимок в полицию."
+            language: "ru"
