@@ -5,7 +5,7 @@ speaker:
       name: speaker
       host: localhost
       
-  automations:
+  automation:
     - id: Test_Speaker_Automation
       alias: Test Speaker Automation
       trigger:
