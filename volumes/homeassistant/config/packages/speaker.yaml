@@ -4,9 +4,6 @@ speaker:
     - platform: cmus
       name: cmus
       host: localhost
-    - platform: mpd
-      name: mpd
-      host: localhost
       
   automation:
     - id: Test_Speaker_Automation
