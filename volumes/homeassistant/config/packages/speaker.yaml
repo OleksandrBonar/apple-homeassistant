@@ -2,6 +2,7 @@ speaker:
 
   tts:
     - platform: google_translate
+      language: "ru"
 
   media_player:
     - platform: cmus
