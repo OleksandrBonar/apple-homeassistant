@@ -53,6 +53,15 @@ domofon:
           data:
             entity_id: select.domofon_mode
             option: drop
+        - wait_for_trigger:
+          - platform: state
+            entity_id: sensor.domofon_state
+            to: "drop"
+          timeout: "00:00:05"
+        - service: select.select_option
+          data:
+            entity_id: select.domofon_mode
+            option: never
         - service: telegram_bot.edit_message
           data:
             message_id: "{{ trigger.event.data.message.message_id }}"
