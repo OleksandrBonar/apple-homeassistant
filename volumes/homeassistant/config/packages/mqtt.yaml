@@ -33,6 +33,12 @@ mqtt:
       state_class: measurement
 
     - platform: mqtt
+      name: "Children Bedroom UV"
+      object_id: uv
+      state_topic: "usensor/uv/getvalue"
+      state_class: measurement
+
+    - platform: mqtt
       name: "Mains Frequency"
       object_id: frequency
       state_topic: "udimmer/system/getfrequency"
