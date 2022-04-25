@@ -1,12 +1,5 @@
 mqtt:
 
-  mqtt:
-    broker: localhost
-    username: mosquitto
-    password: password
-    discovery: true
-    discovery_prefix: homeassistant
-
   sensor:
     - platform: mqtt
       name: "Children Bedroom Temperature"
