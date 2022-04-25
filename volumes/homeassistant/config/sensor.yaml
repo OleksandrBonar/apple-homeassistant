@@ -79,10 +79,12 @@
       friendly_name: "Balcony Temperature"
       unit_of_measurement: "°C"
       device_class: temperature
-      value_template: "{{ state_attr('weather.home', 'temperature') }}"
+      state: "{{ state_attr('weather.home', 'temperature') }}"
+      state_class: measurement
 
     humidity_balcony:
       friendly_name: "Balcony Humidity"
       unit_of_measurement: "%"
       device_class: humidity
-      value_template: "{{ state_attr('weather.home', 'humidity') }}"
+      state: "{{ state_attr('weather.home', 'humidity') }}"
+      state_class: measurement
