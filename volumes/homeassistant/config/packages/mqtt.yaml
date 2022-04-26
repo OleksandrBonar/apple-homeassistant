@@ -1,5 +1,8 @@
 mqtt:
 
+  mqtt:
+    discovery_prefix: homeassistant
+
   sensor:
     - platform: mqtt
       name: "Children Bedroom Temperature"
