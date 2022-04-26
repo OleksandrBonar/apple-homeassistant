@@ -238,6 +238,18 @@ telegram:
                 - "/climate_balcony_report, /climate_balcony_speaker"
                 - "/climate"
 
+    - id: telegram_climate_balcony_report
+      alias: Telegram - Climate balcony report
+      trigger:
+        - platform: event
+          event_type: telegram_command
+          event_data:
+            command: "/climate_balcony_report"
+      action:
+        - service: notify.telegram_user_id_1
+          data:
+            message: "Сейчас на улице температура {{ states('sensor.temperature_balcony') }} градусов и влажность {{ states('sensor.humidity_balcony') }} процентов."
+
     - id: telegram_climate_balcony_speaker
       alias: Telegram - Climate balcony speaker
       trigger:
