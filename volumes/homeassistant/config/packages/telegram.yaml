@@ -67,15 +67,15 @@ telegram:
         - platform: event
           event_type: telegram_command
           event_data:
-            command: '/light/all/off'
+            command: '/light_all_off'
         - platform: event
           event_type: telegram_command
           event_data:
-            command: '/i/leave'
+            command: '/i_leave'
         - platform: event
           event_type: telegram_command
           event_data:
-            command: '/i/sleep'
+            command: '/i_sleep'
       action:
         - service: script.turn_on
           entity_id: script.all_lights_off
@@ -130,9 +130,9 @@ telegram:
             message: "All Lights"
             data:
               keyboard:
-                - "/light/hallway, /light/kitchen"
-                - "/light/children_bedroom, /light/parents_bedroom"
-                - "/light/balcony"
+                - "/light_hallway, /light_kitchen"
+                - "/light_children_bedroom, /light_parents_bedroom"
+                - "/light_balcony"
                 - "/start"
 
     - id: Telegeram light-kitchen keyboard
@@ -142,15 +142,15 @@ telegram:
         - platform: event
           event_type: telegram_command
           event_data:
-            command: "/light/kitchen"
+            command: "/light_kitchen"
       action:
         - service: notify.telegram_user_id_1
           data:
             message: "Kitchen Light is {{ states('light.kitchen') }}"
             data:
               keyboard:
-                - "/light/kitchen/on, /light/kitchen/off"
-                - "/light/kitchen/switch, /light/kitchen/status"
+                - "/light_kitchen_on, /light_kitchen_off"
+                - "/light_kitchen_switch, /light_kitchen_status"
                 - "/light"
 
     - id: Telegeram light-kitchen-on keyboard
@@ -160,7 +160,7 @@ telegram:
         - platform: event
           event_type: telegram_command
           event_data:
-            command: "/light/kitchen/on"
+            command: "/light_kitchen_on"
       action:
         - service: light.turn_on
           entity_id: light.kitchen
@@ -172,7 +172,7 @@ telegram:
         - platform: event
           event_type: telegram_command
           event_data:
-            command: "/light/kitchen/off"
+            command: "/light_kitchen_off"
       action:
         - service: light.turn_off
           entity_id: light.kitchen
@@ -184,7 +184,7 @@ telegram:
         - platform: event
           event_type: telegram_command
           event_data:
-            command: "/light/kitchen/switch"
+            command: "/light_kitchen_switch"
       action:
         - service: light.turn_switch
           entity_id: light.kitchen
@@ -196,7 +196,7 @@ telegram:
         - platform: event
           event_type: telegram_command
           event_data:
-            command: "/light/kitchen/status"
+            command: "/light_kitchen_status"
       action:
         - service: notify.telegram_user_id_1
           data:
@@ -216,9 +216,9 @@ telegram:
             message: "All Climates"
             data:
               keyboard:
-                - "/climate/hallway, /climate/kitchen"
-                - "/climate/children_bedroom, /climate/parents_bedroom"
-                - "/climate/balcony"
+                - "/climate_hallway, /climate_kitchen"
+                - "/climate_children_bedroom, /climate_parents_bedroom"
+                - "/climate_balcony"
                 - "/start"
 
     - id: telegeram_climate_balcony_keyboard
@@ -228,14 +228,14 @@ telegram:
         - platform: event
           event_type: telegram_command
           event_data:
-            command: "/climate/balcony"
+            command: "/climate_balcony"
       action:
         - service: notify.telegram_user_id_1
           data:
             message: "Balcony climate"
             data:
               keyboard:
-                - "/climate/balcony/report, /climate/balcony/speaker"
+                - "/climate_balcony_report, /climate_balcony_speaker"
                 - "/climate"
 
     - id: telegram_climate_balcony_speaker
@@ -244,7 +244,7 @@ telegram:
         - platform: event
           event_type: telegram_command
           event_data:
-            command: "/climate/balcony/speaker"
+            command: "/climate_balcony_speaker"
       action:
         - service: tts.google_translate_say
           entity_id: media_player.cmus
@@ -259,14 +259,14 @@ telegram:
         - platform: event
           event_type: telegram_command
           event_data:
-            command: "/climate/children_bedroom"
+            command: "/climate_children_bedroom"
       action:
         - service: notify.telegram_user_id_1
           data:
             message: "Children bedroom climate"
             data:
               keyboard:
-                - "/climate/children_bedroom/report, /climate/children_bedroom/speaker"
+                - "/climate_children_bedroom_report, /climate_children_bedroom_speaker"
                 - "/climate"
             
     - id: telegram_climate_children_bedroom_speaker
@@ -275,7 +275,7 @@ telegram:
         - platform: event
           event_type: telegram_command
           event_data:
-            command: "/climate/children_bedroom/speaker"
+            command: "/climate_children_bedroom_speaker"
       action:
         - service: tts.google_translate_say
           entity_id: media_player.cmus
