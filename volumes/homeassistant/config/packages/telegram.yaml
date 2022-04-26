@@ -31,7 +31,7 @@ telegram:
         - platform: event
           event_type: telegram_command
           event_data:
-            command: '/report/system'
+            command: '/report_system'
       action:
         - service: script.turn_on
           entity_id: script.report_system
@@ -43,7 +43,7 @@ telegram:
         - platform: event
           event_type: telegram_command
           event_data:
-            command: '/report/light'
+            command: '/report_light'
       action:
         - service: script.turn_on
           entity_id: script.report_light
@@ -55,7 +55,7 @@ telegram:
         - platform: event
           event_type: telegram_command
           event_data:
-            command: '/report/sensor'
+            command: '/report_sensor'
       action:
         - service: script.turn_on
           entity_id: script.report_sensor
@@ -113,7 +113,7 @@ telegram:
             message: "All Reports"
             data:
               keyboard:
-                - "/report/system, /report/light, /report/sensor"
+                - "/report_system, /report_light, /report_sensor"
                 - "/start"
 
     - id: Telegeram light keyboard
