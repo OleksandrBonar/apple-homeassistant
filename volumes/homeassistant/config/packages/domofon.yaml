@@ -27,10 +27,9 @@ domofon:
           data:
             callback_query_id: "{{ trigger.event.data.id }}"
             message: "{{ 'Opening...' if is_state('sensor.domofon_state', 'ring') else 'No incoming call' }}"
-        - service: select.select_option
+        - service: switch.turn_on
           data:
-            entity_id: select.domofon_mode
-            option: once
+            entity_id: switch.domofon_once
         - service: telegram_bot.edit_message
           data:
             message_id: "{{ trigger.event.data.message.message_id }}"
@@ -49,19 +48,17 @@ domofon:
           data:
             callback_query_id: "{{ trigger.event.data.id }}"
             message: "{{ 'Rejecting...' if is_state('sensor.domofon_state', 'ring') else 'No incoming call' }}"
-        - service: select.select_option
+        - service: switch.turn_on
           data:
-            entity_id: select.domofon_mode
-            option: drop
+            entity_id: switch.domofon_drop
         - wait_for_trigger:
           - platform: state
             entity_id: sensor.domofon_state
             to: "drop"
           timeout: "00:00:05"
-        - service: select.select_option
+        - service: switch.turn_off
           data:
-            entity_id: select.domofon_mode
-            option: never
+            entity_id: switch.domofon_drop
         - service: telegram_bot.edit_message
           data:
             message_id: "{{ trigger.event.data.message.message_id }}"
@@ -101,10 +98,9 @@ domofon:
             value_template: >-
               {{ trigger.to_state.state | regex_search('Message') }}
       action:
-        - service: select.select_option
+        - service: switch.turn_on
           data:
-            entity_id: select.domofon_mode
-            option: once
+            entity_id: switch.domofon_once
         - service: notify.telegram_user_id_1
           data:
             message: "The courier is on the way, the one-time auto-opening mode is enabled for the intercom."
@@ -118,13 +114,12 @@ domofon:
           zone: zone.Home
           event: enter
       action:
-        - service: select.select_option
-          data:
-            entity_id: select.domofon_mode
-            option: once
         - service: switch.turn_off
           data:
             entity_id: switch.domofon_sound
+        - service: switch.turn_on
+          data:
+            entity_id: switch.domofon_once
         - service: notify.telegram_user_id_1
           data:
             message: "_Intercom_: single auto-opening mode is enabled."
@@ -136,8 +131,11 @@ domofon:
         - wait_for_trigger:
           - platform: state
             entity_id: sensor.domofon_state
-            to: "idle"
-          timeout: "00:00:30"
+            to: "open"
+          - platform: state
+            entity_id: sensor.domofon_state
+            to: "drop"
+          timeout: "00:00:10"
         - choose:
           - conditions: >-
               {{ is_state('sensor.domofon_state', 'idle') }}
