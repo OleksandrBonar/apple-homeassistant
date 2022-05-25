@@ -4,12 +4,12 @@ telegram:
     - platform: polling
       api_key: !secret telegram_api_key
       allowed_chat_ids:
-        - !secret telegram_user_id_1
+        - !secret telegram_user_oleksandr
 
   notify:
-    - name: telegram_user_id_1
+    - name: telegram_user_oleksandr
       platform: telegram
-      chat_id: !secret telegram_user_id_1
+      chat_id: !secret telegram_user_oleksandr
 
   automation:
     - id: System startup report
@@ -19,7 +19,7 @@ telegram:
         - platform: homeassistant
           event: start
       action:
-        - service: notify.telegram_user_id_1
+        - service: notify.telegram_user_oleksandr
           data:
             message: |
               {{ "\U0001F567" }} System startup at {{ states('sensor.time_date') }}
@@ -79,7 +79,7 @@ telegram:
       action:
         - service: script.turn_on
           entity_id: script.all_lights_off
-        - service: notify.telegram_user_id_1
+        - service: notify.telegram_user_oleksandr
           data:
             message: "All lights are off"
 
@@ -92,7 +92,7 @@ telegram:
           event_data:
             command: "/start"
       action:
-        - service: notify.telegram_user_id_1
+        - service: notify.telegram_user_oleksandr
           data:
             message: "Start message"
             data:
@@ -108,7 +108,7 @@ telegram:
           event_data:
             command: "/report"
       action:
-        - service: notify.telegram_user_id_1
+        - service: notify.telegram_user_oleksandr
           data:
             message: "All Reports"
             data:
@@ -125,7 +125,7 @@ telegram:
           event_data:
             command: "/light"
       action:
-        - service: notify.telegram_user_id_1
+        - service: notify.telegram_user_oleksandr
           data:
             message: "All Lights"
             data:
@@ -144,7 +144,7 @@ telegram:
           event_data:
             command: "/light_kitchen"
       action:
-        - service: notify.telegram_user_id_1
+        - service: notify.telegram_user_oleksandr
           data:
             message: "Kitchen Light is {{ states('light.kitchen') }}"
             data:
@@ -198,7 +198,7 @@ telegram:
           event_data:
             command: "/light_kitchen_status"
       action:
-        - service: notify.telegram_user_id_1
+        - service: notify.telegram_user_oleksandr
           data:
             message: "Kitchen Light is {{ states('light.kitchen') }}"
 
@@ -211,7 +211,7 @@ telegram:
           event_data:
             command: "/climate"
       action:
-        - service: notify.telegram_user_id_1
+        - service: notify.telegram_user_oleksandr
           data:
             message: "All Climates"
             data:
@@ -230,7 +230,7 @@ telegram:
           event_data:
             command: "/climate_balcony"
       action:
-        - service: notify.telegram_user_id_1
+        - service: notify.telegram_user_oleksandr
           data:
             message: "Balcony climate"
             data:
@@ -246,7 +246,7 @@ telegram:
           event_data:
             command: "/climate_balcony_report"
       action:
-        - service: notify.telegram_user_id_1
+        - service: notify.telegram_user_oleksandr
           data:
             message: "Сейчас на улице температура {{ states('sensor.temperature_balcony') }} градусов и влажность {{ states('sensor.humidity_balcony') }} процентов."
 
@@ -273,7 +273,7 @@ telegram:
           event_data:
             command: "/climate_children_bedroom"
       action:
-        - service: notify.telegram_user_id_1
+        - service: notify.telegram_user_oleksandr
           data:
             message: "Children bedroom climate"
             data:
@@ -299,7 +299,7 @@ telegram:
     report_system:
       alias: Report of system state
       sequence:
-        - service: notify.telegram_user_id_1
+        - service: notify.telegram_user_oleksandr
           data:
             message: |
               {{ "\U0001F4AC" }} System State
@@ -311,7 +311,7 @@ telegram:
     report_light:
       alias: Report of light state
       sequence:
-        - service: notify.telegram_user_id_1
+        - service: notify.telegram_user_oleksandr
           data:
             message: |
               {{ "\U0001F4AC" }} Light State
@@ -324,7 +324,7 @@ telegram:
     report_sensor:
       alias: Report of sensor state
       sequence:
-        - service: notify.telegram_user_id_1
+        - service: notify.telegram_user_oleksandr
           data:
             message: |
               {{ "\U0001F4AC" }} Sensor State
@@ -335,7 +335,7 @@ telegram:
     send_message_1:
       alias: Send via notification service
       sequence:
-        - service: notify.telegram_user_id_1
+        - service: notify.telegram_user_oleksandr
           data:
             message: "Current time - {{ states('sensor.time') }}. All right."
 
@@ -347,7 +347,7 @@ telegram:
             filename: /webcam_live_snapshot.jpg
           target:
             entity_id: camera.webcam_live
-        - service: notify.telegram_user_id_1
+        - service: notify.telegram_user_oleksandr
           data:
             message: "Motion Detected!"
             photo:
