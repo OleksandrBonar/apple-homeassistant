@@ -104,6 +104,17 @@ domofon:
         - service: notify.telegram_user_id_1
           data:
             message: "The courier is on the way, the one-time auto-opening mode is enabled for the intercom."
+        - wait_for_trigger:
+          - platform: state
+            entity_id: sensor.domofon_state
+            to: "idle"
+          timeout: "00:10:00"
+        - choose:
+          - conditions: "{{ is_state('sensor.domofon_state', 'once') }}"
+            sequence:
+              - service: switch.turn_off
+                data:
+                  entity_id: switch.domofon_once
 
     - alias: Domofon - Open Once at Enter to Home Zone
       initial_state: true
@@ -114,9 +125,15 @@ domofon:
           zone: zone.Home
           event: enter
       action:
-        - service: switch.turn_off
-          data:
-            entity_id: switch.domofon_sound
+        - choose:
+          - conditions:
+            - condition: state
+              entity_id: switch.domofon_sound
+              state: "on"
+            sequence:
+              - service: switch.turn_off
+                data:
+                  entity_id: switch.domofon_sound
         - service: switch.turn_on
           data:
             entity_id: switch.domofon_once
@@ -126,23 +143,29 @@ domofon:
         - wait_for_trigger:
           - platform: state
             entity_id: sensor.domofon_state
-            to: "ring"
-          timeout: "00:10:00"
-        - wait_for_trigger:
-          - platform: state
-            entity_id: sensor.domofon_state
             to: "open"
           - platform: state
             entity_id: sensor.domofon_state
             to: "drop"
-          timeout: "00:00:10"
+          timeout: "00:10:00"
         - choose:
-          - conditions: >-
-              {{ is_state('sensor.domofon_state', 'idle') }}
+          - conditions:
+            - condition: time
+              after: "07:00:00"
+              before: "21:00:00"
             sequence:
               - service: switch.turn_on
                 data:
                   entity_id: switch.domofon_sound
-              - service: notify.telegram_user_id_1
+        - choose:
+          - conditions:
+            - condition: state
+              entity_id: switch.domofon_once
+              state: "on"
+            sequence:
+              - service: switch.turn_of
                 data:
-                  message: "_Intercom_: Disabled single auto-opening mode."
+                  entity_id: switch.domofon_once
+        - service: notify.telegram_user_id_1
+          data:
+            message: "_Intercom_: Disabled single auto-opening mode."
