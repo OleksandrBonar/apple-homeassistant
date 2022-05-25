@@ -166,7 +166,7 @@ domofon:
               entity_id: switch.domofon_once
               state: "on"
             sequence:
-              - service: switch.turn_of
+              - service: switch.turn_off
                 data:
                   entity_id: switch.domofon_once
         - service: notify.telegram_user_id_1
