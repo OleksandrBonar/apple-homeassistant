@@ -8,7 +8,7 @@ domofon:
           entity_id: sensor.domofon_state
           to: "ring"
       action:
-        service: notify.telegram_user_id_1
+        service: notify.telegram_user_oleksandr
         data:
           message: "_Intercom_: incoming call... {% if is_state('switch.domofon_always', 'on') or is_state('switch.domofon_once', 'on') %}(*will open automatically*){% endif %}"
           data:
@@ -101,7 +101,7 @@ domofon:
         - service: switch.turn_on
           data:
             entity_id: switch.domofon_once
-        - service: notify.telegram_user_id_1
+        - service: notify.telegram_user_oleksandr
           data:
             message: "The courier is on the way, the one-time auto-opening mode is enabled for the intercom."
         - wait_for_trigger:
@@ -140,7 +140,7 @@ domofon:
         - service: switch.turn_on
           data:
             entity_id: switch.domofon_once
-        - service: notify.telegram_user_id_1
+        - service: notify.telegram_user_oleksandr
           data:
             message: "_Intercom_: single auto-opening mode is enabled."
         - wait_for_trigger:
@@ -169,6 +169,6 @@ domofon:
               - service: switch.turn_off
                 data:
                   entity_id: switch.domofon_once
-        - service: notify.telegram_user_id_1
+        - service: notify.telegram_user_oleksandr
           data:
             message: "_Intercom_: Disabled single auto-opening mode."
