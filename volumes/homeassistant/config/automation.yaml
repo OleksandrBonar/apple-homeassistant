@@ -23,7 +23,7 @@
       entity_id: person.oleksandr
       state: "not_home"
   action:
-    - service: notify.telegram_user_id_1
+    - service: notify.telegram_user_oleksandr
       data:
         message: "Motion Detected!"
         data:
