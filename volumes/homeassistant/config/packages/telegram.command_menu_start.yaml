@@ -50,7 +50,7 @@ telegram_command_menu:
                   message_id: "{{ trigger.event.data.message.message_id }}"
               - service: telegram_bot.send_message
                 data:
-                  target: "{{ trigger.event.data.user_id }}"
+                  target: "{{ trigger.event.data.chat_id }}"
                   message: |
                     {{ '\U0001F527' }} Choose a room for control:
                   inline_keyboard:
