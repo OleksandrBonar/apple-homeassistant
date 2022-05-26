@@ -23,7 +23,7 @@ telegram_command_menu_balcony:
                 data:
                   target: "{{ trigger.event.data.chat_id }}"
                   message: &msg_balcony |
-                    Temperature: {{ states('sensor.temperature_balcony') }}, Humidity: {{ states('sensor.humidity_balcony') }}
+                    Temperature - {{ states('sensor.temperature_balcony') }}, Humidity - {{ states('sensor.humidity_balcony') }}
                   inline_keyboard: &kbd_balcony
                     - "{{ '\U0001F4A1' }} Light - {% if is_state('light.balcony', 'off') %}OFF{% else %}ON{% endif %}:/balcony_light_toggle"
                     - "{{ '\U000021A9' }} Back:/back, {{ '\U000021AA' }} Update:/update"
