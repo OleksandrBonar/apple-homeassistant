@@ -32,7 +32,7 @@ telegram_command_menu:
       action:
         - choose:
           - conditions:
-            - contition: template
+            - condition: template
               value_template: "{{ trigger.event.data.command == '/close' }}"
             sequence:
               - service: telegram_bot.delete_message
