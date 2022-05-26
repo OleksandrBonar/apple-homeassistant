@@ -25,8 +25,8 @@ telegram_command_menu_balcony:
                   message: &msg_balcony |
                     Temprerature - {{ states('sensor.temperature_balcony') }}, Humidity - {{ states('sensor.humidity_balcony') }}
                   inline_keyboard: &kbd_balcony
-                    - "{{ '\U0001F4A1' }} Light - {% if is_state('light.balcony', 'off') %}OFF{% else %}ON{% endif %}:/balcony_light_toggle"
-                    - "{{ '\U000021A9' }} Back:/back, {{ '\U000021AA' }} Update:/update"
+                    - "{{ '\U0001F4A1' }} Light - {% if is_state('light.balcony', 'off') %}🔴{% else %}🟢{% endif %}:/balcony_light_toggle"
+                    - "{{ '\U000021A9' }} Back:/back, {{ '\U000021AA' }} Update:/balcony_control"
         - choose:
           - conditions:
             - condition: template
