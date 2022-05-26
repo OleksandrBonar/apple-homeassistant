@@ -23,6 +23,7 @@ telegram_command_menu_hall:
                 data:
                   target: "{{ trigger.event.data.chat_id }}"
                   message: &msg_hall |
+                    Domofon Mode - {{ states('select.domofon_mode') }}
                     Temperature - {{ states('sensor.temperature_hall') }}, Humidity - {{ states('sensor.humidity_hall') }}
                   inline_keyboard: &kbd_hall
                     - "{{ '\U0001F4A1' }} Domofon Sound - {% if is_state('switch.domofon_sound', 'on') %}🟢{% else %}🔴{% endif %}:/hall_domofon_sound_toggle"
