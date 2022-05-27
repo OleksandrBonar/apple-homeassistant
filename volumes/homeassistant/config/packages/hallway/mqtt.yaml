@@ -1,4 +1,12 @@
 hallway_mqtt:
+  sensor:
+    - platform: mqtt
+      name: "Mains Frequency"
+      object_id: frequency
+      state_topic: "udimmer/system/getfrequency"
+      unit_of_measurement: "Hz"
+      device_class: frequency
+      state_class: measurement
   light:
     - platform: mqtt
       name: "Hallway Light"
