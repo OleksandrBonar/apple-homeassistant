@@ -1,5 +1,5 @@
 balcony_sensor:
-#  sensor:
+  sensor:
 #     balcony_temperature:
 #       friendly_name: "Balcony Temperature"
 #       unit_of_measurement: "°C"
