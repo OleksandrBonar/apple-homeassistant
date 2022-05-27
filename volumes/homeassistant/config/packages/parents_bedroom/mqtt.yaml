@@ -1,0 +1,11 @@
+mqtt:
+  light:
+    - platform: mqtt
+      name: "Parents Bedroom Light"
+      object_id: parents_bedroom
+      state_topic: "udimmer/channel3/getstate"
+      command_topic: "udimmer/channel3/setstate"
+      brightness_state_topic: "udimmer/channel3/getbrightness"
+      brightness_command_topic: "udimmer/channel3/setbrightness"
+      brightness_scale: 100
+      retain: true
