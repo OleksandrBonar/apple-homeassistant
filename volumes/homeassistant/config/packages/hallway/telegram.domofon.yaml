@@ -1,13 +1,13 @@
 hallway_telegram_domofon:
-hallway_telegram_domofon:
   automation:
     - alias: Domofon - Test
       initial_state: true
       trigger:
         - platform: state
           entity_id: sensor.domofon_state
-          to: "idle"
-          for: "00:00:30"
+          to: "Idle"
+          for:
+            seconds: 10
       action:
         - service: notify.telegram_user_oleksandr
           data:
