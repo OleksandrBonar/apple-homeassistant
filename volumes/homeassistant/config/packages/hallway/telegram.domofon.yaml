@@ -26,7 +26,7 @@ hallway_telegram_domofon:
             callback_query_id: "{{ trigger.event.data.id }}"
             message: "{{ 'Opening...' if is_state('sensor.domofon_state', 'ring') else 'No incoming call' }}"
         - service: switch.turn_on
-          data:
+          target:
             entity_id: switch.domofon_once
         - service: telegram_bot.edit_message
           data:
@@ -46,7 +46,7 @@ hallway_telegram_domofon:
             callback_query_id: "{{ trigger.event.data.id }}"
             message: "{{ 'Rejecting...' if is_state('sensor.domofon_state', 'ring') else 'No incoming call' }}"
         - service: switch.turn_on
-          data:
+          target:
             entity_id: switch.domofon_drop
         - wait_for_trigger:
           - platform: state
@@ -54,7 +54,7 @@ hallway_telegram_domofon:
             to: "drop"
           timeout: "00:00:05"
         - service: switch.turn_off
-          data:
+          target:
             entity_id: switch.domofon_drop
         - service: telegram_bot.edit_message
           data:
@@ -75,7 +75,7 @@ hallway_telegram_domofon:
             {% elif trigger.now.hour == 7 -%}
               switch.turn_on
             {% endif %}
-          data:
+          target:
             entity_id: switch.domofon_sound
     - alias: Domofon - Open Once for Couriers
       initial_state: true
@@ -94,7 +94,7 @@ hallway_telegram_domofon:
               {{ trigger.to_state.state | regex_search('Message') }}
       action:
         - service: switch.turn_on
-          data:
+          target:
             entity_id: switch.domofon_once
         - service: notify.telegram_user_oleksandr
           data:
@@ -102,7 +102,10 @@ hallway_telegram_domofon:
         - wait_for_trigger:
           - platform: state
             entity_id: sensor.domofon_state
-            to: "idle"
+            to: "open"
+          - platform: state
+            entity_id: sensor.domofon_state
+            to: "drop"
           timeout: "00:10:00"
         - choose:
           - conditions:
@@ -111,7 +114,7 @@ hallway_telegram_domofon:
               state: "once"
             sequence:
               - service: switch.turn_off
-                data:
+                target:
                   entity_id: switch.domofon_once
     - alias: Domofon - Open Once at Enter to Home Zone
       initial_state: true
@@ -129,10 +132,10 @@ hallway_telegram_domofon:
               state: "on"
             sequence:
               - service: switch.turn_off
-                data:
+                target:
                   entity_id: switch.domofon_sound
         - service: switch.turn_on
-          data:
+          target:
             entity_id: switch.domofon_once
         - service: notify.telegram_user_oleksandr
           data:
@@ -152,7 +155,7 @@ hallway_telegram_domofon:
               before: "21:00:00"
             sequence:
               - service: switch.turn_on
-                data:
+                target:
                   entity_id: switch.domofon_sound
         - choose:
           - conditions:
@@ -161,7 +164,7 @@ hallway_telegram_domofon:
               state: "on"
             sequence:
               - service: switch.turn_off
-                data:
+                target:
                   entity_id: switch.domofon_once
         - service: notify.telegram_user_oleksandr
           data:
