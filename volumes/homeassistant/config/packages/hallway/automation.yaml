@@ -1,0 +1,13 @@
+hallway_automation:
+  automation:
+  - id: Hallway Lighting on when dark outside
+    alias: hallway_light_turn_on_when_dark_outside
+    trigger:
+      - platform: numeric_state
+        entity_id: sun.sun
+        attribute: elevation
+        # Can be a positive or negative number
+        below: -4.0
+    action:
+      - service: light.turn_on
+        entity_id: light.hallway
