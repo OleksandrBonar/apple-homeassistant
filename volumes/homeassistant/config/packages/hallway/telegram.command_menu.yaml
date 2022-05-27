@@ -26,9 +26,9 @@ telegram_command_menu_hallway:
                     Temperature - {{ states('sensor.hallway_temperature') }}
                     Humidity - {{ states('sensor.hallway_humidity') }}
                   inline_keyboard: &kbd_hallway
-                    - "{{ '\U0001F4A1' }} Light - {% if is_state('light.hall', 'on') %}🟢{% else %}🔴{% endif %}:/hall_light_toggle"
-                    - "{{ '\U0001F4A1' }} Domofon Sound - {% if is_state('switch.domofon_sound', 'on') %}🟢{% else %}🔴{% endif %}:/hall_domofon_sound_toggle"
-                    - "{{ '\U0001F4A1' }} Domofon Once - {% if is_state('switch.domofon_once', 'on') %}🟢{% else %}🔴{% endif %}:/hall_domofon_once_toggle"
+                    - "{{ '\U0001F4A1' }} Light - {% if is_state('light.hall', 'on') %}🟢{% else %}🔴{% endif %}:/hallway_light_toggle"
+                    - "{{ '\U0001F4A1' }} Domofon Sound - {% if is_state('switch.domofon_sound', 'on') %}🟢{% else %}🔴{% endif %}:/hallway_domofon_sound_toggle"
+                    - "{{ '\U0001F4A1' }} Domofon Once - {% if is_state('switch.domofon_once', 'on') %}🟢{% else %}🔴{% endif %}:/hallway_domofon_once_toggle"
                     - "{{ '\U000021A9' }} Back:/back, {{ '\U000021AA' }} Update:/hallway_control"
         - choose:
           - conditions:
