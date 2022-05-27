@@ -78,13 +78,3 @@ mqtt:
       brightness_command_topic: "udimmer/channel4/setbrightness"
       brightness_scale: 100
       retain: true
-
-    - platform: mqtt
-      name: "Balcony Light"
-      object_id: balcony
-      state_topic: "udimmer/channel5/getstate"
-      command_topic: "udimmer/channel5/setstate"
-      brightness_state_topic: "udimmer/channel5/getbrightness"
-      brightness_command_topic: "udimmer/channel5/setbrightness"
-      brightness_scale: 100
-      retain: true
