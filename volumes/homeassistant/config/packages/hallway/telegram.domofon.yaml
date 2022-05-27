@@ -1,4 +1,4 @@
-domofon:
+hallway_telegram_domofon:
 
   automation:
     - alias: Domofon - Incoming Call Notification
