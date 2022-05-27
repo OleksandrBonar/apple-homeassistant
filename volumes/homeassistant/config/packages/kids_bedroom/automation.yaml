@@ -1,0 +1,21 @@
+kids_bedroom_automation:
+  automation:
+  - id: Turn on light in kids bedroom for motion
+    alias: kids_bedroom_light_auto_turn_on_for_motion
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.kids_bedroom_motion
+        from: "off"
+        to: "on"
+    condition:
+      - condition: state
+        entity_id: person.oleksandr
+        state: "not_home"
+    action:
+      - service: notify.telegram_user_oleksandr
+        data:
+          message: "Motion Detected!"
+          data:
+            photo:
+              - url: http://localhost:8081/0/current
+                caption: "Motion Detected!"
