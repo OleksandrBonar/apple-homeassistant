@@ -1,26 +1,11 @@
 hallway_telegram_domofon:
   automation:
-    - alias: Domofon - Test
-      initial_state: true
-      trigger:
-        - platform: state
-          entity_id: sensor.domofon_state
-          to: "Idle"
-          for:
-            seconds: 10
-      action:
-        - service: notify.telegram_user_oleksandr
-          data:
-            message: "test"
-            data:
-              keyboard:
-                - "/stop"
     - alias: Domofon - Incoming Call Notification
       initial_state: true
       trigger:
         - platform: state
           entity_id: sensor.domofon_state
-          to: "ring"
+          to: "Ring"
       action:
         - service: notify.telegram_user_oleksandr
           data:
@@ -39,7 +24,7 @@ hallway_telegram_domofon:
         - service: telegram_bot.answer_callback_query
           data:
             callback_query_id: "{{ trigger.event.data.id }}"
-            message: "{{ 'Opening...' if is_state('sensor.domofon_state', 'ring') else 'No incoming call' }}"
+            message: "{{ 'Opening...' if is_state('sensor.domofon_state', 'Ring') else 'No incoming call' }}"
         - service: switch.turn_on
           target:
             entity_id: switch.domofon_once
@@ -47,7 +32,7 @@ hallway_telegram_domofon:
           data:
             chat_id: "{{ trigger.event.data.chat_id }}"
             message_id: "{{ trigger.event.data.message.message_id }}"
-            message: "_Intercom_: incoming call... {% if is_state('sensor.domofon_state', 'open') %}*open!*{% endif %}"
+            message: "_Intercom_: incoming call... {% if is_state('sensor.domofon_state', 'Open') %}*open!*{% endif %}"
     - alias: Domofon - Telegram Control - domofon_reject
       initial_state: true
       trigger:
@@ -59,14 +44,14 @@ hallway_telegram_domofon:
         - service: telegram_bot.answer_callback_query
           data:
             callback_query_id: "{{ trigger.event.data.id }}"
-            message: "{{ 'Rejecting...' if is_state('sensor.domofon_state', 'ring') else 'No incoming call' }}"
+            message: "{{ 'Rejecting...' if is_state('sensor.domofon_state', 'Ring') else 'No incoming call' }}"
         - service: switch.turn_on
           target:
             entity_id: switch.domofon_drop
         - wait_for_trigger:
           - platform: state
             entity_id: sensor.domofon_state
-            to: "drop"
+            to: "Drop"
           timeout: "00:00:05"
         - service: switch.turn_off
           target:
@@ -75,7 +60,7 @@ hallway_telegram_domofon:
           data:
             chat_id: "{{ trigger.event.data.chat_id }}"
             message_id: "{{ trigger.event.data.message.message_id }}"
-            message: "_Intercom_: incoming call... {% if is_state('sensor.domofon_state', 'idle') %}*rejected!*{% endif %}"
+            message: "_Intercom_: incoming call... {% if is_state('sensor.domofon_state', 'Idle') %}*rejected!*{% endif %}"
     - alias: Domofon - Mute and UnMute by Time
       initial_state: true
       trigger:
@@ -117,16 +102,16 @@ hallway_telegram_domofon:
         - wait_for_trigger:
           - platform: state
             entity_id: sensor.domofon_state
-            to: "open"
+            to: "Open"
           - platform: state
             entity_id: sensor.domofon_state
-            to: "drop"
+            to: "Drop"
           timeout: "00:10:00"
         - choose:
           - conditions:
             - condition: state
-              entity_id: sensor.domofon_state
-              state: "once"
+              entity_id: switch.domofon_once
+              state: "on"
             sequence:
               - service: switch.turn_off
                 target:
@@ -158,10 +143,10 @@ hallway_telegram_domofon:
         - wait_for_trigger:
           - platform: state
             entity_id: sensor.domofon_state
-            to: "open"
+            to: "Open"
           - platform: state
             entity_id: sensor.domofon_state
-            to: "drop"
+            to: "Drop"
           timeout: "00:10:00"
         - choose:
           - conditions:
