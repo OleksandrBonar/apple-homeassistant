@@ -1,19 +1,10 @@
-kitchen_on:
-  sequence:
-    - service: light.turn_on
-      entity_id: light.kitchen
-
-kitchen_off:
-  sequence:
-    - service: light.turn_off
-      entity_id: light.kitchen
-
 all_lights_off:
   sequence:
     - service: light.turn_off
-      entity_id:
-        - light.hallway
-        - light.kitchen
-        - light.children_bedroom
-        - light.parents_bedroom
-        - light.balcony
+      target:
+        entity_id:
+          - light.hallway
+          - light.kitchen
+          - light.kids_bedroom
+          - light.parents_bedroom
+          - light.balcony
