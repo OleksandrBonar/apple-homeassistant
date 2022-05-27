@@ -4,7 +4,6 @@
     - 'date'
     - 'date_time'
     - 'time_date'
-
 - platform: template
   sensors:
     all_lights:
@@ -18,12 +17,10 @@
             {% endif %}
           {%- endfor -%}
         {%- endfor -%}
-
     unavailable_lights:
       friendly_name: "All unavailable lights: "
       value_template: "{{ states.light | selectattr('state', 'equalto', 'unavailable') | list | length }}"
       icon_template: mdi:counter
-
     all_switches:
       friendly_name: "All switches: "
       value_template: >
@@ -35,12 +32,10 @@
             {% endif %}
           {%- endfor -%}
         {%- endfor -%}
-
     unavailable_switches:
       friendly_name: "All unavailable switches: "
       value_template: "{{ states.switch | selectattr('state', 'equalto', 'unavailable') | list | length }}"
       icon_template: mdi:counter
-
     all_sensors:
       friendly_name: "All sensors: "
       value_template: >
@@ -52,12 +47,10 @@
             {% endif %}
           {%- endfor -%}
         {%- endfor -%}
-
     unavailable_sensors:
       friendly_name: "All unavailable sensors: "
       value_template: "{{ states.sensor | selectattr('state', 'equalto', 'unavailable') | list | length }}"
       icon_template: mdi:counter
-
     all_binary_sensor:
       friendly_name: "All binary sensors: "
       value_template: >
@@ -69,7 +62,6 @@
             {% endif %}
           {%- endfor -%}
         {%- endfor -%}
-
     unavailable_binary_sensors:
       friendly_name: "All unavailable binary sensors: "
       value_template: "{{ states.binary_sensor | selectattr('state', 'equalto', 'unavailable') | list | length }}"
