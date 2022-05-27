@@ -23,7 +23,7 @@ telegram_command_menu_kitchen:
                 data:
                   target: "{{ trigger.event.data.chat_id }}"
                   message: &msg_kitchen |
-                    Temperature - {{ states('sensor.temperature_kitchen') }}, Humidity - {{ states('sensor.humidity_kitchen') }}
+                    Temperature - {{ states('sensor.kitchen_temperature') }}, Humidity - {{ states('sensor.kitchen_humidity') }}
                   inline_keyboard: &kbd_kitchen
                     - "{{ '\U0001F4A1' }} Light - {% if is_state('light.kitchen', 'on') %}🟢{% else %}🔴{% endif %}:/kitchen_light_toggle"
                     - "{{ '\U000021A9' }} Back:/back, {{ '\U000021AA' }} Update:/kitchen_control"
