@@ -17,9 +17,9 @@ telegram_command_menu:
             message: |
               {{ '\U0001F527' }} Choose a room for control:
             inline_keyboard:
-              - "{{ '\U0001F6B6' }} Hall:/hall_control, {{ '\U0001F374' }} Kitchen:/kitchen_control"
-              - "{{ '\U0001F6B9' }} Kid's room:/kroom_control, {{ '\U0001F6C0' }} Bathroom:/bathroom_control"
-              - "{{ '\U0001F3E2' }} Parent's room:/proom_control, {{ '\U0001F6B9' }} Balcony:/balcony_control"
+              - "{{ '\U0001F6B6' }} Hallway:/hallway_control, {{ '\U0001F374' }} Kitchen:/kitchen_control"
+              - "{{ '\U0001F6B9' }} Kid's Bedroom:/kids_bedroom_control, {{ '\U0001F6C0' }} Bathroom:/bathroom_control"
+              - "{{ '\U0001F3E2' }} Parent's Bedroom:/parents_bedroom_control, {{ '\U0001F6B9' }} Balcony:/balcony_control"
               - "{{ '\U0001F6AB' }} Close:/close"
 
     - id: Telegram - Command Menu Start Control
@@ -54,7 +54,7 @@ telegram_command_menu:
                   message: |
                     {{ '\U0001F527' }} Choose a room for control:
                   inline_keyboard:
-                    - "{{ '\U0001F6B6' }} Hall:/hall_control, {{ '\U0001F374' }} Kitchen:/kitchen_control"
-                    - "{{ '\U0001F6B9' }} Kid's room:/kroom_control, {{ '\U0001F6C0' }} Bathroom:/bathroom_control"
-                    - "{{ '\U0001F3E2' }} Parent's room:/proom_control, {{ '\U0001F6B9' }} Balcony:/balcony_control"
+                    - "{{ '\U0001F6B6' }} Hallway:/hallway_control, {{ '\U0001F374' }} Kitchen:/kitchen_control"
+                    - "{{ '\U0001F6B9' }} Kid's Bedroom:/kids_bedroom_control, {{ '\U0001F6C0' }} Bathroom:/bathroom_control"
+                    - "{{ '\U0001F3E2' }} Parent's Bedroom:/parents_bedroom_control, {{ '\U0001F6B9' }} Balcony:/balcony_control"
                     - "{{ '\U0001F6AB' }} Close:/close"
