@@ -1,11 +1,12 @@
-kitchen_mqtt:  
-  light:
-    - platform: mqtt
-      name: "Kitchen Light"
-      object_id: kitchen
-      state_topic: "udimmer/channel1/getstate"
-      command_topic: "udimmer/channel1/setstate"
-      brightness_state_topic: "udimmer/channel1/getbrightness"
-      brightness_command_topic: "udimmer/channel1/setbrightness"
-      brightness_scale: 100
-      retain: true
+kitchen_mqtt:
+  mqtt:
+    light:
+      - platform: mqtt
+        name: "Kitchen Light"
+        object_id: kitchen
+        state_topic: "udimmer/channel1/getstate"
+        command_topic: "udimmer/channel1/setstate"
+        brightness_state_topic: "udimmer/channel1/getbrightness"
+        brightness_command_topic: "udimmer/channel1/setbrightness"
+        brightness_scale: 100
+        retain: true
