@@ -1,7 +1,5 @@
 telegram_command_menu_hallway:
-
   automation:
-  
     - id: Telegram - Command Menu Hallway Control
       alias: telegram_command_menu_hallway_control
       initial_state: true
