@@ -14,7 +14,7 @@ hallway_telegram_domofon:
             message: "test"
             data:
               keyboard:
-                - "/start"
+                - "/stop"
   automation:
     - alias: Domofon - Incoming Call Notification
       initial_state: true
