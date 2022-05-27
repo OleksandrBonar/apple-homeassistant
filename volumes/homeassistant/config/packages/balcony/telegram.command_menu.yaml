@@ -21,7 +21,8 @@ telegram_command_menu_balcony:
                 data:
                   target: "{{ trigger.event.data.chat_id }}"
                   message: &msg_balcony |
-                    Temperature - {{ states('sensor.balcony_temperature') }}, Humidity - {{ states('sensor.balcony_humidity') }}
+                    Temperature - {{ states('sensor.balcony_temperature') }}
+                    Humidity - {{ states('sensor.balcony_humidity') }}
                   inline_keyboard: &kbd_balcony
                     - "{{ '\U0001F4A1' }} Light - {% if is_state('light.balcony', 'on') %}🟢{% else %}🔴{% endif %}:/balcony_light_toggle"
                     - "{{ '\U000021A9' }} Back:/back, {{ '\U000021AA' }} Update:/balcony_control"
@@ -31,7 +32,8 @@ telegram_command_menu_balcony:
               value_template: "{{ trigger.event.data.command == '/balcony_light_toggle' }}"
             sequence:
               - service: light.toggle
-                entity_id: light.balcony
+                target:
+                  entity_id: light.balcony
               - delay:
                   milliseconds: 500
               - service: telegram_bot.answer_callback_query
