@@ -16,12 +16,12 @@ map:
 mobile_app:
 sun:
 
-zone: !include zone.yaml
+#zone: !include zone.yaml
 sensor: !include sensor.yaml
-binary_sensor: !include binary_sensor.yaml
+#binary_sensor: !include binary_sensor.yaml
 switch: !include switch.yaml
-device_tracker: !include device_tracker.yaml
-light: !include light.yaml
+#device_tracker: !include device_tracker.yaml
+#light: !include light.yaml
 script: !include script.yaml
-notify: !include notify.yaml
-automation: !include automation.yaml
+#notify: !include notify.yaml
+#automation: !include automation.yaml
