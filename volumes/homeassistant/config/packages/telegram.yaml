@@ -20,6 +20,9 @@ telegram:
           data:
             message: |
               {{ "\U0001F567" }} System startup at {{ states('sensor.time_date') }}
+            data:
+              keyboard:
+                - "/start"
     - id: Ondemand system report
       alias: send_report_system
       initial_state: true
