@@ -5,7 +5,7 @@ mqtt:
 
   sensor:
     - platform: mqtt
-      name: "Children Bedroom Temperature"
+      name: "Kids Bedroom Temperature"
       object_id: temperature
       state_topic: "usensor/temperature/getvalue"
       unit_of_measurement: "°C"
@@ -13,7 +13,7 @@ mqtt:
       state_class: measurement
 
     - platform: mqtt
-      name: "Children Bedroom Humidity"
+      name: "Kids Bedroom Humidity"
       object_id: humidity
       state_topic: "usensor/humidity/getvalue"
       unit_of_measurement: "%"
@@ -21,7 +21,7 @@ mqtt:
       state_class: measurement
 
     - platform: mqtt
-      name: "Children Bedroom illuminance"
+      name: "Kids Bedroom illuminance"
       object_id: illuminance
       state_topic: "usensor/illuminance/getvalue"
       unit_of_measurement: "lx"
@@ -29,7 +29,7 @@ mqtt:
       state_class: measurement
 
     - platform: mqtt
-      name: "Children Bedroom UV"
+      name: "Kids Bedroom UV"
       object_id: uv
       state_topic: "usensor/uv/getvalue"
       state_class: measurement
@@ -44,7 +44,7 @@ mqtt:
 
   binary_sensor:
     - platform: mqtt
-      name: "Children Bedroom Motion"
+      name: "Kids Bedroom Motion"
       state_topic: "usensor/motion/getvalue"
       device_class: motion
 
@@ -60,8 +60,8 @@ mqtt:
       retain: true
 
     - platform: mqtt
-      name: "Children Bedroom Light"
-      object_id: children_bedroom
+      name: "Kids Bedroom Light"
+      object_id: kids_bedroom
       state_topic: "udimmer/channel2/getstate"
       command_topic: "udimmer/channel2/setstate"
       brightness_state_topic: "udimmer/channel2/getbrightness"
