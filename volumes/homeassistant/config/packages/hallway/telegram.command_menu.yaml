@@ -23,8 +23,8 @@ telegram_command_menu_hallway:
                   message: &msg_hallway |
                     Domofon Mode - {{ states('select.domofon_mode') }}
                     Domofon State - {{ states('sensor.domofon_state') }}
-                    Temperature - {{ states('sensor.hallway_temperature') }}
-                    Humidity - {{ states('sensor.hallway_humidity') }}
+                    {{ "\U0001F321" }} Temperature is {{ states('sensor.hallway_temperature') }}
+                    {{ "\U0001F321" }} Humidity is {{ states('sensor.hallway_humidity') }}
                   inline_keyboard: &kbd_hallway
                     - "{{ '\U0001F4A1' }} Light - {% if is_state('light.hall', 'on') %}🟢{% else %}🔴{% endif %}:/hallway_light_toggle"
                     - "{{ '\U0001F4A1' }} Domofon Sound - {% if is_state('switch.domofon_sound', 'on') %}🟢{% else %}🔴{% endif %}:/hallway_domofon_sound_toggle"
