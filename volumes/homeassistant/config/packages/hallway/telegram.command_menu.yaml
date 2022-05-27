@@ -22,10 +22,13 @@ telegram_command_menu_hallway:
                   target: "{{ trigger.event.data.chat_id }}"
                   message: &msg_hallway |
                     Domofon Mode - {{ states('select.domofon_mode') }}
-                    Temperature - {{ states('sensor.hallway_temperature') }}, Humidity - {{ states('sensor.hallway_humidity') }}
+                    Domofon State - {{ states('sensor.domofon_state') }}
+                    Temperature - {{ states('sensor.hallway_temperature') }}
+                    Humidity - {{ states('sensor.hallway_humidity') }}
                   inline_keyboard: &kbd_hallway
-                    - "{{ '\U0001F4A1' }} Domofon Sound - {% if is_state('switch.domofon_sound', 'on') %}🟢{% else %}🔴{% endif %}:/hall_domofon_sound_toggle"
                     - "{{ '\U0001F4A1' }} Light - {% if is_state('light.hall', 'on') %}🟢{% else %}🔴{% endif %}:/hall_light_toggle"
+                    - "{{ '\U0001F4A1' }} Domofon Sound - {% if is_state('switch.domofon_sound', 'on') %}🟢{% else %}🔴{% endif %}:/hall_domofon_sound_toggle"
+                    - "{{ '\U0001F4A1' }} Domofon Once - {% if is_state('switch.domofon_once', 'on') %}🟢{% else %}🔴{% endif %}:/hall_domofon_once_toggle"
                     - "{{ '\U000021A9' }} Back:/back, {{ '\U000021AA' }} Update:/hallway_control"
         - choose:
           - conditions:
@@ -33,7 +36,8 @@ telegram_command_menu_hallway:
               value_template: "{{ trigger.event.data.command == '/hallway_domofon_sound_toggle' }}"
             sequence:
               - service: switch.toggle
-                entity_id: switch.domofon_sound
+                target:
+                  entity_id: switch.domofon_sound
               - delay:
                   milliseconds: 500
               - service: telegram_bot.answer_callback_query
@@ -52,10 +56,34 @@ telegram_command_menu_hallway:
                   inline_keyboard: *kbd_hallway
           - conditions:
             - condition: template
+              value_template: "{{ trigger.event.data.command == '/hallway_domofon_once_toggle' }}"
+            sequence:
+              - service: switch.toggle
+                target:
+                  entity_id: switch.domofon_once
+              - delay:
+                  milliseconds: 500
+              - service: telegram_bot.answer_callback_query
+                data:
+                  callback_query_id: "{{ trigger.event.data.id }}"
+                  message: |
+                    {{ '\U0001F4AC' }} Domofon Once is {% if is_state('switch.domofon_once', 'on') %}on{% else %}off{% endif %}
+              - service: telegram_bot.delete_message
+                data_template:
+                  chat_id: "{{ trigger.event.data.chat_id }}"
+                  message_id: "{{ trigger.event.data.message.message_id }}"
+              - service: telegram_bot.send_message
+                data:
+                  target: "{{ trigger.event.data.chat_id }}"
+                  message: *msg_hallway
+                  inline_keyboard: *kbd_hallway
+          - conditions:
+            - condition: template
               value_template: "{{ trigger.event.data.command == '/hallway_light_toggle' }}"
             sequence:
               - service: light.toggle
-                entity_id: light.hallway
+                target:
+                  entity_id: light.hallway
               - delay:
                   milliseconds: 500
               - service: telegram_bot.answer_callback_query
