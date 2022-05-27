@@ -1,7 +1,5 @@
 telegram_command_menu_kitchen:
-
   automation:
-  
     - id: Telegram - Command Menu Kitchen Control
       alias: telegram_command_menu_kitchen_control
       initial_state: true
