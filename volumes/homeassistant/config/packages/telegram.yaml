@@ -1,16 +1,13 @@
 telegram:
-
   telegram_bot:
     - platform: polling
       api_key: !secret telegram_api_key
       allowed_chat_ids:
         - !secret telegram_user_oleksandr
-
   notify:
     - name: telegram_user_oleksandr
       platform: telegram
       chat_id: !secret telegram_user_oleksandr
-
   automation:
     - id: System startup report
       alias: start_message
@@ -23,7 +20,6 @@ telegram:
           data:
             message: |
               {{ "\U0001F567" }} System startup at {{ states('sensor.time_date') }}
-
     - id: Ondemand system report
       alias: send_report_system
       initial_state: true
@@ -34,8 +30,8 @@ telegram:
             command: '/report_system'
       action:
         - service: script.turn_on
-          entity_id: script.report_system
-
+          target:
+            entity_id: script.report_system
     - id: Ondemand light report
       alias: send_report_light
       initial_state: true
@@ -46,8 +42,8 @@ telegram:
             command: '/report_light'
       action:
         - service: script.turn_on
-          entity_id: script.report_light
-
+          target:
+            entity_id: script.report_light
     - id: Ondemand sensor report
       alias: send_report_sensor
       initial_state: true
@@ -58,8 +54,8 @@ telegram:
             command: '/report_sensor'
       action:
         - service: script.turn_on
-          entity_id: script.report_sensor
-
+          target:
+            entity_id: script.report_sensor
     - id: Turn off all lights
       alias: turn_off_all_lights
       initial_state: true
@@ -78,11 +74,11 @@ telegram:
             command: '/i_sleep'
       action:
         - service: script.turn_on
-          entity_id: script.all_lights_off
+          target:
+            entity_id: script.all_lights_off
         - service: notify.telegram_user_oleksandr
           data:
             message: "All lights are off"
-
   script:
     report_system:
       alias: Report of system state
@@ -95,7 +91,6 @@ telegram:
               {{ "\U0001F50C" }} Switches: {{ states('sensor.all_switches') }} / {{ states('sensor.unavailable_switches') }}
               {{ "\U0001F321" }} Sensors: {{ states('sensor.all_sensors') }} / {{ states('sensor.unavailable_sensors') }}
               {{ "\U0001F51F" }} Binary Sensors: {{ states('sensor.all_binary_sensors') }} / {{ states('sensor.unavailable_binary_sensors') }}
-
     report_light:
       alias: Report of light state
       sequence:
@@ -108,7 +103,6 @@ telegram:
               {{ "\U0001F4A1" }} Children Bedroom is {{ states('light.children_bedroom') }}
               {{ "\U0001F4A1" }} Parents Bedroom is {{ states('light.parents_bedroom') }}
               {{ "\U0001F4A1" }} Balcony is {{ states('light.balcony') }}
-
     report_sensor:
       alias: Report of sensor state
       sequence:
@@ -119,14 +113,12 @@ telegram:
               {{ "\U0001F321" }} Mains Frequency is {{ states('sensor.frequency') }}
               {{ "\U0001F321" }} Temperature is {{ states('sensor.temperature') }}
               {{ "\U0001F321" }} Humidity is {{ states('sensor.humidity') }}
-
     send_message_1:
       alias: Send via notification service
       sequence:
         - service: notify.telegram_user_oleksandr
           data:
             message: "Current time - {{ states('sensor.time') }}. All right."
-
     send_message_motion_detected:
       alias: Motion detection notifier
       sequence:
