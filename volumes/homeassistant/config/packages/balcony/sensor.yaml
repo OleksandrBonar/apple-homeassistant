@@ -1,13 +1,10 @@
 balcony_sensor:
-
   sensor:
-
     balcony_temperature:
       friendly_name: "Balcony Temperature"
       unit_of_measurement: "°C"
       device_class: temperature
       value_template: "{{ state_attr('weather.home', 'temperature') }}"
-
     balcony_humidity:
       friendly_name: "Balcony Humidity"
       unit_of_measurement: "%"
