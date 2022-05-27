@@ -15,7 +15,6 @@ hallway_telegram_domofon:
             data:
               keyboard:
                 - "/stop"
-  automation:
     - alias: Domofon - Incoming Call Notification
       initial_state: true
       trigger:
