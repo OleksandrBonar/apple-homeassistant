@@ -1,11 +1,15 @@
 hallway_telegram_domofon:
   automation:
-    - alias: Domofon - Incoming Call Notification
+    - id: domofon_incoming_call_notification
+      alias: Domofon - Incoming Call Notification
       initial_state: true
       trigger:
         - platform: state
           entity_id: sensor.domofon_state
           to: "Ring"
+      condition:
+        - condition: template
+          value_template: "{{ (as_timestamp(now()) - as_timestamp(state_attr('automation.domofon_incoming_call_notification', 'last_triggered') | default(0)) | int >= 5) }}"
       action:
         - service: notify.telegram_user_oleksandr
           data:
