@@ -92,17 +92,20 @@ hallway_telegram_domofon:
         conditions:
           - condition: template
             value_template: >-
-              {{ trigger.to_state.state | regex_search('Text .* string .*') }}
+              {{ trigger.to_state.state | regex_search('Text .* message .*') }}
           - condition: template
             value_template: >-
-              {{ trigger.to_state.state | regex_search('Message') }}
+              {{ trigger.to_state.state | regex_search('Your courier is close! .*') }}
       action:
+        - service: notify.telegram_user_oleksandr
+          data:
+            message: "The courier is close!"
         - service: switch.turn_on
           target:
             entity_id: switch.domofon_once
         - service: notify.telegram_user_oleksandr
           data:
-            message: "The courier is on the way, the one-time auto-opening mode is enabled for the intercom."
+            message: "_Intercom_: single auto-opening mode is enabled."
         - wait_for_trigger:
           - platform: state
             entity_id: sensor.domofon_state
@@ -120,6 +123,9 @@ hallway_telegram_domofon:
               - service: switch.turn_off
                 target:
                   entity_id: switch.domofon_once
+        - service: notify.telegram_user_oleksandr
+          data:
+            message: "_Intercom_: Disabled single auto-opening mode."
     - alias: Domofon - Open Once at Enter to Home Zone
       initial_state: true
       trigger: 
