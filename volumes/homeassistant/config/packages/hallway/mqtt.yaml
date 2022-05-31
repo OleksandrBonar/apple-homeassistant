@@ -24,7 +24,6 @@ hallway_mqtt:
         - topic: "urelay/system/getonline"
       command_topic: "urelay/switch1/setvalue"
       state_topic: "urelay/switch1/getvalue"
-      optimistic: false
       retain: true
   switch:
     - platform: mqtt
