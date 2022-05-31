@@ -19,12 +19,22 @@ hallway_mqtt:
       retain: true
   switch:
     - platform: mqtt
-      name: "Entrance Light"
-      unique_id: entrance_light
+      name: "Entrance Light 1"
+      unique_id: entrance_light1
       availability:
         - topic: "urelay/system/getonline"
-      command_topic: "urelay/switch/setvalue"
-      state_topic: "urelay/switch/getvalue"
+      command_topic: "urelay/switch1/setvalue"
+      state_topic: "urelay/switch1/getvalue"
+      optimistic: false
+      qos: 0
+      retain: true
+    - platform: mqtt
+      name: "Entrance Light 2"
+      unique_id: entrance_light2
+      availability:
+        - topic: "urelay/system/getonline"
+      command_topic: "urelay/switch2/setvalue"
+      state_topic: "urelay/switch2/getvalue"
       optimistic: false
       qos: 0
       retain: true
