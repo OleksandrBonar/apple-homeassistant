@@ -17,24 +17,22 @@ hallway_mqtt:
       brightness_command_topic: "udimmer/channel4/setbrightness"
       brightness_scale: 100
       retain: true
-  switch:
     - platform: mqtt
-      name: "Entrance Light 1"
-      unique_id: entrance_light1
+      name: "Entrance Light"
+      object_id: entrance
       availability:
         - topic: "urelay/system/getonline"
       command_topic: "urelay/switch1/setvalue"
       state_topic: "urelay/switch1/getvalue"
       optimistic: false
-      qos: 0
       retain: true
+  switch:
     - platform: mqtt
-      name: "Entrance Light 2"
-      unique_id: entrance_light2
+      name: "Entrance Switch"
+      object_id: entrance
       availability:
         - topic: "urelay/system/getonline"
       command_topic: "urelay/switch2/setvalue"
       state_topic: "urelay/switch2/getvalue"
       optimistic: false
-      qos: 0
       retain: true
