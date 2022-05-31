@@ -21,8 +21,12 @@ hallway_mqtt:
     - platform: mqtt
       name: "Entrance Light"
       unique_id: entrance_light
-      availability_topic: "urelay/system/getonline"
+      availability:
+        - topic: "urelay/system/getonline"
       command_topic: "urelay/switch/setvalue"
       state_topic: "urelay/switch/getvalue"
       payload_on: "on"
       payload_off: "off"
+      optimistic: false
+      qos: 0
+      retain: true
