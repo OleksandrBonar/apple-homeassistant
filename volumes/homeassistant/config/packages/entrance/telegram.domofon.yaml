@@ -8,9 +8,14 @@ entrance_telegram_domofon:
           entity_id: sensor.domofon_state
           to: "Open"
       condition:
-        - condition: sun
-          after: sunset
-          before: sunrise
+        - condition: or
+          conditions:
+            - condition: sun
+              after: sunrise
+              after_offset: "+00:30:00"
+            - condition: sun
+              before: sunset
+              before_offset: "-00:30:00"
         - condition: state
           entity_id: light.entrance
           state: "off"
