@@ -8,14 +8,12 @@ entrance_telegram_domofon:
           entity_id: sensor.domofon_state
           to: "Open"
       condition:
-        - condition: and
-          conditions:
-            - condition: sun
-              after: sunset
-              before: sunrise
-            - condition: state
-              entity_id: light.entrance
-              state: "off"
+        - condition: sun
+          after: sunset
+          before: sunrise
+        - condition: state
+          entity_id: light.entrance
+          state: "off"
       action:
         - service: light.turn_on
           target:
