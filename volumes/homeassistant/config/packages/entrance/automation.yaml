@@ -1,29 +1,32 @@
 entrance_automation:
   automation:
-  - id: Turn on light in entrance for motion when dark
-    alias: entrance_light_auto_turn_on_for_motion_when_dark
-    trigger:
-      - platform: state
-        entity_id: binary_sensor.entrance_motion
-        to: "on"
-    condition:
-      - condition: and
-        conditions:
-          - condition: state
-            entity_id: person.oleksandr
-            state: "home"
-          - condition: sun
-            after: sunset
-            before: sunrise
-    action:
-      - service: light.turn_on
-        target:
-          entity_id: light.entrance
-      - wait_for_trigger:
+    - id: Turn on light in entrance for motion when dark
+      alias: entrance_light_auto_turn_on_for_motion_when_dark
+      trigger:
         - platform: state
-          entity_id: light.entrance
-          to: "off"
-        timeout: "00:00:20"
-      - service: light.turn_off
-        target:
-          entity_id: light.entrance
+          entity_id: binary_sensor.entrance_motion
+          to: "on"
+      condition:
+        - condition: and
+          conditions:
+            - condition: sun
+              after: sunset
+              before: sunrise
+            - condition: state
+              entity_id: person.oleksandr
+              state: "home"
+            - condition: state
+              entity_id: light.entrance
+              state: "off"
+      action:
+        - service: light.turn_on
+          target:
+            entity_id: light.entrance
+        - wait_for_trigger:
+          - platform: state
+            entity_id: light.entrance
+            to: "off"
+          timeout: "00:00:20"
+        - service: light.turn_off
+          target:
+            entity_id: light.entrance
