@@ -6,7 +6,7 @@ entrance_automation:
       trigger:
         - platform: state
           entity_id: binary_sensor.entrance_motion
-          to: "on"
+          to: "ON"
       condition:
         - condition: sun
           after: sunset
