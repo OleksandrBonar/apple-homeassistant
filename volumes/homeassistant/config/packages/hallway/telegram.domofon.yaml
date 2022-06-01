@@ -6,7 +6,7 @@ hallway_telegram_domofon:
       trigger:
         - platform: state
           entity_id: sensor.domofon_state
-          state: "Ring"
+          to: "Ring"
       condition:
         - condition: template
           value_template: "{{ (as_timestamp(now()) - as_timestamp(state_attr('automation.domofon_incoming_call_notification', 'last_triggered') | default(0)) | int >= 5) }}"
