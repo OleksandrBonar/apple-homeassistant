@@ -1,4 +1,10 @@
 hallway_mqtt:
+  binary_sensor:
+    - platform: mqtt
+      name: "Entrance Motion"
+      object_id: entrance_motion
+      state_topic: "urelay/switch3/getvalue"
+      device_class: motion
   sensor:
     - platform: mqtt
       name: "Mains Frequency"
