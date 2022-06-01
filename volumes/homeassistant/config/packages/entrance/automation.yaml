@@ -2,6 +2,7 @@ entrance_automation:
   automation:
     - id: Turn on light in entrance for motion when dark
       alias: entrance_light_auto_turn_on_for_motion_when_dark
+      initial_state: true
       trigger:
         - platform: state
           entity_id: binary_sensor.entrance_motion
