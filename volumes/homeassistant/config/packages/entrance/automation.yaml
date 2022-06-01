@@ -7,17 +7,15 @@ entrance_automation:
           entity_id: binary_sensor.entrance_motion
           to: "on"
       condition:
-        - condition: and
-          conditions:
-            - condition: sun
-              after: sunset
-              before: sunrise
-            - condition: state
-              entity_id: person.oleksandr
-              state: "home"
-            - condition: state
-              entity_id: light.entrance
-              state: "off"
+        - condition: sun
+          after: sunset
+          before: sunrise
+        - condition: state
+          entity_id: person.oleksandr
+          state: "home"
+        - condition: state
+          entity_id: light.entrance
+          state: "off"
       action:
         - service: light.turn_on
           target:
