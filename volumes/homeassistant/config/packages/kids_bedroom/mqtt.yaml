@@ -26,11 +26,6 @@ kids_bedroom_mqtt:
       object_id: uv
       state_topic: "usensor/uv/getvalue"
       state_class: measurement
-  binary_sensor:
-    - platform: mqtt
-      name: "Kids Bedroom Motion"
-      state_topic: "usensor/motion/getvalue"
-      device_class: motion
   light:
     - platform: mqtt
       name: "Kids Bedroom Light"
