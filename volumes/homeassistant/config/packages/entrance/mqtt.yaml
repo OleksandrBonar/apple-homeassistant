@@ -1,0 +1,26 @@
+entrance_mqtt:
+  binary_sensor:
+    - platform: mqtt
+      name: "Entrance Motion"
+      object_id: entrance_motion
+      state_topic: "urelay/switch3/getvalue"
+      device_class: motion
+  light:
+    - platform: mqtt
+      name: "Entrance Light"
+      object_id: entrance
+      availability:
+        - topic: "urelay/system/getonline"
+      command_topic: "urelay/switch1/setvalue"
+      state_topic: "urelay/switch1/getvalue"
+      retain: true
+  switch:
+    - platform: mqtt
+      name: "Entrance Switch"
+      object_id: entrance
+      availability:
+        - topic: "urelay/system/getonline"
+      command_topic: "urelay/switch2/setvalue"
+      state_topic: "urelay/switch2/getvalue"
+      optimistic: false
+      retain: true
