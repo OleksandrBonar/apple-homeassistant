@@ -1,7 +1,7 @@
 entrance_automation:
   automation:
-    - id: entrance_light_auto_turn_on_for_motion_when_dark
-      alias: Turn on light in entrance for motion when dark
+    - id: entrance_light_auto_on_for_motion_when_dark
+      alias: Entrance Light Auto ON for motion when dark
       initial_state: true
       trigger:
         - platform: state
