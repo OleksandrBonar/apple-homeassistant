@@ -161,15 +161,9 @@ hallway_telegram_domofon:
               - service: switch.turn_on
                 target:
                   entity_id: switch.domofon_sound
-        - choose:
-          - conditions:
-            - condition: state
-              entity_id: switch.domofon_once
-              state: "on"
-            sequence:
-              - service: switch.turn_off
-                target:
-                  entity_id: switch.domofon_once
+        - service: switch.turn_off
+          target:
+            entity_id: switch.domofon_once
         - service: notify.telegram_user_oleksandr
           data:
             message: "_Intercom_: Disabled single auto-opening mode."
