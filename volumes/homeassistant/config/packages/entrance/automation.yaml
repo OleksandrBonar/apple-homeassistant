@@ -11,10 +11,10 @@ entrance_automation:
         - condition: or
           conditions:
             - condition: sun
-              after: sunrise
+              after: sunset
               after_offset: "+00:30:00"
             - condition: sun
-              before: sunset
+              before: sunrise
               before_offset: "-00:30:00"
         - condition: state
           entity_id: person.oleksandr
