@@ -16,13 +16,21 @@ entrance_telegram_domofon:
             - condition: sun
               before: sunrise
               before_offset: "-00:30:00"
-        - condition: state
-          entity_id: light.entrance
-          state: "off"
+        - condition: or
+          conditions:
+            - condition: state
+              entity_id: light.entrance
+              state: "off"
+            - condition: numeric_state
+              entity_id: light.entrance
+              value_template: '{{ state.attributes.brightness_pct }}'
+              below: 50
       action:
         - service: light.turn_on
           target:
             entity_id: light.entrance
+          data:
+            brightness_pct: 50
         - wait_for_trigger:
           - platform: state
             entity_id: light.entrance
