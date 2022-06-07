@@ -3,24 +3,29 @@ entrance_mqtt:
     - platform: mqtt
       name: "Entrance Motion"
       object_id: entrance_motion
-      state_topic: "urelay/switch3/getvalue"
+      availability:
+        - topic: "udevice/0x20220607/system/getstate"
+      state_topic: "udevice/0x20220607/switch/0x0002/getstate"
       device_class: motion
   light:
     - platform: mqtt
       name: "Entrance Light"
       object_id: entrance
       availability:
-        - topic: "urelay/system/getonline"
-      command_topic: "urelay/switch1/setvalue"
-      state_topic: "urelay/switch1/getvalue"
+        - topic: "udevice/0x20220607/system/getstate"
+      state_topic: "udevice/0x20220607/light/0x0001/getstate"
+      command_topic: "udevice/0x20220607/light/0x0001/setstate"
+      brightness_state_topic: "udevice/0x20220607/light/0x0001/getbrightness"
+      brightness_command_topic: "udevice/0x20220607/light/0x0001/setbrightness"
+      brightness_scale: 100
       retain: true
   switch:
     - platform: mqtt
       name: "Entrance Switch"
       object_id: entrance
       availability:
-        - topic: "urelay/system/getonline"
-      command_topic: "urelay/switch2/setvalue"
-      state_topic: "urelay/switch2/getvalue"
+        - topic: "udevice/0x20220607/system/getstate"
+      state_topic: "udevice/0x20220607/switch/0x0001/getstate"
+      command_topic: "udevice/0x20220607/switch/0x0001/setvalue"
       optimistic: false
       retain: true
