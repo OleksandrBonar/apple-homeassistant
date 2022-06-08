@@ -24,7 +24,7 @@ entrance_automation:
               state: "off"
             - condition: numeric_state
               entity_id: light.entrance
-              value_template: '{{ state.attributes.brightness_pct }}'
+              value_template: '{{ state.attributes.brightness_pct | int }}'
               below: 100
       action:
         - service: light.turn_on
