@@ -1,0 +1,29 @@
+entrance_automation_time:
+  automation:
+    - alias: Entrance - Sunset
+      trigger:
+        - platform: sun
+          event: sunset
+      condition:
+        - condition: state
+          entity_id: person.oleksandr
+          state: "home"
+      action:
+        - service: light.turn_on
+          target:
+            entity_id: light.entrance
+          data:
+            brithness_pct: 15
+    - alias: Entrance - Sunrise
+      trigger:
+        - platform: sun
+          event: sunrise
+          offset: 02:00:00
+      condition:
+        - condition: state
+          entity_id: person.oleksandr
+          state: "home"
+      action:
+        - service: light.turn_off
+          target:
+            entity_id: light.entrance
