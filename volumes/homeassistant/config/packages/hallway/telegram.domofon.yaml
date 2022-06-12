@@ -116,15 +116,6 @@ hallway_telegram_domofon:
             entity_id: sensor.domofon_state
             to: "Idle"
           timeout: "00:00:05"
-        - choose:
-          - conditions:
-            - condition: state
-              entity_id: switch.domofon_once
-              state: "on"
-            sequence:
-              - service: switch.turn_off
-                target:
-                  entity_id: switch.domofon_once
         - service: notify.telegram_user_oleksandr
           data:
             message: "_Intercom_: Disabled single auto-opening mode."
