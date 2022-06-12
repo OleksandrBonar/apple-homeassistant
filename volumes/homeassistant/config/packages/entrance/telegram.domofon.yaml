@@ -21,8 +21,8 @@ entrance_telegram_domofon:
               state: "off"
             - condition: numeric_state
               entity_id: light.entrance
-              value_template: '{{ state.attributes.brightness_pct }}'
-              below: 50
+              attribute: brightness
+              below: 125
       action:
         - service: light.turn_on
           target:
