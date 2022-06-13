@@ -1,5 +1,6 @@
 entrance_automation_time:
   automation:
+
     - alias: Entrance - Sunset
       trigger:
         - platform: sun
@@ -14,6 +15,7 @@ entrance_automation_time:
             entity_id: light.entrance
           data:
             brithness_pct: 15
+
     - alias: Entrance - Sunrise
       trigger:
         - platform: sun
