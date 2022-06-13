@@ -1,4 +1,4 @@
-entrance_telegram_command_menu_control:
+entrance_telegram_command_menu:
   automation:
 
     - id: entrance_telegram_command_menu_control
