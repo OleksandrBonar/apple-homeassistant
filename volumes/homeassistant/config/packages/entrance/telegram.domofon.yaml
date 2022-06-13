@@ -1,5 +1,6 @@
 entrance_telegram_domofon:
   automation:
+  
     - id: domofon_open_when_dark_notification
       alias: Domofon - Open When Dark Notification
       initial_state: true
