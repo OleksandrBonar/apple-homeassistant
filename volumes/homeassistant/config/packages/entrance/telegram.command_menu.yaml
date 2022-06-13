@@ -24,6 +24,7 @@ entrance_telegram_command_menu_control:
                   message: &msg_entrance |
                     Domofon Mode - {{ states('select.domofon_mode') }}
                     Domofon State - {{ states('sensor.domofon_state') }}
+                    {{ "\U000026A1" }} Mains Current is {{ states('sensor.entrance_mains_frequency') }}
                     {{ "\U0001F321" }} Temperature is {{ states('sensor.entrance_temperature') }}
                     {{ "\U0001F4A7" }} Humidity is {{ states('sensor.entrance_humidity') }}
                   inline_keyboard: &kbd_hallway
