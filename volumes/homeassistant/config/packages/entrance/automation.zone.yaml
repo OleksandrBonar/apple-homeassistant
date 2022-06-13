@@ -1,7 +1,7 @@
 entrance_automation_zone:
   automation:
   
-    - alias: Entrance - Enter to Home Zone
+    - alias: Entrance - Automation - Enter to Home Zone
       initial_state: true
       trigger: 
         - platform: zone
@@ -23,7 +23,7 @@ entrance_automation_zone:
           data:
             brightness_pct: 15
 
-    - alias: Entrance - Leave from Home Zone
+    - alias: Entrance - Automation - Leave from Home Zone
       initial_state: true
       trigger: 
         - platform: zone
