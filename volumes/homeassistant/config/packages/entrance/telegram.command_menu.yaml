@@ -28,7 +28,7 @@ entrance_telegram_command_menu:
                     {{ "\U000026A1" }} Motion is {{ states('binary_sensor.entrance_motion') }}
                     {{ "\U0001F321" }} Temperature is {{ states('sensor.entrance_temperature') }}
                     {{ "\U0001F4A7" }} Humidity is {{ states('sensor.entrance_humidity') }}
-                  inline_keyboard: &kbd_hallway
+                  inline_keyboard: &kbd_entrance
                     - "{{ '\U0001F4A1' }} Light - {% if is_state('light.entrance', 'on') %}🟢{% else %}🔴{% endif %}:/entrance_light_toggle"
                     - "{{ '\U0001F4A1' }} Domofon Once - {% if is_state('switch.domofon_once', 'on') %}🟢{% else %}🔴{% endif %}:/entrance_domofon_once_toggle"
                     - "{{ '\U0001F4A1' }} Domofon Sound - {% if is_state('switch.domofon_sound', 'on') %}🟢{% else %}🔴{% endif %}:/entrance_domofon_sound_toggle"
