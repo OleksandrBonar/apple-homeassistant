@@ -1,5 +1,6 @@
 entrance_automation_zone:
   automation:
+  
     - alias: Entrance - Enter to Home Zone
       initial_state: true
       trigger: 
@@ -21,6 +22,7 @@ entrance_automation_zone:
             entity_id: light.entrance
           data:
             brightness_pct: 15
+
     - alias: Entrance - Leave from Home Zone
       initial_state: true
       trigger: 
@@ -29,6 +31,13 @@ entrance_automation_zone:
             - person.oleksandr
           zone: zone.Home
           event: leave
+      condition:
+        - condition: or
+          conditions:
+            - condition: sun
+              after: sunset
+            - condition: sun
+              before: sunrise
       action:
         - service: light.turn_off
           target:
