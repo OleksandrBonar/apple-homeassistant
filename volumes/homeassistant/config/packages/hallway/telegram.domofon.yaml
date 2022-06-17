@@ -1,8 +1,7 @@
 hallway_telegram_domofon:
   automation:
 
-    - id: domofon_incoming_call_notification
-      alias: Domofon - Incoming Call Notification
+    - alias: Domofon - Incoming Call Notification
       initial_state: true
       trigger:
         - platform: state
@@ -34,11 +33,25 @@ hallway_telegram_domofon:
         - service: switch.turn_on
           target:
             entity_id: switch.domofon_once
+        - wait_for_trigger:
+          - platform: state
+            entity_id: sensor.domofon_state
+            to: "Open"
+          timeout: "00:00:05"
         - service: telegram_bot.edit_message
           data:
             chat_id: "{{ trigger.event.data.chat_id }}"
             message_id: "{{ trigger.event.data.message.message_id }}"
             message: "_Intercom_: incoming call... {% if is_state('sensor.domofon_state', 'Open') %}*open!*{% endif %}"
+        - service: switch.turn_off
+          target:
+            entity_id: switch.domofon_once
+        - wait_for_trigger:
+          - platform: state
+            entity_id: sensor.domofon_state
+            to: "Idle"
+          timeout: "00:00:05"
+
     - alias: Domofon - Telegram Control - domofon_reject
       initial_state: true
       trigger:
@@ -62,6 +75,11 @@ hallway_telegram_domofon:
         - service: switch.turn_off
           target:
             entity_id: switch.domofon_drop
+        - wait_for_trigger:
+          - platform: state
+            entity_id: sensor.domofon_state
+            to: "Idle"
+          timeout: "00:00:05"
         - service: telegram_bot.edit_message
           data:
             chat_id: "{{ trigger.event.data.chat_id }}"
