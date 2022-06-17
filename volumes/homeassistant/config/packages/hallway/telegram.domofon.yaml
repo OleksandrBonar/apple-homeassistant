@@ -1,5 +1,6 @@
 hallway_telegram_domofon:
   automation:
+
     - id: domofon_incoming_call_notification
       alias: Domofon - Incoming Call Notification
       initial_state: true
@@ -17,6 +18,7 @@ hallway_telegram_domofon:
             data:
               inline_keyboard:
                 - "{{ '-' if is_state('switch.domofon_always', 'on') or is_state('switch.domofon_once', 'on') else 'Open:/domofon_open, Reject:/domofon_reject' }}"
+
     - alias: Domofon - Telegram Control - domofon_open
       initial_state: true
       trigger:
@@ -65,6 +67,7 @@ hallway_telegram_domofon:
             chat_id: "{{ trigger.event.data.chat_id }}"
             message_id: "{{ trigger.event.data.message.message_id }}"
             message: "_Intercom_: incoming call... {% if is_state('sensor.domofon_state', 'Idle') %}*rejected!*{% endif %}"
+
     - alias: Domofon - Mute and UnMute by Time
       initial_state: true
       trigger:
@@ -81,6 +84,7 @@ hallway_telegram_domofon:
             {% endif %}
           target:
             entity_id: switch.domofon_sound
+
     - alias: Domofon - Open Once for Couriers
       initial_state: true
       trigger:
@@ -88,14 +92,17 @@ hallway_telegram_domofon:
           entity_id:
             - sensor.oleksandr_iphone_last_notification
       condition:
-        condition: or
-        conditions:
-          - condition: template
-            value_template: >-
-              {{ trigger.to_state.state | regex_search('Text .* message .*') }}
-          - condition: template
-            value_template: >-
-              {{ trigger.to_state.state | regex_search('Your courier is close! .*') }}
+        - condition: state
+          entity_id: person.oleksandr
+          state: "home"
+        - condition: or
+          conditions:
+            - condition: template
+              value_template: >-
+                {{ trigger.to_state.state | regex_search('Text .* message .*') }}
+            - condition: template
+              value_template: >-
+                {{ trigger.to_state.state | regex_search('Your courier is close! .*') }}
       action:
         - service: notify.telegram_user_oleksandr
           data:
@@ -119,6 +126,7 @@ hallway_telegram_domofon:
         - service: notify.telegram_user_oleksandr
           data:
             message: "_Intercom_: Disabled single auto-opening mode."
+
     - alias: Domofon - Open Once at Enter to Home Zone
       initial_state: true
       trigger: 
@@ -137,12 +145,18 @@ hallway_telegram_domofon:
               - service: switch.turn_off
                 target:
                   entity_id: switch.domofon_sound
-        - service: switch.turn_on
-          target:
-            entity_id: switch.domofon_once
-        - service: notify.telegram_user_oleksandr
-          data:
-            message: "_Intercom_: single auto-opening mode is enabled."
+        - choose:
+          - conditions:
+            - condition: state
+              entity_id: switch.domofon_once
+              state: "off"
+            sequence:
+              - service: switch.turn_on
+                target:
+                  entity_id: switch.domofon_once
+              - service: notify.telegram_user_oleksandr
+                data:
+                  message: "_Intercom_: single auto-opening mode is enabled."
         - wait_for_trigger:
           - platform: state
             entity_id: sensor.domofon_state
