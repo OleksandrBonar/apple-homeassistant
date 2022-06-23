@@ -1,7 +1,8 @@
 hallway_telegram_domofon:
   automation:
 
-    - alias: Domofon - Incoming Call Notification
+    - id: domofon_incoming_call_notification
+      alias: Domofon - Incoming Call Notification
       initial_state: true
       trigger:
         - platform: state
