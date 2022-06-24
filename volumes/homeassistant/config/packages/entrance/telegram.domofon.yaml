@@ -34,7 +34,7 @@ entrance_telegram_domofon:
           - platform: state
             entity_id: binary_sensor.entrance_motion
             to: "on"
-          timeout: "00:02:00"
+          timeout: "00:05:00"
         - if:
             - "{{ not wait.completed }}"
           then:
