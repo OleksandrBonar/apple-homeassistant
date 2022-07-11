@@ -1,43 +1,71 @@
 entrance_telegram_domofon:
   automation:
   
-    - id: domofon_open_when_dark_notification
-      alias: Domofon - Open When Dark Notification
+    - alias: Entrance - Domofon - Telegram Control - domofon_open
       initial_state: true
       trigger:
-        - platform: state
-          entity_id: sensor.domofon_state
-          to: "Open"
-      condition:
-        - condition: or
-          conditions:
-            - condition: sun
-              after: sunset
-            - condition: sun
-              before: sunrise
-        - condition: or
-          conditions:
-            - condition: state
-              entity_id: light.entrance
-              state: "off"
-            - condition: numeric_state
-              entity_id: light.entrance
-              attribute: brightness
-              below: 125
+        platform: event
+        event_type: telegram_callback
+        event_data:
+          data: "/domofon_open"
       action:
-        - service: light.turn_on
-          target:
-            entity_id: light.entrance
+        - service: telegram_bot.answer_callback_query
           data:
-            brightness_pct: 50
-        - wait_template: "{{ is_state('binary_sensor.entrance_motion', 'on') }}"
-          timeout: "00:05:00"
-        - if:
-            - "{{ not wait.completed }}"
-          then:
-            - service: light.turn_on
-              target:
-                entity_id: light.entrance
-              data:
-                brightness_pct: 15
+            callback_query_id: "{{ trigger.event.data.id }}"
+            message: "{{ 'Opening...' if is_state('sensor.domofon_state', 'Ring') else 'No incoming call' }}"
+        - service: switch.turn_on
+          target:
+            entity_id: switch.domofon_once
+        - wait_for_trigger:
+          - platform: state
+            entity_id: sensor.domofon_state
+            to: "Open"
+          timeout: "00:00:05"
+        - service: telegram_bot.edit_message
+          data:
+            chat_id: "{{ trigger.event.data.chat_id }}"
+            message_id: "{{ trigger.event.data.message.message_id }}"
+            message: "_Intercom_: incoming call... {% if is_state('sensor.domofon_state', 'Open') %}*open!*{% endif %}"
+        - service: switch.turn_off
+          target:
+            entity_id: switch.domofon_once
+        - wait_for_trigger:
+          - platform: state
+            entity_id: sensor.domofon_state
+            to: "Idle"
+          timeout: "00:00:05"
+
+    - alias: Entrance - Domofon - Telegram Control - domofon_reject
+      initial_state: true
+      trigger:
+        platform: event
+        event_type: telegram_callback
+        event_data:
+          data: "/domofon_reject"
+      action:
+        - service: telegram_bot.answer_callback_query
+          data:
+            callback_query_id: "{{ trigger.event.data.id }}"
+            message: "{{ 'Rejecting...' if is_state('sensor.domofon_state', 'Ring') else 'No incoming call' }}"
+        - service: switch.turn_on
+          target:
+            entity_id: switch.domofon_drop
+        - wait_for_trigger:
+          - platform: state
+            entity_id: sensor.domofon_state
+            to: "Drop"
+          timeout: "00:00:05"
+        - service: switch.turn_off
+          target:
+            entity_id: switch.domofon_drop
+        - wait_for_trigger:
+          - platform: state
+            entity_id: sensor.domofon_state
+            to: "Idle"
+          timeout: "00:00:05"
+        - service: telegram_bot.edit_message
+          data:
+            chat_id: "{{ trigger.event.data.chat_id }}"
+            message_id: "{{ trigger.event.data.message.message_id }}"
+            message: "_Intercom_: incoming call... {% if is_state('sensor.domofon_state', 'Idle') %}*rejected!*{% endif %}"
 
