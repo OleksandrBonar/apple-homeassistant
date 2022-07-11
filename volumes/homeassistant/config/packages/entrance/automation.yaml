@@ -1,7 +1,27 @@
 entrance_automation:
   automation:
+  
+    - alias: Entrance - Automation - Domofon - Incoming Call Notification
+      initial_state: true
+      trigger:
+        - platform: state
+          entity_id: sensor.domofon_state
+          to: "Ring"
+      action:
+        - service: notify.telegram_user_oleksandr
+          data:
+            message: "_Intercom_: incoming call... {% if is_state('switch.domofon_always', 'on') or is_state('switch.domofon_once', 'on') %}(*will open automatically*){% endif %}"
+            data:
+              inline_keyboard:
+                - "{{ '-' if is_state('switch.domofon_always', 'on') or is_state('switch.domofon_once', 'on') else 'Open:/domofon_open, Reject:/domofon_reject' }}"
+        - wait_for_trigger:
+          - platform: template
+            value_template: >-
+              {{ is_state('sensor.domofon_state', 'Open') or is_state('sensor.domofon_state', 'Drop') }}
+          timeout:
+            seconds: 10
 
-    - alias: Entrance - Automation - Light Auto ON for motion when dark
+    - alias: Entrance - Automation - Motion - Light Auto ON for dark time
       initial_state: true
       trigger:
         - platform: state
@@ -42,14 +62,12 @@ entrance_automation:
           data:
             brightness_pct: 15
 
-    - alias: Entrance - Automation - Long motion
+    - alias: Entrance - Automation - Motion
       initial_state: true
       trigger:
         - platform: state
           entity_id: binary_sensor.entrance_motion
           to: "on"
-          for:
-             minutes: 5
       condition:
         - condition: state
           entity_id: person.oleksandr
