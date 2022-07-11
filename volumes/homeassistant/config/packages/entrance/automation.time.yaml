@@ -1,5 +1,22 @@
 entrance_automation_time:
   automation:
+  
+    - alias: Entrance - Automation - Domofon - Mute and UnMute by Time
+      initial_state: true
+      trigger:
+        - platform: time
+          at: "21:00:00"
+        - platform: time
+          at: "07:00:00"
+      action:
+        - service: >-
+            {% if trigger.now.hour == 21 -%}
+              switch.turn_off
+            {% elif trigger.now.hour == 7 -%}
+              switch.turn_on
+            {% endif %}
+          target:
+            entity_id: switch.domofon_sound
 
     - alias: Entrance - Automation - Sunset
       trigger:
