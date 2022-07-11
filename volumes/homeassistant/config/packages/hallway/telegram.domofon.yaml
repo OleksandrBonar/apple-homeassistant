@@ -1,24 +1,6 @@
 hallway_telegram_domofon:
   automation:
 
-    - id: domofon_incoming_call_notification
-      alias: Domofon - Incoming Call Notification
-      initial_state: true
-      trigger:
-        - platform: state
-          entity_id: sensor.domofon_state
-          to: "Ring"
-      condition:
-        - condition: template
-          value_template: "{{ (as_timestamp(now()) - as_timestamp(state_attr('automation.domofon_incoming_call_notification', 'last_triggered') | default(0)) | int >= 5) }}"
-      action:
-        - service: notify.telegram_user_oleksandr
-          data:
-            message: "_Intercom_: incoming call... {% if is_state('switch.domofon_always', 'on') or is_state('switch.domofon_once', 'on') %}(*will open automatically*){% endif %}"
-            data:
-              inline_keyboard:
-                - "{{ '-' if is_state('switch.domofon_always', 'on') or is_state('switch.domofon_once', 'on') else 'Open:/domofon_open, Reject:/domofon_reject' }}"
-
     - alias: Domofon - Telegram Control - domofon_open
       initial_state: true
       trigger:
