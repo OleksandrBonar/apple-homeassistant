@@ -29,3 +29,42 @@ entrance_automation_time:
         - service: light.turn_off
           target:
             entity_id: light.entrance
+
+    - alias: Entrance - Automation - Domofon - Open When Dark Notification
+      initial_state: true
+      trigger:
+        - platform: state
+          entity_id: sensor.domofon_state
+          to: "Open"
+      condition:
+        - condition: or
+          conditions:
+            - condition: sun
+              after: sunset
+            - condition: sun
+              before: sunrise
+        - condition: or
+          conditions:
+            - condition: state
+              entity_id: light.entrance
+              state: "off"
+            - condition: numeric_state
+              entity_id: light.entrance
+              attribute: brightness
+              below: 125
+      action:
+        - service: light.turn_on
+          target:
+            entity_id: light.entrance
+          data:
+            brightness_pct: 50
+        - wait_template: "{{ is_state('binary_sensor.entrance_motion', 'on') }}"
+          timeout: "00:05:00"
+        - if:
+            - "{{ not wait.completed }}"
+          then:
+            - service: light.turn_on
+              target:
+                entity_id: light.entrance
+              data:
+                brightness_pct: 15
