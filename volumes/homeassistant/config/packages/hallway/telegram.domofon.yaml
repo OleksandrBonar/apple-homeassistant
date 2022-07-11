@@ -1,23 +1,6 @@
 hallway_telegram_domofon:
   automation:
 
-    - alias: Domofon - Mute and UnMute by Time
-      initial_state: true
-      trigger:
-        - platform: time
-          at: "21:00:00"
-        - platform: time
-          at: "07:00:00"
-      action:
-        - service: >-
-            {% if trigger.now.hour == 21 -%}
-              switch.turn_off
-            {% elif trigger.now.hour == 7 -%}
-              switch.turn_on
-            {% endif %}
-          target:
-            entity_id: switch.domofon_sound
-
     - alias: Domofon - Open Once for Couriers
       initial_state: true
       trigger:
