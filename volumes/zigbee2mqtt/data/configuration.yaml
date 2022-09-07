@@ -26,5 +26,11 @@ devices:
     friendly_name: sonoff_sensor_01
   '0x00124b00251c48d1':
     friendly_name: sonoff_motion_01
+  '0x00124b00251c45aa':
+    friendly_name: sonoff_motion_02
+  '0x00124b00251c48ec':
+    friendly_name: sonoff_motion_03
+  '0x00124b00251c42f1':
+    friendly_name: sonoff_motion_04
   '0x00124b002266532b':
     friendly_name: sonoff_switch_01
