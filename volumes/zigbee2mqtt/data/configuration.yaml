@@ -17,7 +17,10 @@ serial:
 
 frontend:
   port: 8090
-  
+
+# Devices
 devices:
   '0x00124b00246ea33a':
     friendly_name: domofon
+  '0x00124b00251c48d1':
+    friendly_name: sonoff_motion_01
