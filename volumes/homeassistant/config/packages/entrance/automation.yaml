@@ -109,7 +109,7 @@ entrance_automation:
       trigger:
         - platform: state
           entity_id: binary_sensor.sonoff_motion_01_occupancy
-          to: "Detected"
+          to: "on"
       condition:
         - condition: state
           entity_id: person.oleksandr
