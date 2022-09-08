@@ -109,7 +109,7 @@ entrance_automation:
       initial_state: true
       trigger:
         - platform: state
-          entity_id: binary_sensor.sonoff_motion_01_occupancy
+          entity_id: sonoff_motion_01_occupancy
           to: "on"
       condition:
         - condition: state
