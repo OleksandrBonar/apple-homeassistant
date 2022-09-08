@@ -1,0 +1,17 @@
+kitchen_automation:
+  automation:
+    - id: kitchen_automation_motion
+      alias: Kitchen - Automation - Motion
+      initial_state: true
+      trigger:
+        - platform: state
+          entity_id: binary_sensor.0x00124b00251c45aa_occupancy
+          to: "on"
+      condition:
+        - condition: state
+          entity_id: person.oleksandr
+          state: "not_home"
+      action:
+        - service: notify.telegram_user_oleksandr
+          data:
+            message: "Security: Motion detected in the kitchen."
