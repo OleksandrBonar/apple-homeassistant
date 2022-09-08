@@ -16,6 +16,22 @@ parents_bedroom_automation:
           data:
             message: "Security: Motion detected in the parents bedroom."
 
+    - id: parents_bedroom_automation_switch_single_press
+      alias: Parents Bedroom - Automation - Switch - Single Press
+      initial_state: true
+      trigger:
+        - platform: state
+          entity_id: sensor.sonoff_switch_04_action
+          to: "single"
+      condition:
+        - condition: state
+          entity_id: person.oleksandr
+          state: "home"
+      action:
+        - service: light.toggle
+          target:
+            entity_id: light.parents_bedroom
+
     - id: parents_bedroom_automation_switch_long_press
       alias: Parents Bedroom - Automation - Switch - Long Press
       initial_state: true
