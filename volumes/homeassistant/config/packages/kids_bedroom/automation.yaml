@@ -21,7 +21,7 @@ kids_bedroom_automation:
       initial_state: true
       trigger:
         - platform: state
-          entity_id: sensor.0x00124b002268ac57_action
+          entity_id: sensor.sonoff_switch_03_action
           to: "long"
       condition:
         - condition: state
