@@ -16,6 +16,22 @@ kitchen_automation:
           data:
             message: "Security: Motion detected in the kitchen."
 
+    - id: kitchen_automation_switch_single_press
+      alias: Kitchen - Automation - Switch - Single Press
+      initial_state: true
+      trigger:
+        - platform: state
+          entity_id: sensor.sonoff_switch_02_action
+          to: "single"
+      condition:
+        - condition: state
+          entity_id: person.oleksandr
+          state: "home"
+      action:
+        - service: light.toggle
+          target:
+            entity_id: light.kitchen
+
     - id: kitchen_automation_switch_long_press
       alias: Kitchen - Automation - Switch - Long Press
       initial_state: true
