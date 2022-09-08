@@ -34,7 +34,7 @@ hallway_automation:
       initial_state: true
       trigger:
         - platform: state
-          entity_id: sensor.sonoff_switch_01_action
+          entity_id: sensor.0x00124b002266532b_action
           to: "long"
       condition:
         - condition: state
