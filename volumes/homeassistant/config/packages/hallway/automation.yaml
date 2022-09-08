@@ -13,17 +13,36 @@ hallway_automation:
           target:
             entity_id: light.hallway
 
+    - id: hallway_automation_door_open_me_home
+      alias: Hallway - Automation - Door Open - Me Home
+      initial_state: true
+      trigger:
+        - platform: state
+          entity_id: binary_sensor.sonoff_sensor_01_contact
+          to: "on"
+      condition:
+        - condition: state
+          entity_id: person.oleksandr
+          state: "home"
+        - condition: state
+          entity_id: light.hallway
+          state: "off"
+      action:
+        - service: light.turn_on
+          target:
+            entity_id: light.hallway
+
     - id: hallway_automation_door_open_me_not_home
       alias: Hallway - Automation - Door Open - Me Not Home
       initial_state: true
       trigger:
         - platform: state
           entity_id: binary_sensor.sonoff_sensor_01_contact
-          to: "off"
+          to: "on"
       condition:
         - condition: state
           entity_id: person.oleksandr
-          state: "home"
+          state: "not_home"
       action:
         - service: notify.telegram_user_oleksandr
           data:
@@ -35,11 +54,11 @@ hallway_automation:
       trigger:
         - platform: state
           entity_id: binary_sensor.sonoff_sensor_01_contact
-          to: "on"
+          to: "off"
       condition:
         - condition: state
           entity_id: person.oleksandr
-          state: "home"
+          state: "not_home"
       action:
         - service: notify.telegram_user_oleksandr
           data:
@@ -60,6 +79,22 @@ hallway_automation:
         - service: notify.telegram_user_oleksandr
           data:
             message: "Security: Motion detected in the hallway."
+
+    - id: hallway_automation_switch_single_press
+      alias: Hallway - Automation - Switch - Single Press
+      initial_state: true
+      trigger:
+        - platform: state
+          entity_id: sensor.0x00124b002266532b_action
+          to: "single"
+      condition:
+        - condition: state
+          entity_id: person.oleksandr
+          state: "home"
+      action:
+        - service: light.toggle
+          target:
+            entity_id: light.hallway
 
     - id: hallway_automation_switch_long_press
       alias: Hallway - Automation - Switch - Long Press
