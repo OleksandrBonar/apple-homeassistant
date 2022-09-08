@@ -28,3 +28,22 @@ hallway_automation:
         - service: notify.telegram_user_oleksandr
           data:
             message: "Security: Motion detected in the hallway."
+
+    - id: hallway_automation_switch_long_press
+      alias: Hallway - Automation - Switch - Long Press
+      initial_state: true
+      trigger:
+        - platform: state
+          entity_id: sensor.sonoff_switch_01_action
+          to: "long"
+      condition:
+        - condition: state
+          entity_id: person.oleksandr
+          state: "home"
+      action:
+        - service: script.turn_on
+          target:
+              entity_id: script.all_lights_off
+        - service: notify.telegram_user_oleksandr
+          data:
+            message: "Automation: All lights are off."
