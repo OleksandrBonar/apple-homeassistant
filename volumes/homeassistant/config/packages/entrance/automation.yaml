@@ -108,12 +108,12 @@ entrance_automation:
       initial_state: true
       trigger:
         - platform: state
-          entity_id: binary_sensor.entrance_motion
-          to: "on"
+          entity_id: binary_sensor.sonoff_motion_01_occupancy
+          to: "Detected"
       condition:
         - condition: state
           entity_id: person.oleksandr
-          state: "not_home"
+          state: "home"
       action:
         - service: light.turn_on
           target:
