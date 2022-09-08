@@ -104,7 +104,8 @@ entrance_automation:
           data:
             brightness_pct: 15
 
-    - alias: Entrance - Automation - Motion
+    - id: entrance_automation_motion
+      alias: Entrance - Automation - Motion
       initial_state: true
       trigger:
         - platform: state
