@@ -1,0 +1,17 @@
+parents_bedroom_automation:
+  automation:
+    - id: parents_bedroom_automation_motion
+      alias: Parents Bedroom - Automation - Motion
+      initial_state: true
+      trigger:
+        - platform: state
+          entity_id: binary_sensor.0x00124b00251c42f1_occupancy
+          to: "on"
+      condition:
+        - condition: state
+          entity_id: person.oleksandr
+          state: "not_home"
+      action:
+        - service: notify.telegram_user_oleksandr
+          data:
+            message: "Security: Motion detected in the parents bedroom."
