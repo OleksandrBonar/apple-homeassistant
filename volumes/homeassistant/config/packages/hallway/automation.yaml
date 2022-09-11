@@ -13,7 +13,7 @@ hallway_automation:
           target:
             entity_id: light.hallway
 
-   - id: hallway_automation_door_open_long
+    - id: hallway_automation_door_open_long
       alias: Hallway - Automation - Door Open - Long
       initial_state: true
       trigger:
