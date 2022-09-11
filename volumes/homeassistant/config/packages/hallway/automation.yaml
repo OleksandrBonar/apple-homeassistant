@@ -13,12 +13,32 @@ hallway_automation:
           target:
             entity_id: light.hallway
 
+   - id: hallway_automation_door_open_long
+      alias: Hallway - Automation - Door Open - Long
+      initial_state: true
+      trigger:
+        - platform: state
+          entity_id: binary_sensor.sonoff_sensor_01_contact
+          not_from:
+            - "unknown"
+            - "unavailable"
+          to: "on"
+          for:
+            seconds: 5
+      action:
+        - service: notify.telegram_user_oleksandr
+          data:
+            message: "Security: The door continues to be open for a long time."
+
     - id: hallway_automation_door_open_me_home
       alias: Hallway - Automation - Door Open - Me Home
       initial_state: true
       trigger:
         - platform: state
           entity_id: binary_sensor.sonoff_sensor_01_contact
+          not_from:
+            - "unknown"
+            - "unavailable"
           to: "on"
       condition:
         - condition: state
@@ -38,6 +58,9 @@ hallway_automation:
       trigger:
         - platform: state
           entity_id: binary_sensor.sonoff_sensor_01_contact
+          not_from:
+            - "unknown"
+            - "unavailable"
           to: "on"
       condition:
         - condition: state
@@ -54,6 +77,7 @@ hallway_automation:
       trigger:
         - platform: state
           entity_id: binary_sensor.sonoff_sensor_01_contact
+          from: "on"
           to: "off"
       condition:
         - condition: state
