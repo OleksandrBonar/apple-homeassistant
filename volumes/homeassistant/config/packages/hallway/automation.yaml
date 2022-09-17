@@ -88,8 +88,24 @@ hallway_automation:
           data:
             message: "Security: The door is closed."
 
-    - id: hallway_automation_motion
-      alias: Hallway - Automation - Motion
+    - id: hallway_automation_motion_me_home
+      alias: Hallway - Automation - Motion - Me Home
+      initial_state: true
+      trigger:
+        - platform: state
+          entity_id: binary_sensor.0x00124b00251c48d1_occupancy
+          to: "on"
+      condition:
+        - condition: state
+          entity_id: person.oleksandr
+          state: "home"
+      action:
+        - service: light.turn_on
+          target:
+            entity_id: light.hallway
+
+    - id: hallway_automation_motion_me_not_home
+      alias: Hallway - Automation - Motion - Me Not Home
       initial_state: true
       trigger:
         - platform: state
