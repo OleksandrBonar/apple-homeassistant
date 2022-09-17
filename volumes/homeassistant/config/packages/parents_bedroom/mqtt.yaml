@@ -1,8 +1,8 @@
 parents_bedroom_mqtt:
-  light:
-    - platform: mqtt
-      name: "Parents Bedroom Light"
-      object_id: parents_bedroom
-      state_topic: "uswitch/0x0001/channel/0x04/getvalue"
-      command_topic: "uswitch/0x0001/channel/0x04/setvalue"
-      retain: true
+  mqtt:
+    light:
+      - name: "Parents Bedroom Light"
+        object_id: parents_bedroom
+        state_topic: "uswitch/0x0001/channel/0x04/getvalue"
+        command_topic: "uswitch/0x0001/channel/0x04/setvalue"
+        retain: true
