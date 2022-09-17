@@ -3,9 +3,6 @@ kitchen_mqtt:
     - platform: mqtt
       name: "Kitchen Light"
       object_id: kitchen
-      state_topic: "udimmer/channel1/getstate"
-      command_topic: "udimmer/channel1/setstate"
-      brightness_state_topic: "udimmer/channel1/getbrightness"
-      brightness_command_topic: "udimmer/channel1/setbrightness"
-      brightness_scale: 100
+      state_topic: "uswitch/0x0001/channel/0x02/getvalue"
+      command_topic: "uswitch/0x0001/channel/0x02/setvalue"
       retain: true
