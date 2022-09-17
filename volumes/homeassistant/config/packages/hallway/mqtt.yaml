@@ -11,9 +11,6 @@ hallway_mqtt:
     - platform: mqtt
       name: "Hallway Light"
       object_id: hallway
-      state_topic: "udimmer/channel4/getstate"
-      command_topic: "udimmer/channel4/setstate"
-      brightness_state_topic: "udimmer/channel4/getbrightness"
-      brightness_command_topic: "udimmer/channel4/setbrightness"
-      brightness_scale: 100
+      state_topic: "uswitch/0x0001/channel/0x01/getvalue"
+      command_topic: "uswitch/0x0001/channel/0x01/setvalue"
       retain: true
