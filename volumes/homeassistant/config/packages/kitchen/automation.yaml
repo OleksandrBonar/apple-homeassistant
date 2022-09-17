@@ -1,7 +1,23 @@
 kitchen_automation:
   automation:
-    - id: kitchen_automation_motion
-      alias: Kitchen - Automation - Motion
+    - id: kitchen_automation_motion_me_home
+      alias: Kitchen - Automation - Motion - Me Home
+      initial_state: true
+      trigger:
+        - platform: state
+          entity_id: binary_sensor.0x00124b00251c45aa_occupancy
+          to: "on"
+      condition:
+        - condition: state
+          entity_id: person.oleksandr
+          state: "home"
+      action:
+        - service: light.turn_on
+          target:
+            entity_id: light.kitchen
+
+    - id: kitchen_automation_motion_me_not_home
+      alias: Kitchen - Automation - Motion - Me Not Home
       initial_state: true
       trigger:
         - platform: state
