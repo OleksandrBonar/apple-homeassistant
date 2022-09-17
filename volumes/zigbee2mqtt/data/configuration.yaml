@@ -40,3 +40,5 @@ devices:
     friendly_name: sonoff_switch_03
   '0x00124b002268bb5a':
     friendly_name: sonoff_switch_04
+  '0x00124b0024cc7933':
+    friendly_name: snzb_02_04
