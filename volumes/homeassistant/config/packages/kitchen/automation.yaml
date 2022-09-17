@@ -5,7 +5,7 @@ kitchen_automation:
       initial_state: true
       trigger:
         - platform: state
-          entity_id: binary_sensor.0x00124b00251c45aa_occupancy
+          entity_id: binary_sensor.sonoff_motion_02_occupancy
           to: "on"
       condition:
         - condition: state
@@ -21,7 +21,7 @@ kitchen_automation:
       initial_state: true
       trigger:
         - platform: state
-          entity_id: binary_sensor.0x00124b00251c45aa_occupancy
+          entity_id: binary_sensor.sonoff_motion_02_occupancy
           to: "on"
       condition:
         - condition: state
