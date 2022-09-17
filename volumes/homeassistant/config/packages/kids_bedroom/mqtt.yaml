@@ -30,9 +30,6 @@ kids_bedroom_mqtt:
     - platform: mqtt
       name: "Kids Bedroom Light"
       object_id: kids_bedroom
-      state_topic: "udimmer/channel2/getstate"
-      command_topic: "udimmer/channel2/setstate"
-      brightness_state_topic: "udimmer/channel2/getbrightness"
-      brightness_command_topic: "udimmer/channel2/setbrightness"
-      brightness_scale: 100
+      state_topic: "uswitch/0x0001/channel/0x03/getvalue"
+      command_topic: "uswitch/0x0001/channel/0x03/setvalue"
       retain: true
