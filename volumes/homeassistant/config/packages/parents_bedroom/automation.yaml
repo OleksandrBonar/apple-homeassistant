@@ -41,7 +41,7 @@ parents_bedroom_automation:
       trigger:
         - platform: state
           entity_id: binary_sensor.sonoff_motion_04_occupancy
-          to: "on"
+          to: "off"
       condition:
         - condition: state
           entity_id: person.oleksandr
