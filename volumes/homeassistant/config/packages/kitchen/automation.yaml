@@ -41,6 +41,7 @@ kitchen_automation:
       trigger:
         - platform: state
           entity_id: binary_sensor.sonoff_motion_02_occupancy
+          from: "on"
           to: "off"
       condition:
         - condition: state
