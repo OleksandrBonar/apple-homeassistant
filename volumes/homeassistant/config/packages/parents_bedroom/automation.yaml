@@ -11,6 +11,10 @@ parents_bedroom_automation:
         - condition: state
           entity_id: person.oleksandr
           state: "home"
+        - condition: numeric_state
+          entity_id: sun.sun
+          attribute: elevation
+          below: 4
       action:
         - service: light.turn_on
           target:
