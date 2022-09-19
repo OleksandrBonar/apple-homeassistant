@@ -3,6 +3,9 @@ run: install update
 start:
 	docker-compose start
 
+start-cmus:
+	cmus --listen 0.0.0.0 &
+
 stop:
 	docker-compose stop
 
