@@ -13,6 +13,7 @@ frontend:
 map:
 #history:
 #logbook:
+media_source:
 mobile_app:
 sun:
 
