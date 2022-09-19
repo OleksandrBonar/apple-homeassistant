@@ -7,10 +7,9 @@ hallway_mqtt:
         unit_of_measurement: "Hz"
         device_class: frequency
         state_class: measurement
-  light:
-    - platform: mqtt
-      name: "Hallway Light"
-      object_id: hallway
-      state_topic: "uswitch/0x0001/channel/0x01/getvalue"
-      command_topic: "uswitch/0x0001/channel/0x01/setvalue"
-      retain: true
+    light:
+      - name: "Hallway Light"
+        object_id: hallway
+        state_topic: "uswitch/0x0001/channel/0x01/getvalue"
+        command_topic: "uswitch/0x0001/channel/0x01/setvalue"
+        retain: true
