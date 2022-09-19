@@ -1,13 +1,12 @@
 entrance_mqtt:
-  binary_sensor:
-    - platform: mqtt
-      name: "Entrance Motion"
-      object_id: entrance_motion
-      availability:
-        - topic: "udevice/0x20220607/system/getstate"
-      state_topic: "udevice/0x20220607/switch/0x0002/getstate"
-      device_class: motion
   mqtt:
+    binary_sensor:
+      - name: "Entrance Motion"
+        object_id: entrance_motion
+        availability:
+          - topic: "udevice/0x20220607/system/getstate"
+        state_topic: "udevice/0x20220607/switch/0x0002/getstate"
+        device_class: motion
     sensor:
       - name: "Entrance Mains Frequency"
         object_id: entrance_mains_frequency
@@ -15,25 +14,23 @@ entrance_mqtt:
         unit_of_measurement: "Hz"
         device_class: frequency
         state_class: measurement
-  light:
-    - platform: mqtt
-      name: "Entrance Light"
-      object_id: entrance
-      availability:
-        - topic: "udevice/0x20220607/system/getstate"
-      state_topic: "udevice/0x20220607/light/0x0001/getstate"
-      command_topic: "udevice/0x20220607/light/0x0001/setstate"
-      brightness_state_topic: "udevice/0x20220607/light/0x0001/getbrightness"
-      brightness_command_topic: "udevice/0x20220607/light/0x0001/setbrightness"
-      brightness_scale: 100
-      retain: true
-  switch:
-    - platform: mqtt
-      name: "Entrance Switch"
-      object_id: entrance
-      availability:
-        - topic: "udevice/0x20220607/system/getstate"
-      state_topic: "udevice/0x20220607/switch/0x0001/getstate"
-      command_topic: "udevice/0x20220607/switch/0x0001/setvalue"
-      optimistic: false
-      retain: true
+    light:
+      - name: "Entrance Light"
+        object_id: entrance
+        availability:
+          - topic: "udevice/0x20220607/system/getstate"
+        state_topic: "udevice/0x20220607/light/0x0001/getstate"
+        command_topic: "udevice/0x20220607/light/0x0001/setstate"
+        brightness_state_topic: "udevice/0x20220607/light/0x0001/getbrightness"
+        brightness_command_topic: "udevice/0x20220607/light/0x0001/setbrightness"
+        brightness_scale: 100
+        retain: true
+    switch:
+      - name: "Entrance Switch"
+        object_id: entrance
+        availability:
+          - topic: "udevice/0x20220607/system/getstate"
+        state_topic: "udevice/0x20220607/switch/0x0001/getstate"
+        command_topic: "udevice/0x20220607/switch/0x0001/setvalue"
+        optimistic: false
+        retain: true
