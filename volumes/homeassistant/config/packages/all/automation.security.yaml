@@ -28,12 +28,16 @@ all_automation_security:
           # Event is either enter or leave
           event: leave
       condition:
-        - condition: state
-          entity_id:
-            - binary_sensor.snzb_04_02_contact
-            - binary_sensor.snzb_04_03_contact
-            - binary_sensor.snzb_04_04_contact
-          state: "on"
+        - or:
+          - condition: state
+            entity_id: binary_sensor.snzb_04_02_contact
+            state: "on"
+          - condition: state
+            entity_id: binary_sensor.snzb_04_03_contact
+            state: "on"
+          - condition: state
+            entity_id: binary_sensor.snzb_04_04_contact
+            state: "on"
       action:
         - service: notify.telegram_user_oleksandr
           data:
