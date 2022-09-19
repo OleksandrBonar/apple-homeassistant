@@ -1,31 +1,28 @@
 kids_bedroom_mqtt:
-  sensor:
-    - platform: mqtt
-      name: "Kids Bedroom Temperature"
-      object_id: temperature
-      state_topic: "usensor/temperature/getvalue"
-      unit_of_measurement: "°C"
-      device_class: temperature
-      state_class: measurement
-    - platform: mqtt
-      name: "Kids Bedroom Humidity"
-      object_id: humidity
-      state_topic: "usensor/humidity/getvalue"
-      unit_of_measurement: "%"
-      device_class: humidity
-      state_class: measurement
-    - platform: mqtt
-      name: "Kids Bedroom illuminance"
-      object_id: illuminance
-      state_topic: "usensor/illuminance/getvalue"
-      unit_of_measurement: "lx"
-      device_class: illuminance
-      state_class: measurement
-    - platform: mqtt
-      name: "Kids Bedroom UV"
-      object_id: uv
-      state_topic: "usensor/uv/getvalue"
-      state_class: measurement
+  mqtt:
+    sensor:
+      - name: "Kids Bedroom Temperature"
+        object_id: temperature
+        state_topic: "usensor/temperature/getvalue"
+        unit_of_measurement: "°C"
+        device_class: temperature
+        state_class: measurement
+      - name: "Kids Bedroom Humidity"
+        object_id: humidity
+        state_topic: "usensor/humidity/getvalue"
+        unit_of_measurement: "%"
+        device_class: humidity
+        state_class: measurement
+      - name: "Kids Bedroom illuminance"
+        object_id: illuminance
+        state_topic: "usensor/illuminance/getvalue"
+        unit_of_measurement: "lx"
+        device_class: illuminance
+        state_class: measurement
+      - name: "Kids Bedroom UV"
+        object_id: uv
+        state_topic: "usensor/uv/getvalue"
+        state_class: measurement
   light:
     - platform: mqtt
       name: "Kids Bedroom Light"
