@@ -1,8 +1,8 @@
 kitchen_mqtt:
-  light:
-    - platform: mqtt
-      name: "Kitchen Light"
-      object_id: kitchen
-      state_topic: "uswitch/0x0001/channel/0x02/getvalue"
-      command_topic: "uswitch/0x0001/channel/0x02/setvalue"
-      retain: true
+  mqtt:
+    light:
+      - name: "Kitchen Light"
+        object_id: kitchen
+        state_topic: "uswitch/0x0001/channel/0x02/getvalue"
+        command_topic: "uswitch/0x0001/channel/0x02/setvalue"
+        retain: true
