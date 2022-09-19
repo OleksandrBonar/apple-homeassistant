@@ -1,0 +1,73 @@
+hallway_automation_security:
+  automation:
+    - id: hallway_automation_security_door_open_long
+      alias: Hallway - Automation - Security - Door Open - Long
+      initial_state: true
+      trigger:
+        - platform: state
+          entity_id: binary_sensor.snzb_04_01_contact
+          not_from:
+            - "unknown"
+            - "unavailable"
+          to: "on"
+          for:
+            seconds: 5
+      action:
+        - service: notify.telegram_user_oleksandr
+          data:
+            message: "Security: The door continues to be open in the hallway for a long time."
+
+    - id: hallway_automation_security_door_open_me_away
+      alias: Hallway - Automation - Security - Door Open - Me Away
+      initial_state: true
+      trigger:
+        - platform: state
+          entity_id: binary_sensor.snzb_04_01_contact
+          not_from:
+            - "unknown"
+            - "unavailable"
+          to: "on"
+      condition:
+        - condition: state
+          entity_id: person.oleksandr
+          state: "not_home"
+      action:
+        - service: notify.telegram_user_oleksandr
+          data:
+            message: "Security: The door is open in the hallway."
+
+    - id: hallway_automation_security_door_close_me_away
+      alias: Hallway - Automation - Security - Door Close - Me Away
+      initial_state: true
+      trigger:
+        - platform: state
+          entity_id: binary_sensor.snzb_04_01_contact
+          from: "on"
+          to: "off"
+      condition:
+        - condition: state
+          entity_id: person.oleksandr
+          state: "not_home"
+      action:
+        - service: notify.telegram_user_oleksandr
+          data:
+            message: "Security: The door is closed in the hallway."
+
+    - id: hallway_automation_security_motion_on_me_away
+      alias: Hallway - Automation - Security - Motion On - Me Away
+      initial_state: true
+      trigger:
+        - platform: state
+          entity_id: binary_sensor.snzb_03_01_occupancy
+          to: "on"
+      condition:
+        - condition: state
+          entity_id: person.oleksandr
+          state: "not_home"
+      action:
+        - service: light.turn_on
+          target:
+            entity_id: light.hallway
+        - service: notify.telegram_user_oleksandr
+          data:
+            message: "Security: Motion detected in the hallway."
