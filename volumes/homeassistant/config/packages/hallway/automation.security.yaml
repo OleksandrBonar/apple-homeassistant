@@ -30,11 +30,16 @@ hallway_automation_security:
       condition:
         - condition: state
           entity_id: person.oleksandr
-          state: "not_home"
+          state: "home"
       action:
         - service: notify.telegram_user_oleksandr
           data:
             message: "Security: The door is open in the hallway."
+        - service: tts.google_translate_say
+          entity_id: media_player.cmus
+          data:
+            cache: false
+            message: "Привет незнакомец! Я тебя сфотографировала и передала снимок в полицию."
 
     - id: hallway_automation_security_door_close_me_away
       alias: Hallway - Automation - Security - Door Close - Me Away
