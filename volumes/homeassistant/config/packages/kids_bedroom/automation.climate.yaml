@@ -1,0 +1,19 @@
+kids_bedroom_automation_climate:
+  automation:
+    - id: kids_bedroom_automation_climate_window_close_long
+      alias: Kids Bedroom - Automation - Climate - Window Close - Long
+      initial_state: true
+      trigger:
+        - platform: state
+          entity_id: binary_sensor.snzb_04_03_contact
+          to: "off"
+          for:
+            hours: 2
+      condition:
+        - condition: state
+          entity_id: person.oleksandr
+          state: "home"
+      action:
+        - service: notify.telegram_user_oleksandr
+          data:
+            message: "Climate: It's time to open the window in the kids bedroom for ventilation."
