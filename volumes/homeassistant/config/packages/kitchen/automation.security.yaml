@@ -1,7 +1,23 @@
 kitchen_automation_security:
   automation:
-    - id: kitchen_automation_motion_on_me_away
-      alias: Kitchen - Automation - Motion On - Me Away
+    - id: kitchen_automation_security_window_open_me_away
+      alias: Kitchen - Automation - Security - Window Open - Me Away
+      initial_state: true
+      trigger:
+        - platform: state
+          entity_id: binary_sensor.snzb_04_02_contact
+          to: "on"
+      condition:
+        - condition: state
+          entity_id: person.oleksandr
+          state: "not_home"
+      action:
+        - service: notify.telegram_user_oleksandr
+          data:
+            message: "Security: An open window was found in the kitchen."
+
+    - id: kitchen_automation_security_motion_on_me_away
+      alias: Kitchen - Automation - Security - Motion On - Me Away
       initial_state: true
       trigger:
         - platform: state
