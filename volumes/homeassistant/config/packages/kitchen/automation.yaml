@@ -49,6 +49,9 @@ kitchen_automation:
         - condition: state
           entity_id: person.oleksandr
           state: "home"
+        - condition: state
+          entity_id: light.kitchen
+          state: "on"
       action:
         - service: light.turn_off
           target:
