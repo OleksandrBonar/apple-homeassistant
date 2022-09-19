@@ -7,14 +7,14 @@ entrance_mqtt:
         - topic: "udevice/0x20220607/system/getstate"
       state_topic: "udevice/0x20220607/switch/0x0002/getstate"
       device_class: motion
-  sensor:
-    - platform: mqtt
-      name: "Entrance Mains Frequency"
-      object_id: entrance_mains_frequency
-      state_topic: "udevice/0x20220607/system/getfrequency"
-      unit_of_measurement: "Hz"
-      device_class: frequency
-      state_class: measurement
+  mqtt:
+    sensor:
+      - name: "Entrance Mains Frequency"
+        object_id: entrance_mains_frequency
+        state_topic: "udevice/0x20220607/system/getfrequency"
+        unit_of_measurement: "Hz"
+        device_class: frequency
+        state_class: measurement
   light:
     - platform: mqtt
       name: "Entrance Light"
