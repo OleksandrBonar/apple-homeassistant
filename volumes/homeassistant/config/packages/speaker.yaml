@@ -4,6 +4,7 @@ speaker:
     - platform: google_translate
       cache: true
       time_memory: 300
+      base_url: "http://192.168.0.111:8123"
 
   media_player:
     - platform: cmus
