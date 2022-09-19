@@ -1,0 +1,37 @@
+kitchen_automation_climate:
+  automation:
+    - id: kitchen_automation_window_open_long
+      alias: Kitchen - Automation - Window Open - Long
+      initial_state: true
+      trigger:
+        - platform: state
+          entity_id: binary_sensor.snzb_04_02_contact
+          to: "on"
+          for:
+            minutes: 10
+      condition:
+        - condition: state
+          entity_id: person.oleksandr
+          state: "home"
+      action:
+        - service: notify.telegram_user_oleksandr
+          data:
+            message: "Climate: It's time to close the window in the kitchen."
+
+    - id: kitchen_automation_window_close_long
+      alias: Kitchen - Automation - Window Close - Long
+      initial_state: true
+      trigger:
+        - platform: state
+          entity_id: binary_sensor.snzb_04_02_contact
+          to: "off"
+          for:
+            hours: 2
+      condition:
+        - condition: state
+          entity_id: person.oleksandr
+          state: "home"
+      action:
+        - service: notify.telegram_user_oleksandr
+          data:
+            message: "Climate: It's time to open the window in the kitchen for ventilation."
