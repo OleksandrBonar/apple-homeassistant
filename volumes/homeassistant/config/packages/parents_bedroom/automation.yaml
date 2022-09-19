@@ -43,6 +43,8 @@ parents_bedroom_automation:
           entity_id: binary_sensor.sonoff_motion_04_occupancy
           from: "on"
           to: "off"
+          for:
+            minutes: 4
       condition:
         - condition: state
           entity_id: person.oleksandr
