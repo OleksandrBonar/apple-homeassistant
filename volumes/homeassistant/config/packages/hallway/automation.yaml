@@ -93,7 +93,7 @@ hallway_automation:
       initial_state: true
       trigger:
         - platform: state
-          entity_id: binary_sensor.0x00124b00251c48d1_occupancy
+          entity_id: binary_sensor.snzb_03_01_occupancy
           to: "on"
       condition:
         - condition: state
@@ -109,7 +109,7 @@ hallway_automation:
       initial_state: true
       trigger:
         - platform: state
-          entity_id: binary_sensor.0x00124b00251c48d1_occupancy
+          entity_id: binary_sensor.snzb_03_01_occupancy
           to: "on"
       condition:
         - condition: state
@@ -128,7 +128,7 @@ hallway_automation:
       initial_state: true
       trigger:
         - platform: state
-          entity_id: binary_sensor.0x00124b00251c48d1_occupancy
+          entity_id: binary_sensor.snzb_03_01_occupancy
           from: "on"
           to: "off"
           for:
@@ -147,7 +147,7 @@ hallway_automation:
       initial_state: true
       trigger:
         - platform: state
-          entity_id: sensor.0x00124b002266532b_action
+          entity_id: sensor.snzb_01_01_action
           to: "single"
       condition:
         - condition: state
@@ -163,7 +163,7 @@ hallway_automation:
       initial_state: true
       trigger:
         - platform: state
-          entity_id: sensor.0x00124b002266532b_action
+          entity_id: sensor.snzb_01_01_action
           to: "long"
       condition:
         - condition: state
@@ -173,6 +173,3 @@ hallway_automation:
         - service: script.turn_on
           target:
               entity_id: script.all_lights_off
-        - service: notify.telegram_user_oleksandr
-          data:
-            message: "Automation: All lights are off."
