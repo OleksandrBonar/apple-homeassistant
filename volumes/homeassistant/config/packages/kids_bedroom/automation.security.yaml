@@ -1,0 +1,36 @@
+kids_bedroom_automation_security:
+  automation:
+    - id: kids_bedroom_automation_security_window_open_me_away
+      alias: Kids Bedroom - Automation - Security - Window Open - Me Away
+      initial_state: true
+      trigger:
+        - platform: state
+          entity_id: binary_sensor.snzb_04_03_contact
+          to: "on"
+      condition:
+        - condition: state
+          entity_id: person.oleksandr
+          state: "not_home"
+      action:
+        - service: notify.telegram_user_oleksandr
+          data:
+            message: "Security: An open window was found in the kids bedroom."
+
+    - id: kids_bedroom_automation_security_motion_on_me_away
+      alias: Kids Bedroom - Automation - Security - Motion On - Me Away
+      initial_state: true
+      trigger:
+        - platform: state
+          entity_id: binary_sensor.snzb_03_03_occupancy
+          to: "on"
+      condition:
+        - condition: state
+          entity_id: person.oleksandr
+          state: "not_home"
+      action:
+        - service: light.turn_on
+          target:
+            entity_id: light.kids_bedroom
+        - service: notify.telegram_user_oleksandr
+          data:
+            message: "Security: Motion detected in the kids bedroom."
