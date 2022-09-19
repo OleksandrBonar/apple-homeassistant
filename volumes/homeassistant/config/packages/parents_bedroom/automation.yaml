@@ -5,7 +5,7 @@ parents_bedroom_automation:
       initial_state: true
       trigger:
         - platform: state
-          entity_id: binary_sensor.sonoff_motion_04_occupancy
+          entity_id: binary_sensor.snzb_03_04_occupancy
           to: "on"
       condition:
         - condition: state
@@ -21,7 +21,7 @@ parents_bedroom_automation:
       initial_state: true
       trigger:
         - platform: state
-          entity_id: binary_sensor.sonoff_motion_04_occupancy
+          entity_id: binary_sensor.snzb_03_04_occupancy
           to: "on"
       condition:
         - condition: state
@@ -40,7 +40,7 @@ parents_bedroom_automation:
       initial_state: true
       trigger:
         - platform: state
-          entity_id: binary_sensor.sonoff_motion_04_occupancy
+          entity_id: binary_sensor.snzb_03_04_occupancy
           from: "on"
           to: "off"
           for:
@@ -59,7 +59,7 @@ parents_bedroom_automation:
       initial_state: true
       trigger:
         - platform: state
-          entity_id: sensor.sonoff_switch_04_action
+          entity_id: sensor.snzb_01_04_action
           to: "single"
       condition:
         - condition: state
@@ -75,7 +75,7 @@ parents_bedroom_automation:
       initial_state: true
       trigger:
         - platform: state
-          entity_id: sensor.sonoff_switch_04_action
+          entity_id: sensor.snzb_01_04_action
           to: "long"
       condition:
         - condition: state
@@ -85,6 +85,3 @@ parents_bedroom_automation:
         - service: script.turn_on
           target:
               entity_id: script.all_lights_off
-        - service: notify.telegram_user_oleksandr
-          data:
-            message: "Automation: All lights are off."
