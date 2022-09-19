@@ -1,0 +1,20 @@
+kitchen_automation_security:
+  automation:
+    - id: kitchen_automation_motion_on_me_away
+      alias: Kitchen - Automation - Motion On - Me Away
+      initial_state: true
+      trigger:
+        - platform: state
+          entity_id: binary_sensor.snzb_03_02_occupancy
+          to: "on"
+      condition:
+        - condition: state
+          entity_id: person.oleksandr
+          state: "not_home"
+      action:
+        - service: light.turn_on
+          target:
+            entity_id: light.kitchen
+        - service: notify.telegram_user_oleksandr
+          data:
+            message: "Security: Motion detected in the kitchen."
