@@ -1,5 +1,23 @@
 parents_bedroom_automation:
   automation:
+    - id: parents_bedroom_automation_window_close_long
+      alias: Parents Bedroom - Automation - Window Close - Long
+      initial_state: true
+      trigger:
+        - platform: state
+          entity_id: binary_sensor.snzb_04_04_contact
+          to: "off"
+          for:
+            hours: 2
+      condition:
+        - condition: state
+          entity_id: person.oleksandr
+          state: "home"
+      action:
+        - service: notify.telegram_user_oleksandr
+          data:
+            message: "Climate: It's time to open the window in the parents bedroom for ventilation."
+
     - id: parents_bedroom_automation_motion_on_me_home
       alias: Parents Bedroom - Automation - Motion On - Me Home
       initial_state: true
