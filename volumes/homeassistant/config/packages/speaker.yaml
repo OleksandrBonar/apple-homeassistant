@@ -8,22 +8,3 @@ speaker:
     - platform: cmus
       host: localhost
       password: password
-      
-  automation:
-    - id: speaker_motion_detection
-      alias: Speaker - Motion detection
-      trigger:
-        - platform: state
-          entity_id: binary_sensor.children_bedroom_motion
-          from: "off"
-          to: "on"
-      condition:
-        - condition: state
-          entity_id: person.oleksandr
-          state: "not_home"
-      action:
-        - service: tts.google_translate_say
-          entity_id: media_player.cmus
-          data:
-            cache: false
-            message: "Привет незнакомец! Я тебя сфотографировала и передала снимок в полицию."
