@@ -5,8 +5,6 @@ homeassistant:
   elevation: 0
   unit_system: metric
   time_zone: "Europe/Kiev"
-  external_url: "http://192.168.0.111:8123"
-  internal_url: "http://127.0.0.1:8123"
   packages: !include_dir_merge_named packages
 
 config:
