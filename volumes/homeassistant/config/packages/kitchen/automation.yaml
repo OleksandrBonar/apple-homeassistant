@@ -43,6 +43,8 @@ kitchen_automation:
           entity_id: binary_sensor.sonoff_motion_02_occupancy
           from: "on"
           to: "off"
+          for:
+            minutes: 4
       condition:
         - condition: state
           entity_id: person.oleksandr
