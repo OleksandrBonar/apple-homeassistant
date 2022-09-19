@@ -1,2 +1,40 @@
 all_automation_security:
   automation:
+    - id: all_automation_security_door_open_me_away
+      alias: All - Automation - Security - Door Open - Me Away
+      initial_state: true
+      trigger:
+        - platform: zone
+          entity_id: person.oleksandr
+          zone: zone.home
+          # Event is either enter or leave
+          event: leave
+      condition:
+        - condition: state
+          entity_id: binary_sensor.snzb_04_01_contact
+          state: "on"
+      action:
+        - service: notify.telegram_user_oleksandr
+          data:
+            message: "Security: The door remained open. Close the door."
+
+    - id: all_automation_security_windows_open_me_away
+      alias: All - Automation - Security - Windows Open - Me Away
+      initial_state: true
+      trigger:
+        - platform: zone
+          entity_id: person.oleksandr
+          zone: zone.home
+          # Event is either enter or leave
+          event: leave
+      condition:
+        - condition: state
+          entity_id:
+            - binary_sensor.snzb_04_02_contact
+            - binary_sensor.snzb_04_03_contact
+            - binary_sensor.snzb_04_04_contact
+          state: "on"
+      action:
+        - service: notify.telegram_user_oleksandr
+          data:
+            message: "Security: The windows were left open. Close windows."
