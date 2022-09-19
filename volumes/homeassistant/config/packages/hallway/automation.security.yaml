@@ -38,8 +38,7 @@ hallway_automation_security:
         - service: tts.google_translate_say
           entity_id: media_player.cmus
           data:
-            cache: false
-            message: "Привет незнакомец! Я тебя сфотографировала и передала снимок в полицию."
+            message: "Test"
 
     - id: hallway_automation_security_door_close_me_away
       alias: Hallway - Automation - Security - Door Close - Me Away
