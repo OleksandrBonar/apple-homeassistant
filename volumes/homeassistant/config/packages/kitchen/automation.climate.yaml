@@ -1,7 +1,7 @@
 kitchen_automation_climate:
   automation:
-    - id: kitchen_automation_window_open_long
-      alias: Kitchen - Automation - Window Open - Long
+    - id: kitchen_automation_climate_window_open_long
+      alias: Kitchen - Automation - Climate - Window Open - Long
       initial_state: true
       trigger:
         - platform: state
@@ -18,8 +18,8 @@ kitchen_automation_climate:
           data:
             message: "Climate: It's time to close the window in the kitchen."
 
-    - id: kitchen_automation_window_close_long
-      alias: Kitchen - Automation - Window Close - Long
+    - id: kitchen_automation_climate_window_close_long
+      alias: Kitchen - Automation - Climate - Window Close - Long
       initial_state: true
       trigger:
         - platform: state
