@@ -23,10 +23,9 @@ kids_bedroom_mqtt:
         object_id: uv
         state_topic: "usensor/uv/getvalue"
         state_class: measurement
-  light:
-    - platform: mqtt
-      name: "Kids Bedroom Light"
-      object_id: kids_bedroom
-      state_topic: "uswitch/0x0001/channel/0x03/getvalue"
-      command_topic: "uswitch/0x0001/channel/0x03/setvalue"
-      retain: true
+    light:
+      - name: "Kids Bedroom Light"
+        object_id: kids_bedroom
+        state_topic: "uswitch/0x0001/channel/0x03/getvalue"
+        command_topic: "uswitch/0x0001/channel/0x03/setvalue"
+        retain: true
