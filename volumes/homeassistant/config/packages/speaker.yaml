@@ -2,7 +2,8 @@ speaker:
 
   tts:
     - platform: google_translate
-      language: "ru"
+      cache: true
+      time_memory: 300
 
   media_player:
     - platform: cmus
