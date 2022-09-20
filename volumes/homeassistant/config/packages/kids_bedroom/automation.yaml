@@ -46,8 +46,8 @@ kids_bedroom_automation:
           target:
             entity_id: light.kids_bedroom
 
-    - id: kids_bedroom_automation_switch_single_press
-      alias: Kids Bedroom - Automation - Switch - Single Press
+    - id: kids_bedroom_automation_switch_single
+      alias: Kids Bedroom - Automation - Switch - Single
       initial_state: true
       trigger:
         - platform: state
@@ -62,8 +62,27 @@ kids_bedroom_automation:
           target:
             entity_id: light.kids_bedroom
 
-    - id: kids_bedroom_automation_switch_long_press
-      alias: Kids Bedroom - Automation - Switch - Long Press
+    - id: kids_bedroom_automation_switch_double
+      alias: Kids Bedroom - Automation - Switch - Double
+      initial_state: true
+      trigger:
+        - platform: state
+          entity_id: sensor.snzb_01_03_action
+          to: "double"
+      condition:
+        - condition: state
+          entity_id: person.oleksandr
+          state: "home"
+      action:
+        - service: light.turn_off
+          target:
+            entity_id:
+              - light.hallway
+              - light.kitchen
+              - light.parents_bedroom
+
+    - id: kids_bedroom_automation_switch_long
+      alias: Kids Bedroom - Automation - Switch - Long
       initial_state: true
       trigger:
         - platform: state
@@ -74,6 +93,10 @@ kids_bedroom_automation:
           entity_id: person.oleksandr
           state: "home"
       action:
-        - service: script.turn_on
+        - service: light.turn_off
           target:
-              entity_id: script.all_lights_off
+            entity_id:
+              - light.hallway
+              - light.kitchen
+              - light.kids_bedroom
+              - light.parents_bedroom
