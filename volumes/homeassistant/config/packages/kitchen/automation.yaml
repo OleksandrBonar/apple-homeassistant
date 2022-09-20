@@ -46,8 +46,8 @@ kitchen_automation:
           target:
             entity_id: light.kitchen
 
-    - id: kitchen_automation_switch_single_press
-      alias: Kitchen - Automation - Switch - Single Press
+    - id: kitchen_automation_switch_single
+      alias: Kitchen - Automation - Switch - Single
       initial_state: true
       trigger:
         - platform: state
@@ -62,8 +62,27 @@ kitchen_automation:
           target:
             entity_id: light.kitchen
 
-    - id: kitchen_automation_switch_long_press
-      alias: Kitchen - Automation - Switch - Long Press
+    - id: kitchen_automation_switch_double
+      alias: Kitchen - Automation - Switch - Double
+      initial_state: true
+      trigger:
+        - platform: state
+          entity_id: sensor.snzb_01_02_action
+          to: "double"
+      condition:
+        - condition: state
+          entity_id: person.oleksandr
+          state: "home"
+      action:
+        - service: light.turn_off
+          target:
+            entity_id:
+              - light.hallway
+              - light.kids_bedroom
+              - light.parents_bedroom
+
+    - id: kitchen_automation_switch_long
+      alias: Kitchen - Automation - Switch - Long
       initial_state: true
       trigger:
         - platform: state
@@ -74,6 +93,10 @@ kitchen_automation:
           entity_id: person.oleksandr
           state: "home"
       action:
-        - service: script.turn_on
+        - service: light.turn_off
           target:
-              entity_id: script.all_lights_off
+            entity_id:
+              - light.hallway
+              - light.kitchen
+              - light.kids_bedroom
+              - light.parents_bedroom
