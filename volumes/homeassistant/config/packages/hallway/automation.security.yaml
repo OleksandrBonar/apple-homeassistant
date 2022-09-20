@@ -30,7 +30,7 @@ hallway_automation_security:
       condition:
         - condition: state
           entity_id: person.oleksandr
-          state: "home"
+          state: "not_home"
       action:
         - service: notify.telegram_user_oleksandr
           data:
