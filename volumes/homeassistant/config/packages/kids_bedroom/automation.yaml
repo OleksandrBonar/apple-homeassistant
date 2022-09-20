@@ -34,6 +34,10 @@ kids_bedroom_automation:
         - condition: state
           entity_id: person.oleksandr
           state: "home"
+        - condition: numeric_state
+          entity_id: sun.sun
+          attribute: elevation
+          above: 4
         - condition: state
           entity_id: light.kids_bedroom
           state: "on"
