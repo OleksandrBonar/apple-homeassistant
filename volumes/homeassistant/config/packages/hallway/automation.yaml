@@ -49,7 +49,7 @@ hallway_automation:
         - condition: numeric_state
           entity_id: sun.sun
           attribute: elevation
-          below: 4
+          below: 8
       action:
         - service: light.turn_on
           target:
@@ -69,6 +69,10 @@ hallway_automation:
         - condition: state
           entity_id: person.oleksandr
           state: "home"
+        - condition: numeric_state
+          entity_id: sun.sun
+          attribute: elevation
+          above: 8
         - condition: state
           entity_id: light.hallway
           state: "on"
