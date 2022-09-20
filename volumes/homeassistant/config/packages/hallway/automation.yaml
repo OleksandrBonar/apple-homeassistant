@@ -72,7 +72,7 @@ hallway_automation:
         - condition: numeric_state
           entity_id: sun.sun
           attribute: elevation
-          above: 8
+          below: 8
         - condition: state
           entity_id: light.hallway
           state: "on"
