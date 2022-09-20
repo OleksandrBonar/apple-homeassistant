@@ -37,7 +37,7 @@ kitchen_automation:
         - condition: numeric_state
           entity_id: sun.sun
           attribute: elevation
-          above: 4
+          below: 4
         - condition: state
           entity_id: light.kitchen
           state: "on"
