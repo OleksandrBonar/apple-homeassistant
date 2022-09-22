@@ -50,6 +50,9 @@ hallway_automation:
           entity_id: sun.sun
           attribute: elevation
           below: 8
+        - condition: state
+          entity_id: light.hallway
+          state: "off"
       action:
         - service: light.turn_on
           target:
