@@ -1,7 +1,8 @@
 entrance_automation_time:
   automation:
-  
-    - alias: Entrance - Automation - Domofon - Mute and UnMute by Time
+
+    - id: entrance_automation_domofon_mute_and_unmute_by_time
+      alias: Entrance - Automation - Domofon - Mute and UnMute by Time
       initial_state: true
       trigger:
         - platform: time
@@ -18,7 +19,8 @@ entrance_automation_time:
           target:
             entity_id: switch.domofon_sound
 
-    - alias: Entrance - Automation - Sunset
+    - id: entrance_automation_sunset
+      alias: Entrance - Automation - Sunset
       trigger:
         - platform: sun
           event: sunset
@@ -33,7 +35,8 @@ entrance_automation_time:
           data:
             brithness_pct: 15
 
-    - alias: Entrance - Automation - Sunrise
+    - id: entrance_automation_sunrise
+      alias: Entrance - Automation - Sunrise
       trigger:
         - platform: sun
           event: sunrise
@@ -47,7 +50,8 @@ entrance_automation_time:
           target:
             entity_id: light.entrance
 
-    - alias: Entrance - Automation - Domofon - Open When Dark Notification
+    - id: entrance_automation_domofon_open_when_dark_notification
+      alias: Entrance - Automation - Domofon - Open When Dark Notification
       initial_state: true
       trigger:
         - platform: state
