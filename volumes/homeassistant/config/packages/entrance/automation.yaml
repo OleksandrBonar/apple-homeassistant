@@ -1,7 +1,8 @@
 entrance_automation:
   automation:
 
-    - alias: Entrance - Automation - Domofon - Open Once for Couriers
+    - id: entrance_automation_domofon_open_once_for_couriers
+      alias: Entrance - Automation - Domofon - Open Once for Couriers
       initial_state: true
       trigger:
         - platform: state
@@ -42,8 +43,9 @@ entrance_automation:
         - service: notify.telegram_user_oleksandr
           data:
             message: "_Intercom_: Disabled single auto-opening mode."
-  
-    - alias: Entrance - Automation - Domofon - Incoming Call Notification
+
+    - id: entrance_automation_domofon_incoming_call_notification
+      alias: Entrance - Automation - Domofon - Incoming Call Notification
       initial_state: true
       trigger:
         - platform: state
@@ -63,7 +65,8 @@ entrance_automation:
           timeout:
             seconds: 10
 
-    - alias: Entrance - Automation - Motion - Light Auto ON for dark time
+    - id: entrance_automation_motion_light_auto_on_for_dark_time
+      alias: Entrance - Automation - Motion - Light Auto ON for dark time
       initial_state: true
       trigger:
         - platform: state
