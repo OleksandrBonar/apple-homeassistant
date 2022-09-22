@@ -1,7 +1,8 @@
 entrance_automation_zone:
   automation:
-  
-    - alias: Entrance - Automation - Domofon - Open Once at Enter to Home Zone
+
+    - id: entrance_automation_domofon_open_once_at_enter_to_home_zone
+      alias: Entrance - Automation - Domofon - Open Once at Enter to Home Zone
       initial_state: true
       trigger: 
         - platform: zone
@@ -63,7 +64,8 @@ entrance_automation_zone:
           data:
             message: "_Intercom_: Disabled single auto-opening mode."
   
-    - alias: Entrance - Automation - Enter to Home Zone
+    - id: entrance_automation_enter_to_home_zone
+      alias: Entrance - Automation - Enter to Home Zone
       initial_state: true
       trigger: 
         - platform: zone
@@ -85,7 +87,8 @@ entrance_automation_zone:
           data:
             brightness_pct: 15
 
-    - alias: Entrance - Automation - Leave from Home Zone
+    - id: entrance_automation_leave_from_home_zone
+      alias: Entrance - Automation - Leave from Home Zone
       initial_state: true
       trigger: 
         - platform: zone
