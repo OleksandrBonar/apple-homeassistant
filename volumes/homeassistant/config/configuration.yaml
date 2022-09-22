@@ -13,7 +13,19 @@ config:
 #ssdp:
 frontend:
 map:
-#history:
+history:
+recorder:
+  purge_keep_days: 30
+  include:
+    domains:
+      - light
+    entity_globs:
+      - binary_sensor.*_contact
+      - binary_sensor.*_occupancy
+  exclude:
+    entities:
+      - light.balcony
+      - light.entrance
 #logbook:
 media_source:
 mobile_app:
