@@ -20,6 +20,8 @@ recorder:
     domains:
       - light
     entity_globs:
+      - sensor.*_humidity
+      - sensor.*_temperature
       - binary_sensor.*_contact
       - binary_sensor.*_occupancy
   exclude:
