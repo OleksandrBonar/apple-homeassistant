@@ -15,6 +15,8 @@ kids_bedroom_automation:
           entity_id: sun.sun
           attribute: elevation
           below: 4
+        - condition: time
+          before: "23:00:00"
         - condition: state
           entity_id: light.kids_bedroom
           state: "off"
@@ -41,6 +43,8 @@ kids_bedroom_automation:
           entity_id: sun.sun
           attribute: elevation
           below: 4
+        - condition: time
+          before: "23:00:00"
         - condition: state
           entity_id: light.kids_bedroom
           state: "on"
