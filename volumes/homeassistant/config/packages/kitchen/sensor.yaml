@@ -2,7 +2,7 @@ kitchen_sensor:
   sensor:
     - platform: history_stats
       name: Kitchen - Sensor - Light On - Duration - Today
-      unique_id: kitchen_sensor_light_on_duration_today
+      object_id: kitchen_sensor_light_on_duration_today
       entity_id: light.kitchen
       state: "on"
       type: time
@@ -10,7 +10,7 @@ kitchen_sensor:
       end: "{{ now() }}"
     - platform: history_stats
       name: Kitchen - Sensor - Window Close - Duration - Last Two Hourse
-      unique_id: kitchen_sensor_window_close_duration_last_two_hours
+      object_id: kitchen_sensor_window_close_duration_last_two_hours
       entity_id: binary_sensor.snzb_04_02_contact
       state: "off"
       type: time
