@@ -2,7 +2,6 @@ kitchen_sensor:
   sensor:
     - platform: history_stats
       name: kitchen_sensor_light_on_duration_daily
-      friendly_name: "Kitchen - Sensor - Light On - Duration - Daily"
       entity_id: light.kitchen
       state: "on"
       type: time
@@ -10,7 +9,6 @@ kitchen_sensor:
       end: "{{ now() }}"
     - platform: history_stats
       name: kitchen_sensor_light_on_duration_monthly
-      friendly_name: "Kitchen - Sensor - Light On - Duration - Monthly"
       entity_id: light.kitchen
       state: "on"
       type: time
