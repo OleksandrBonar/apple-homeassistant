@@ -1,17 +1,24 @@
 kitchen_sensor:
   sensor:
     - platform: history_stats
-      name: Kitchen Sensor Light On Duration Today
+      name: Kitchen Sensor Light On Duration Daily
       entity_id: light.kitchen
       state: "on"
       type: time
-      start: "{{ now().replace(hour=0, minute=0, second=0) }}"
+      start: "{{ now().replace(hour=0, minute=0, second=0, microsecond=0) }}"
       end: "{{ now() }}"
     - platform: history_stats
-      name: Kitchen Sensor Window Close Duration Last Two Hourse
+      name: Kitchen Sensor Light On Duration Monthly
+      entity_id: light.kitchen
+      state: "on"
+      type: time
+      start: "{{ now().replace(day=1, hour=0, minute=0, second=0, microsecond=0) }}"
+      end: "{{ now() }}"
+    - platform: history_stats
+      name: Kitchen Sensor Window Close Percent Last Two Hourse
       entity_id: binary_sensor.snzb_04_02_contact
       state: "off"
-      type: time
+      type: ratio
       end: "{{ now() }}"
       duration:
         hours: 2
