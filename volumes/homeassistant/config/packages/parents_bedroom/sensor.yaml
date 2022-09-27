@@ -1,0 +1,24 @@
+parents_bedroom_sensor:
+  sensor:
+    - platform: history_stats
+      name: Parents Bedroom Sensor Light On Duration Daily
+      entity_id: light.parents_bedroom
+      state: "on"
+      type: time
+      start: "{{ now().replace(hour=0, minute=0, second=0, microsecond=0) }}"
+      end: "{{ now() }}"
+    - platform: history_stats
+      name: Parents Bedroom Sensor Light On Duration Monthly
+      entity_id: light.parents_bedroom
+      state: "on"
+      type: time
+      start: "{{ now().replace(day=1, hour=0, minute=0, second=0, microsecond=0) }}"
+      end: "{{ now() }}"
+    - platform: history_stats
+      name: Parents Bedroom Sensor Window Close Percent Last Two Hourse
+      entity_id: binary_sensor.snzb_04_04_contact
+      state: "off"
+      type: ratio
+      end: "{{ now() }}"
+      duration:
+        hours: 2
