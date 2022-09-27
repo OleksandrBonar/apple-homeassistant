@@ -8,3 +8,12 @@ kitchen_sensor:
       type: time
       start: "{{ now().replace(hour=0, minute=0, second=0) }}"
       end: "{{ now() }}"
+    - platform: history_stats
+      name: Kitchen - Sensor - Window Close - Duration - Last Two Hourse
+      id: kitchen_sensor_window_close_duration_last_two_hours
+      entity_id: binary_sensor.snzb_04_02_contact
+      state: "off"
+      type: time
+      end: "{{ now() }}"
+      duration:
+        hours: 2
