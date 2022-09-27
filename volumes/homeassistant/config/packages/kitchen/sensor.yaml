@@ -1,0 +1,10 @@
+kitchen_sensor:
+  sensor:
+    - platform: history_stats
+      name: Kitchen - Sensor - Light On - Duration - Today
+      id: kitchen_sensor_light_on_duration_today
+      entity_id: light.kitchen
+      state: "on"
+      type: time
+      start: "{{ now().replace(hour=0, minute=0, second=0) }}"
+      end: "{{ now() }}"
