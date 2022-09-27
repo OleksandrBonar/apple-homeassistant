@@ -1,0 +1,16 @@
+hallway_sensor:
+  sensor:
+    - platform: history_stats
+      name: Hallway Sensor Light On Duration Daily
+      entity_id: light.hallway
+      state: "on"
+      type: time
+      start: "{{ now().replace(hour=0, minute=0, second=0, microsecond=0) }}"
+      end: "{{ now() }}"
+    - platform: history_stats
+      name: Hallway Sensor Light On Duration Monthly
+      entity_id: light.hallway
+      state: "on"
+      type: time
+      start: "{{ now().replace(day=1, hour=0, minute=0, second=0, microsecond=0) }}"
+      end: "{{ now() }}"
