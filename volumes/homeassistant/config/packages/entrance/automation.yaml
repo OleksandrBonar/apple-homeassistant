@@ -23,7 +23,7 @@ entrance_automation:
       action:
         - service: notify.telegram_user_oleksandr
           data:
-            message: "The courier is close!"
+            message: "_Intercom_: The courier is close!"
         - service: input_select.select_option
           target:
             entity_id: select.domofon_mode
@@ -31,17 +31,22 @@ entrance_automation:
             option: once
         - service: notify.telegram_user_oleksandr
           data:
-            message: "_Intercom_: single auto-opening mode is enabled."
+            message: "_Intercom_: Single auto-opening mode is enabled."
         - wait_for_trigger:
           - platform: state
             entity_id: sensor.domofon_state
-            to: "Open"
+            to: open
           timeout: "00:10:00"
         - wait_for_trigger:
           - platform: state
             entity_id: sensor.domofon_state
-            to: "Idle"
+            to: idle
           timeout: "00:00:05"
+        - service: input_select.select_option
+          target:
+            entity_id: select.domofon_mode
+          data:
+            option: never
         - service: notify.telegram_user_oleksandr
           data:
             message: "_Intercom_: Disabled single auto-opening mode."
@@ -52,18 +57,18 @@ entrance_automation:
       trigger:
         - platform: state
           entity_id: sensor.domofon_state
-          to: "Ring"
+          to: ring
       action:
         - service: notify.telegram_user_oleksandr
           data:
-            message: "_Intercom_: incoming call... {% if is_state('select.domofon_mode', 'always') or is_state('select.domofon_mode', 'once') %}(*will open automatically*){% endif %}"
+            message: "_Intercom_: Incoming call... {% if is_state('select.domofon_mode', 'always') or is_state('select.domofon_mode', 'once') %}(*Will open automatically*){% endif %}"
             data:
               inline_keyboard:
                 - "{{ '-' if is_state('select.domofon_mode', 'always') or is_state('select.domofon_mode', 'once') else 'Open:/domofon_open, Reject:/domofon_reject' }}"
         - wait_for_trigger:
           - platform: template
             value_template: >-
-              {{ is_state('sensor.domofon_state', 'Open') or is_state('sensor.domofon_state', 'Drop') }}
+              {{ is_state('sensor.domofon_state', 'open') or is_state('sensor.domofon_state', 'drop') }}
           timeout:
             seconds: 10
 
