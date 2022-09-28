@@ -24,10 +24,7 @@ entrance_automation_zone:
           - conditions:
             - condition: state
               entity_id: select.domofon_mode
-              state:
-                - always
-                - drop
-                - never
+              state: never
             sequence:
               - service: input_select.select_option
                 target:
