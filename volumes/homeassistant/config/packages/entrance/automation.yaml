@@ -24,7 +24,7 @@ entrance_automation:
         - service: notify.telegram_user_oleksandr
           data:
             message: "_Intercom_: The courier is close!"
-        - service: input_select.select_option
+        - service: select.select_option
           target:
             entity_id: select.domofon_mode
           data:
@@ -42,7 +42,7 @@ entrance_automation:
             entity_id: sensor.domofon_state
             to: idle
           timeout: "00:00:05"
-        - service: input_select.select_option
+        - service: select.select_option
           target:
             entity_id: select.domofon_mode
           data:
