@@ -36,16 +36,16 @@ entrance_automation_zone:
                   option: once
               - service: notify.telegram_user_oleksandr
                 data:
-                  message: "_Intercom_: single auto-opening mode is enabled."
+                  message: "_Intercom_: Single auto-opening mode is enabled."
         - wait_for_trigger:
           - platform: state
             entity_id: sensor.domofon_state
-            to: "Open"
+            to: open
           timeout: "00:10:00"
         - wait_for_trigger:
           - platform: state
             entity_id: sensor.domofon_state
-            to: "Idle"
+            to: idle
           timeout: "00:00:05"
         - choose:
           - conditions:
