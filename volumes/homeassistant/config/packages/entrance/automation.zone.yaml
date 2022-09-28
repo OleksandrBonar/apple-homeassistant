@@ -26,7 +26,7 @@ entrance_automation_zone:
               entity_id: select.domofon_mode
               state: never
             sequence:
-              - service: input_select.select_option
+              - service: select.select_option
                 target:
                   entity_id: select.domofon_mode
                 data:
@@ -59,7 +59,7 @@ entrance_automation_zone:
               entity_id: select.domofon_mode
               state: once
             sequence:
-              - service: input_select.select_option
+              - service: select.select_option
                 target:
                   entity_id: select.domofon_mode
                 data:
