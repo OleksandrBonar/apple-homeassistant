@@ -24,9 +24,11 @@ entrance_automation:
         - service: notify.telegram_user_oleksandr
           data:
             message: "The courier is close!"
-        - service: switch.turn_on
+        - service: input_select.select_option
           target:
-            entity_id: switch.domofon_once
+            entity_id: select.domofon_mode
+          data:
+            option: once
         - service: notify.telegram_user_oleksandr
           data:
             message: "_Intercom_: single auto-opening mode is enabled."
@@ -54,10 +56,10 @@ entrance_automation:
       action:
         - service: notify.telegram_user_oleksandr
           data:
-            message: "_Intercom_: incoming call... {% if is_state('switch.domofon_always', 'on') or is_state('switch.domofon_once', 'on') %}(*will open automatically*){% endif %}"
+            message: "_Intercom_: incoming call... {% if is_state('select.domofon_mode', 'always') or is_state('select.domofon_mode', 'once') %}(*will open automatically*){% endif %}"
             data:
               inline_keyboard:
-                - "{{ '-' if is_state('switch.domofon_always', 'on') or is_state('switch.domofon_once', 'on') else 'Open:/domofon_open, Reject:/domofon_reject' }}"
+                - "{{ '-' if is_state('select.domofon_mode', 'always') or is_state('select.domofon_mode', 'once') else 'Open:/domofon_open, Reject:/domofon_reject' }}"
         - wait_for_trigger:
           - platform: template
             value_template: >-
