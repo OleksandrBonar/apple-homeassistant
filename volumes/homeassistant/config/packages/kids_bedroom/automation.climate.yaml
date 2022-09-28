@@ -16,4 +16,4 @@ kids_bedroom_automation_climate:
       action:
         - service: notify.telegram_user_oleksandr
           data:
-            message: "Climate: It's time to open the window in the kids bedroom for ventilation."
+            message: "_Climate_: It's time to open the window in the kids bedroom for ventilation."
