@@ -16,7 +16,7 @@ kitchen_automation_climate:
       action:
         - service: notify.telegram_user_oleksandr
           data:
-            message: "Climate: It's time to close the window in the kitchen."
+            message: "_Climate_: It's time to close the window in the kitchen."
 
     - id: kitchen_automation_climate_window_close_long
       alias: Kitchen - Automation - Climate - Window Close - Long
@@ -34,4 +34,4 @@ kitchen_automation_climate:
       action:
         - service: notify.telegram_user_oleksandr
           data:
-            message: "Climate: It's time to open the window in the kitchen for ventilation."
+            message: "_Climate_: It's time to open the window in the kitchen for ventilation."
