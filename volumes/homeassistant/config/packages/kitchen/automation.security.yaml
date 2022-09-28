@@ -14,7 +14,7 @@ kitchen_automation_security:
       action:
         - service: notify.telegram_user_oleksandr
           data:
-            message: "Security: An open window was found in the kitchen."
+            message: "_Security_: An open window was found in the kitchen."
 
     - id: kitchen_automation_security_motion_on_me_away
       alias: Kitchen - Automation - Security - Motion On - Me Away
@@ -33,4 +33,4 @@ kitchen_automation_security:
             entity_id: light.kitchen
         - service: notify.telegram_user_oleksandr
           data:
-            message: "Security: Motion detected in the kitchen."
+            message: "_Security_: Motion detected in the kitchen."
