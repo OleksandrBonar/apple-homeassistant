@@ -25,15 +25,15 @@ entrance_automation_zone:
             - condition: state
               entity_id: select.domofon_mode
               state:
-                - "always"
-                - "drop"
-                - "never"
+                - always
+                - drop
+                - never
             sequence:
               - service: input_select.select_option
                 target:
                   entity_id: select.domofon_mode
                 data:
-                  option: "once"
+                  option: once
               - service: notify.telegram_user_oleksandr
                 data:
                   message: "_Intercom_: single auto-opening mode is enabled."
@@ -60,13 +60,13 @@ entrance_automation_zone:
           - conditions:
             - condition: state
               entity_id: select.domofon_mode
-              state: "once"
+              state: once
             sequence:
               - service: input_select.select_option
                 target:
                   entity_id: select.domofon_mode
                 data:
-                  option: "never"
+                  option: never
         - service: notify.telegram_user_oleksandr
           data:
             message: "_Intercom_: Disabled single auto-opening mode."
