@@ -14,7 +14,7 @@ kids_bedroom_automation_security:
       action:
         - service: notify.telegram_user_oleksandr
           data:
-            message: "Security: An open window was found in the kids bedroom."
+            message: "_Security_: An open window was found in the kids bedroom."
 
     - id: kids_bedroom_automation_security_motion_on_me_away
       alias: Kids Bedroom - Automation - Security - Motion On - Me Away
@@ -33,4 +33,4 @@ kids_bedroom_automation_security:
             entity_id: light.kids_bedroom
         - service: notify.telegram_user_oleksandr
           data:
-            message: "Security: Motion detected in the kids bedroom."
+            message: "_Security_: Motion detected in the kids bedroom."
