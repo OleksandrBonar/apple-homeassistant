@@ -16,7 +16,7 @@ all_automation_security:
       action:
         - service: notify.telegram_user_oleksandr
           data:
-            message: "Security: The door remained open. Close the door."
+            message: "_Security_: The door remained open. Close the door."
 
     - id: all_automation_security_windows_open_me_away
       alias: All - Automation - Security - Windows Open - Me Away
@@ -41,4 +41,4 @@ all_automation_security:
       action:
         - service: notify.telegram_user_oleksandr
           data:
-            message: "Security: The windows were left open. Close windows."
+            message: "_Security_: The windows were left open. Close windows."
