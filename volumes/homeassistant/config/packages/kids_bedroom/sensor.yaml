@@ -26,3 +26,13 @@ kids_bedroom_sensor:
           value_template: "{{ states('sensor.kids_bedroom_sensor_light_on_duration_monthly') | float * 6 * 8 }}"
           unit_of_measurement: W
           icon_template: mdi:counter
+        kids_bedroom_sensor_energy_socket_daily:
+          friendly_name: "Kids Bedroom Sensor Energy Socket Daily: "
+          value_template: "{{ 0 }}"
+          unit_of_measurement: W
+          icon_template: mdi:counter
+        kids_bedroom_sensor_energy_socket_monthly:
+          friendly_name: "Kids Bedroom Sensor Energy Socket Monthly: "
+          value_template: "{{ 0 }}"
+          unit_of_measurement: W
+          icon_template: mdi:counter
