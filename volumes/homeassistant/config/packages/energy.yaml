@@ -1,45 +1,46 @@
-utility_meter:
-  daily_energy:
-    source: sensor.all_sensor_energy_total_daily
-    name: Daily Total Energy
-    cycle: daily
-    tariffs:
-      - peak
-      - offpeak
-  monthly_energy:
-    source: sensor.all_sensor_energy_total_monthly
-    name: Monthly Total Energy
-    cycle: monthly
-    tariffs:
-      - peak
-      - offpeak
-  monthly_gas:
-      source: sensor.gas_consumption
-      name: Monthly Gas
+energy:
+  utility_meter:
+    daily_energy:
+      source: sensor.all_sensor_energy_total_daily
+      name: Daily Total Energy
+      cycle: daily
+      tariffs:
+        - peak
+        - offpeak
+    monthly_energy:
+      source: sensor.all_sensor_energy_total_monthly
+      name: Monthly Total Energy
       cycle: monthly
-  monthly_water:
-      source: sensor.water_consumption
-      name: Monthly Water
-      cycle: monthly
+      tariffs:
+        - peak
+        - offpeak
+    monthly_gas:
+        source: sensor.gas_consumption
+        name: Monthly Gas
+        cycle: monthly
+    monthly_water:
+        source: sensor.water_consumption
+        name: Monthly Water
+        cycle: monthly
 
-automation:
-  trigger:
-    - platform: time
-      at: "07:00:00"
-      variables:
-        tariff: "peak"
-    - platform: time
-      at: "23:00:00"
-      variables:
-        tariff: "offpeak"
-  action:
-    - service: select.select_option
-      target:
-        entity_id: select.daily_energy
-      data:
-        option: "{{ tariff }}"
-    - service: select.select_option
-      target:
-        entity_id: select.monthly_energy
-      data:
-        option: "{{ tariff }}"
+  automation:
+    trigger:
+      - platform: time
+        at: "07:00:00"
+        variables:
+          tariff: "peak"
+      - platform: time
+        at: "23:00:00"
+        variables:
+          tariff: "offpeak"
+    action:
+      - service: select.select_option
+        target:
+          entity_id: select.daily_energy
+        data:
+          option: "{{ tariff }}"
+      - service: select.select_option
+        target:
+          entity_id: select.monthly_energy
+        data:
+          option: "{{ tariff }}"
