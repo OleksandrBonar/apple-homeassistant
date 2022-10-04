@@ -32,6 +32,7 @@ recorder:
 media_source:
 mobile_app:
 sun:
+energy:
 
 #zone: !include zone.yaml
 sensor: !include sensor.yaml
