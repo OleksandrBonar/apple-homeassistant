@@ -1,15 +1,43 @@
 energy:
   utility_meter:
-    daily_energy:
+    daily_total_energy:
       source: sensor.all_sensor_energy_total_daily
       name: Daily Total Energy
       cycle: daily
       tariffs:
         - peak
         - offpeak
-    monthly_energy:
+    monthly_total_energy:
       source: sensor.all_sensor_energy_total_monthly
       name: Monthly Total Energy
+      cycle: monthly
+      tariffs:
+        - peak
+        - offpeak
+    daily_light_energy:
+      source: sensor.all_sensor_energy_light_daily
+      name: Daily Light Energy
+      cycle: daily
+      tariffs:
+        - peak
+        - offpeak
+    monthly_light_energy:
+      source: sensor.all_sensor_energy_light_monthly
+      name: Monthly Light Energy
+      cycle: monthly
+      tariffs:
+        - peak
+        - offpeak
+    daily_socket_energy:
+      source: sensor.all_sensor_energy_socket_daily
+      name: Daily Socket Energy
+      cycle: daily
+      tariffs:
+        - peak
+        - offpeak
+    monthly_socket_energy:
+      source: sensor.all_sensor_energy_socket_monthly
+      name: Monthly Socket Energy
       cycle: monthly
       tariffs:
         - peak
@@ -36,11 +64,12 @@ energy:
     action:
       - service: select.select_option
         target:
-          entity_id: select.daily_energy
-        data:
-          option: "{{ tariff }}"
-      - service: select.select_option
-        target:
-          entity_id: select.monthly_energy
+          entity_id:
+            - select.daily_total_energy
+            - select.daily_light_energy
+            - select.daily_socket_energy
+            - select.monthly_total_energy
+            - select.monthly_light_energy
+            - select.monthly_socket_energy
         data:
           option: "{{ tariff }}"
