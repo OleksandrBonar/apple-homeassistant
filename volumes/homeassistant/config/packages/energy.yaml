@@ -1,0 +1,101 @@
+energy:
+
+utility_meter:
+  daily_total_energy:
+    source: sensor.all_sensor_energy_total_daily
+    name: Daily Total Energy
+    cycle: daily
+    tariffs:
+      - peak
+      - offpeak
+  monthly_total_energy:
+    source: sensor.all_sensor_energy_total_monthly
+    name: Monthly Total Energy
+    cycle: monthly
+    tariffs:
+      - peak
+      - offpeak
+  daily_light_energy:
+    source: sensor.all_sensor_energy_light_daily
+    name: Daily Light Energy
+    cycle: daily
+    tariffs:
+      - peak
+      - offpeak
+  monthly_light_energy:
+    source: sensor.all_sensor_energy_light_monthly
+    name: Monthly Light Energy
+    cycle: monthly
+    tariffs:
+      - peak
+      - offpeak
+  daily_socket_energy:
+    source: sensor.all_sensor_energy_socket_daily
+    name: Daily Socket Energy
+    cycle: daily
+    tariffs:
+      - peak
+      - offpeak
+  monthly_socket_energy:
+    source: sensor.all_sensor_energy_socket_monthly
+    name: Monthly Socket Energy
+    cycle: monthly
+    tariffs:
+      - peak
+      - offpeak
+  monthly_gas:
+      source: sensor.gas_consumption
+      name: Monthly Gas
+      cycle: monthly
+  monthly_hot_water:
+      source: sensor.water_hot_consumption
+      name: Monthly Hot Water
+      cycle: monthly
+  monthly_cold_water:
+      source: sensor.water_cold_consumption
+      name: Monthly Cold Water
+      cycle: monthly
+
+automation:
+  trigger:
+    - platform: time
+      at: "07:00:00"
+      variables:
+        tariff: "peak"
+    - platform: time
+      at: "23:00:00"
+      variables:
+        tariff: "offpeak"
+  action:
+    - service: select.select_option
+      target:
+        entity_id: select.daily_total_energy
+      data:
+        option: "{{ tariff }}"
+    - service: select.select_option
+      target:
+        entity_id: select.monthly_total_energy
+      data:
+        option: "{{ tariff }}"
+
+    - service: select.select_option
+      target:
+        entity_id: select.daily_light_energy
+      data:
+        option: "{{ tariff }}"
+    - service: select.select_option
+      target:
+        entity_id: select.monthly_light_energy
+      data:
+        option: "{{ tariff }}"
+
+    - service: select.select_option
+      target:
+        entity_id: select.daily_socket_energy
+      data:
+        option: "{{ tariff }}"
+    - service: select.select_option
+      target:
+        entity_id: select.monthly_socket_energy
+      data:
+        option: "{{ tariff }}"
