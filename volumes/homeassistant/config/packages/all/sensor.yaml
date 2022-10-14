@@ -38,6 +38,28 @@ all_sensor:
           device_class: energy
           unit_of_measurement: kWh
           icon_template: mdi:counter
+          
+        daily_total_energy_peak_percent:
+          friendly_name: "Daily Total Energy Peak Percent: "
+          value_template: "{{ (states('sensor.daily_total_energy_peak') | float / (states('sensor.daily_total_energy') | float / 100)) | round(2) }}"
+          unit_of_measurement: 'UAH'
+          icon_template: mdi:counter
+        daily_total_energy_offpeak_percent:
+          friendly_name: "Daily Total Energy Offpeak Percent: "
+          value_template: "{{ (states('sensor.daily_total_energy_offpeak') | float / (states('sensor.daily_total_energy') | float / 100)) | round(2) }}"
+          unit_of_measurement: 'UAH'
+          icon_template: mdi:counter
+
+        monthly_total_energy_peak_percent:
+          friendly_name: "Monthly Total Energy Peak Percent: "
+          value_template: "{{ (states('sensor.monthly_total_energy_peak') | float / (states('sensor.monthly_total_energy') | float / 100)) | round(2) }}"
+          unit_of_measurement: 'UAH'
+          icon_template: mdi:counter
+        monthly_total_energy_offpeak_percent:
+          friendly_name: "Monthly Total Energy Offpeak Percent: "
+          value_template: "{{ (states('sensor.monthly_total_energy_offpeak') | float / (states('sensor.monthly_total_energy') | float / 100)) | round(2) }}"
+          unit_of_measurement: 'UAH'
+          icon_template: mdi:counter
 
         daily_total_energy_peak_money:
           friendly_name: "Daily Total Energy Peak Money: "
@@ -52,11 +74,21 @@ all_sensor:
           
         monthly_total_energy_peak_money:
           friendly_name: "Monthly Total Energy Peak Money: "
-          value_template: "{{ states('sensor.monthly_total_energy_peak') | float * 1.68 | round(2) }}"
+          value_template: >
+            {% if states('sensor.monthly_total_energy') | float <= 100.0 %}
+              {{ states('sensor.monthly_total_energy') | float * 0.9 * 1.0 * (states('sensor.monthly_total_energy_peak_percent') | float / 100) | float }}
+            {% else %}
+              {{ (90.0 * (states('sensor.monthly_total_energy_peak_percent') | float / 100)) + (states('sensor.monthly_total_energy') | float - 100.0) * 1.68 * 1.0 * (states('sensor.monthly_total_energy_peak_percent') / 100) | float }}
+            {% endif %}
           unit_of_measurement: 'UAH'
           icon_template: mdi:square-inc-cash
         monthly_total_energy_offpeak_money:
           friendly_name: "Monthly Total Energy Offpeak Money: "
-          value_template: "{{ states('sensor.monthly_total_energy_offpeak') | float * 0.84 | round(2) }}"
+          value_template: >
+            {% if states('sensor.monthly_total_energy') | float <= 100.0 %}
+              {{ states('sensor.monthly_total_energy') | float * 0.9 * 0.5 * (states('sensor.monthly_total_energy_offpeak_percent') | float / 100) | float }}
+            {% else %}
+              {{ (45.0 * (states('sensor.monthly_total_energy_offpeak_percent') | float / 100)) + (states('sensor.monthly_total_energy') | float - 100.0) * 1.68 * 0.5 * (states('sensor.monthly_total_energy_offpeak_percent') / 100) | float }}
+            {% endif %}
           unit_of_measurement: 'UAH'
           icon_template: mdi:square-inc-cash
