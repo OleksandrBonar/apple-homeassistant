@@ -38,7 +38,13 @@ all_sensor:
           device_class: energy
           unit_of_measurement: kWh
           icon_template: mdi:counter
-          
+
+        daily_total_energy:
+          friendly_name: "Daily Total Energy: "
+          value_template: "{{ (states('sensor.daily_total_energy_peak') | float + states('sensor.daily_total_energy_offpeak') | float }}"
+          device_class: energy
+          unit_of_measurement: kWh
+          icon_template: mdi:counter          
         daily_total_energy_peak_percent:
           friendly_name: "Daily Total Energy Peak Percent: "
           value_template: "{{ (states('sensor.daily_total_energy_peak') | float / (states('sensor.daily_total_energy') | float / 100)) | round(2) }}"
@@ -50,6 +56,12 @@ all_sensor:
           unit_of_measurement: 'UAH'
           icon_template: mdi:counter
 
+        monthly_total_energy:
+          friendly_name: "Monthly Total Energy: "
+          value_template: "{{ (states('sensor.monthly_total_energy_peak') | float + states('sensor.monthly_total_energy_offpeak') | float }}"
+          device_class: energy
+          unit_of_measurement: kWh
+          icon_template: mdi:counter
         monthly_total_energy_peak_percent:
           friendly_name: "Monthly Total Energy Peak Percent: "
           value_template: "{{ (states('sensor.monthly_total_energy_peak') | float / (states('sensor.monthly_total_energy') | float / 100)) | round(2) }}"
