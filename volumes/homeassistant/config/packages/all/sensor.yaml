@@ -39,24 +39,24 @@ all_sensor:
           unit_of_measurement: kWh
           icon_template: mdi:counter
 
-        daily_total_enegery_peak_money:
+        daily_total_energy_peak_money:
           friendly_name: "Daily Total Energy Peak Money: "
-          value_template: "{{ states('sensor.daily_total_enegery_peak') | float * 1.68 | round(2) }}"
+          value_template: "{{ states('sensor.daily_total_energy_peak') | float * 1.68 | round(2) }}"
           unit_of_measurement: 'UAH'
           icon_template: mdi:square-inc-cash
-        daily_total_enegery_offpeak_money:
+        daily_total_energy_offpeak_money:
           friendly_name: "Daily Total Energy Offpeak Money: "
-          value_template: "{{ states('sensor.daily_total_enegery_offpeak') | float * 0.84 | round(2) }}"
+          value_template: "{{ states('sensor.daily_total_energy_offpeak') | float * 0.84 | round(2) }}"
           unit_of_measurement: 'UAH'
           icon_template: mdi:square-inc-cash
           
-        monthly_total_enegery_peak_money:
+        monthly_total_energy_peak_money:
           friendly_name: "Monthly Total Energy Peak Money: "
-          value_template: "{{ states('sensor.monthly_total_enegery_peak') | float * 1.68 | round(2) }}"
+          value_template: "{{ states('sensor.monthly_total_energy_peak') | float * 1.68 | round(2) }}"
           unit_of_measurement: 'UAH'
           icon_template: mdi:square-inc-cash
-        monthly_total_enegery_offpeak_money:
+        monthly_total_energy_offpeak_money:
           friendly_name: "Monthly Total Energy Offpeak Money: "
-          value_template: "{{ states('sensor.monthly_total_enegery_offpeak') | float * 0.84 | round(2) }}"
+          value_template: "{{ states('sensor.monthly_total_energy_offpeak') | float * 0.84 | round(2) }}"
           unit_of_measurement: 'UAH'
           icon_template: mdi:square-inc-cash
