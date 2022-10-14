@@ -90,7 +90,7 @@ all_sensor:
             {% if states('sensor.monthly_total_energy') | float <= 250.0 %}
               {{ states('sensor.monthly_total_energy') | float * 1.44 * 1.0 * (states('sensor.monthly_total_energy_peak_percent') | float / 100) | float }}
             {% else %}
-              {{ (100.0 | float * 1.44 * 1.0 * (states('sensor.monthly_total_energy_peak_percent') | float / 100)) + (states('sensor.monthly_total_energy') | float - 100.0) * 1.68 * 1.0 * (states('sensor.monthly_total_energy_peak_percent') / 100) | float }}
+              {{ (250.0 | float * 1.44 * 1.0 * (states('sensor.monthly_total_energy_peak_percent') | float / 100)) + (states('sensor.monthly_total_energy') | float - 250.0) * 1.68 * 1.0 * (states('sensor.monthly_total_energy_peak_percent') / 100) | float }}
             {% endif %}
           unit_of_measurement: 'UAH'
           icon_template: mdi:square-inc-cash
@@ -100,7 +100,7 @@ all_sensor:
             {% if states('sensor.monthly_total_energy') | float <= 250.0 %}
               {{ states('sensor.monthly_total_energy') | float * 1.44 * 0.5 * (states('sensor.monthly_total_energy_offpeak_percent') | float / 100) | float }}
             {% else %}
-              {{ (100.0 | float * 1.44 * 0.5 * (states('sensor.monthly_total_energy_offpeak_percent') | float / 100)) + (states('sensor.monthly_total_energy') | float - 100.0) * 1.68 * 0.5 * (states('sensor.monthly_total_energy_offpeak_percent') / 100) | float }}
+              {{ (250.0 | float * 1.44 * 0.5 * (states('sensor.monthly_total_energy_offpeak_percent') | float / 100)) + (states('sensor.monthly_total_energy') | float - 250.0) * 1.68 * 0.5 * (states('sensor.monthly_total_energy_offpeak_percent') / 100) | float }}
             {% endif %}
           unit_of_measurement: 'UAH'
           icon_template: mdi:square-inc-cash
