@@ -2,6 +2,7 @@ hallway_automation:
   automation:
     - id: Hallway Lighting on when dark outside
       alias: hallway_light_turn_on_when_dark_outside
+      initial_state: false
       trigger:
         - platform: numeric_state
           entity_id: sun.sun
