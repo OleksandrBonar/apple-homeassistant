@@ -41,6 +41,7 @@ parents_bedroom_automation:
           attribute: elevation
           below: 4
         - condition: time
+          after: "16:00:00"
           before: "23:00:00"
         - condition: state
           entity_id: light.parents_bedroom
@@ -69,6 +70,7 @@ parents_bedroom_automation:
           attribute: elevation
           below: 4
         - condition: time
+          after: "16:00:00"
           before: "23:00:00"
         - condition: state
           entity_id: light.parents_bedroom
