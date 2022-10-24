@@ -22,7 +22,7 @@ views:
         # The picture entity card will represent an entity with a picture
       - type: picture-entity
         image: https://www.home-assistant.io/images/default-social.png
-        entity: light.bed_light
+        entity: light.parents_bedroom
 
     # Specify a tab icon if you want the view tab to be an icon.
   - icon: mdi:home-assistant
@@ -38,7 +38,7 @@ views:
         entities:
           - light.kitchen
           - switch.ac
-          - entity: light.living_room
+          - entity: light.kids_bedroom
             # Override the name to use
             name: LR Lights
 
