@@ -9,8 +9,12 @@ homeassistant:
   internal_url: "http://192.168.0.111:8123"
   packages: !include_dir_merge_named packages
 
+lovelace:
+  mode: yaml
+
 config:
 #ssdp:
+system_health:
 frontend:
 map:
 history:
