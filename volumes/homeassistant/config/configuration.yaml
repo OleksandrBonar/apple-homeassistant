@@ -14,6 +14,8 @@ lovelace:
   resources:
     - url: /local/vertical-stack-in-card.js
       type: js
+    - url: /local/stack-in-card.js
+      type: module
 
 config:
 #ssdp:
