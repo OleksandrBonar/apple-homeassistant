@@ -20,6 +20,8 @@ lovelace:
       type: module
     - url: /local/multiple-entity-row.js
       type: module
+    - url: /local/mushroom.js
+      type: module
 
 config:
 #ssdp:
