@@ -1,3 +1,6 @@
 title: Home Assistant
 views:
   - !include lovelace/001_overview.yaml
+resources:
+  - url: /local/vertical-stack-in-card.js?v=0.4.1
+    type: js
