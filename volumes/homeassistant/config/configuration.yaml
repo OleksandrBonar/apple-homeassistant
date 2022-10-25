@@ -12,6 +12,8 @@ homeassistant:
 lovelace:
   mode: yaml
   resources:
+    - url: /local/auto-entities.js
+      type: module
     - url: /local/vertical-stack-in-card.js
       type: js
     - url: /local/stack-in-card.js
