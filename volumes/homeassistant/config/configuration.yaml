@@ -11,6 +11,9 @@ homeassistant:
 
 lovelace:
   mode: yaml
+  resources:
+    - url: /local/vertical-stack-in-card.js
+      type: js
 
 config:
 #ssdp:
