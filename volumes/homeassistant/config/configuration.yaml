@@ -16,7 +16,7 @@ lovelace:
       type: module
     - url: /local/stack-in-card.js
       type: module
-    - url: /loca;/battery-state-card.js
+    - url: /local/battery-state-card.js
       type: module
     - url: /local/multiple-entity-row.js
       type: module
