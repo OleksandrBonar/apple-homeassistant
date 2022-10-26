@@ -112,7 +112,7 @@ cards:
 
             - type: markdown
               content: >
-                 **Sensors States**
+                 **Sensors**
              
             - type: entities
               show_header_toggle: false
