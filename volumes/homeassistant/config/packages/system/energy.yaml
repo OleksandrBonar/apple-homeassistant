@@ -54,7 +54,7 @@ system_energy:
   automation:
     - id: system_automation_energy_tariff_switch
       alias: System - Automation - Energy - Tariff Switch
-      initial_state: false
+      initial_state: true
       trigger:
         - platform: time
           at: "07:00:00"
