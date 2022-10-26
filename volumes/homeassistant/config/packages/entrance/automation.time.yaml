@@ -32,8 +32,8 @@ entrance_automation_time:
         - service: light.turn_on
           target:
             entity_id: light.entrance
-          data:
-            brithness_pct: 15
+#          data:
+#            brithness_pct: 15
 
     - id: entrance_automation_sunrise
       alias: Entrance - Automation - Sunrise
