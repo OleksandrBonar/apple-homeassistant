@@ -337,7 +337,7 @@ cards:
                      font-size: 14px;
                    } 
               content: >
-                 **Sensors states**
+                 **Sensors**
             - type: entities
               style: |
                    ha-card {
