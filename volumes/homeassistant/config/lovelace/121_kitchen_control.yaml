@@ -419,6 +419,16 @@ cards:
                    } 
               show_header_toggle: false
               entities:
+                - entity: sensor.snzb_01_02_battery
+                  type: custom:multiple-entity-row
+                  icon: phu:aqara-opple
+                  state_color: true
+                  name: Switch
+                  secondary_info: last-changed
+                  state_header: Battery
+                  entities:
+                  - attribute: linkquality
+                    name: Signal
                 - type: divider
                 - entity: sensor.0x842e14fffef6d9e5_battery
                   type: custom:multiple-entity-row
@@ -458,17 +468,6 @@ cards:
                   icon: phu:aqara-contact
                   state_color: true
                   name: Window Sensor
-                  secondary_info: last-changed
-                  state_header: Battery
-                  entities:
-                  - attribute: linkquality
-                    name: Signal
-                - type: divider
-                - entity: sensor.snzb_01_02_battery
-                  type: custom:multiple-entity-row
-                  icon: phu:aqara-opple
-                  state_color: true
-                  name: Switch
                   secondary_info: last-changed
                   state_header: Battery
                   entities:
