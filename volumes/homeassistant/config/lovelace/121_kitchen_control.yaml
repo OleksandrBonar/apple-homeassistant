@@ -1,0 +1,792 @@
+##################   Kitchen   ##################
+title: Kitchen
+icon: phu:rooms-dining
+cards:
+
+############################ Column 1 ############################
+
+    - type: vertical-stack
+      cards:
+      
+        - type: markdown
+          style: |
+              ha-card {
+                color: #f8ffd8;
+                --paper-item-icon-color: #f8ffd8;
+                --paper-item-icon-active-color: #f8ffd8;
+                font-weight: bold;
+                font-size: 26px;
+              }          
+          content: >
+             **Control**
+             
+        - type: custom:stack-in-card
+          mode: vertical
+          cards:  
+            - type: markdown
+              style: |
+                   ha-card {
+                     color: #f8ffd8;
+                     --paper-item-icon-color: #f8ffd8;
+                     --paper-item-icon-active-color: #f8ffd8;
+                     font-weight: bold;
+                     font-size: 14px;
+                   } 
+              content: >
+                 **Lights**
+            - type: horizontal-stack
+              cards:
+
+                - type: button
+                  name: Main Light
+                  entity: light.kitchen
+                  tap_action:
+                    action: toggle
+                    
+                - type: button
+                  name: Back Light
+                  entity: light.kitchen_backlight
+                  tap_action:
+                    action: toggle     
+
+            - type: conditional
+              conditions:
+                - entity: light.kitchen
+                  state: "on"
+              card:
+                  type: custom:mushroom-light-card
+                  entity: light.kitchen
+                  name: Main Light
+                  icon_type: none
+                  primary_info: name
+                  secondary_info: none
+                  use_light_color: true
+                  show_brightness_control: true
+                  show_color_temp_control: true
+                  show_color_control: false
+                  collapsible_controls: true
+
+            - type: conditional
+              conditions:
+                - entity: light.kitchen_backlight
+                  state: "on"
+              card:
+                  type: custom:mushroom-light-card
+                  entity: light.kitchen_backlight
+                  name: Back Light
+                  icon_type: none
+                  primary_info: name
+                  secondary_info: none
+                  use_light_color: true
+                  show_brightness_control: true
+                  show_color_temp_control: false
+                  show_color_control: true
+                  collapsible_controls: truee
+
+
+        - type: custom:stack-in-card
+          mode: vertical
+          cards:  
+            - type: markdown
+              style: |
+                   ha-card {
+                     color: #f8ffd8;
+                     --paper-item-icon-color: #f8ffd8;
+                     --paper-item-icon-active-color: #f8ffd8;
+                     font-weight: bold;
+                     font-size: 14px;
+                   } 
+              content: >
+                 **Main Light**
+            - type: horizontal-stack
+              cards:
+
+              - type: custom:mushroom-template-card
+                primary: Power
+                secondary: |-
+                  {% if is_state("switch.snzb_01_02", "on") %}
+                  On
+                  {% else %}
+                  Off
+                  {% endif %}
+                layout: horizontal
+                tap_action:
+                  action: toggle
+                entity: switch.snzb_01_02
+                icon: phu:aqara-h1-switch
+                multiline_secondary: true
+                icon_color: |-
+                  {% if is_state("switch.snzb_01_02", "on") %}
+                  green
+                  {% else %}
+                  red
+                  {% endif %}
+              - type: custom:mushroom-template-card
+                primary: Available
+                secondary: |-
+                  {% if is_state("binary_sensor.kn_ceiling_unavailable", "off") %}
+                  Online
+                  {% else %}
+                  Unavailable
+                  {% endif %}
+                layout: horizontal
+                entity: binary_sensor.kn_ceiling_unavailable
+                icon: |-
+                  {% if is_state("binary_sensor.kn_ceiling_unavailable", "off") %}
+                  mdi:check-bold
+                  {% else %}
+                  mdi:alert
+                  {% endif %}
+                multiline_secondary: true
+                icon_color: |-
+                  {% if is_state("binary_sensor.kn_ceiling_unavailable", "off") %}
+                  green
+                  {% else %}
+                  red
+                  {% endif %}
+                tap_action:
+                  action: more-info
+
+            - type: custom:mushroom-chips-card
+              alignment: center
+              chips:
+
+                - type: template
+                  entity: binary_sensor.kn_full_light
+                  icon: |-
+                    {% if is_state("binary_sensor.kn_full_light", "off") %}
+                    mdi:brightness-4
+                    {% else %}
+                    mdi:brightness-7
+                    {% endif %}
+                  icon_color: |-
+                    {% if is_state("binary_sensor.kn_full_light", "off") %}
+                    grey
+                    {% else %}
+                    amber
+                    {% endif %}
+                  content: |-
+                    Brightness
+                  tap_action:
+                    action: more-info
+    
+                - type: template
+                  entity: binary_sensor.kn_night
+                  icon: |-
+                    {% if is_state("binary_sensor.kn_night", "off") %}
+                    mdi:weather-sunny
+                    {% else %}
+                    mdi:weather-night
+                    {% endif %}
+                  icon_color: |-
+                    {% if is_state("binary_sensor.kn_night", "off") %}
+                    amber
+                    {% else %}
+                    white
+                    {% endif %}
+                  content: |-
+                    {% if is_state("binary_sensor.kn_night", "off") %}
+                    День
+                    {% else %}
+                    Ночь
+                    {% endif %}
+                  tap_action:
+                    action: more-info
+
+            - type: custom:mushroom-chips-card
+              alignment: center
+              chips:
+
+                - type: template
+                  entity: binary_sensor.kn_auto_light_delay
+                  icon: |-
+                    {% if is_state("binary_sensor.kn_auto_light_delay", "off") %}
+                    mdi:timer-off
+                    {% else %}
+                    mdi:timer
+                    {% endif %}
+                  icon_color: |-
+                    {% if is_state("binary_sensor.kn_auto_light_delay", "off") %}
+                    grey
+                    {% else %}
+                    amber
+                    {% endif %}
+                  content: |-
+                    30 сек
+                  tap_action:
+                    action: more-info
+
+
+                - type: template
+                  entity: binary_sensor.kn_ceiling_on
+                  icon: |-
+                    {% if is_state("binary_sensor.kn_ceiling_on", "off") %}
+                    mdi:timer-off
+                    {% else %}
+                    mdi:timer
+                    {% endif %}
+                  icon_color: |-
+                    {% if is_state("binary_sensor.kn_ceiling_on", "off") %}
+                    grey
+                    {% else %}
+                    amber
+                    {% endif %}
+                  content: |-
+                    5 секунд вкл
+                  tap_action:
+                    action: more-info
+       
+                - type: template
+                  entity: binary_sensor.kn_ceiling_off
+                  icon: |-
+                    {% if is_state("binary_sensor.kn_ceiling_off", "off") %}
+                    mdi:timer-off
+                    {% else %}
+                    mdi:timer
+                    {% endif %}
+                  icon_color: |-
+                    {% if is_state("binary_sensor.kn_ceiling_off", "off") %}
+                    grey
+                    {% else %}
+                    amber
+                    {% endif %}
+                  content: |-
+                    15 секунд выкл
+                  tap_action:
+                    action: more-info
+
+            - type: markdown
+              content: >
+                 ** **
+        - type: custom:stack-in-card
+          mode: vertical
+          cards:  
+            - type: markdown
+              style: |
+                   ha-card {
+                     color: #f8ffd8;
+                     --paper-item-icon-color: #f8ffd8;
+                     --paper-item-icon-active-color: #f8ffd8;
+                     font-weight: bold;
+                     font-size: 14px;
+                   } 
+              content: >
+                 **Back Light**
+            - type: horizontal-stack
+              cards:
+
+              - type: custom:mushroom-template-card
+                primary: Power
+                secondary: |-
+                  {% if is_state("switch.0x00158d000114a1e1", "on") %}
+                  On
+                  {% else %}
+                  Off
+                  {% endif %}
+                layout: horizontal
+                tap_action:
+                  action: toggle
+                entity: switch.0x00158d000114a1e1
+                icon: phu:socket-eu
+                multiline_secondary: true
+                icon_color: |-
+                  {% if is_state("switch.0x00158d000114a1e1", "on") %}
+                  green
+                  {% else %}
+                  red
+                  {% endif %}
+              - type: custom:mushroom-template-card
+                primary: Available
+                secondary: |-
+                  {% if is_state("light.gateway_light_7811dc64f4c8", "unavailable") %}
+                  Reload
+                  {% else %}
+                  Оk
+                  {% endif %}
+                layout: horizontal
+                entity: input_button.kn_gateway_reset
+                icon: |-
+                  {% if is_state("light.gateway_light_7811dc64f4c8", "unavailable") %}
+                  mdi:reload
+                  {% else %}
+                  mdi:check-bold
+                  {% endif %}
+                multiline_secondary: true
+                icon_color: |-
+                  {% if is_state("light.gateway_light_7811dc64f4c8", "unavailable") %}
+                  red
+                  {% else %}
+                  green
+                  {% endif %}
+                tap_action:
+                  action: call-service
+                  service: input_button.press
+                  target:
+                    entity_id: input_button.kn_gateway_reset
+
+        - type: custom:stack-in-card
+          mode: vertical
+          cards:  
+            - type: markdown
+              style: |
+                   ha-card {
+                     color: #f8ffd8;
+                     --paper-item-icon-color: #f8ffd8;
+                     --paper-item-icon-active-color: #f8ffd8;
+                     font-weight: bold;
+                     font-size: 14px;
+                   } 
+              content: >
+                 **Sensors**
+            - type: horizontal-stack
+              cards:
+              - type: custom:mushroom-template-card
+                primary: Smoke
+                secondary: |-
+                  {% if is_state("binary_sensor.0x842e14fffef6d9e5_smoke", "off") %}
+                  Ok
+                  {% else %}
+                  Alarm
+                  {% endif %}
+                layout: vertical
+                entity: binary_sensor.0x842e14fffef6d9e5_smoke
+                icon: phu:aqara-smoke-detector
+                multiline_secondary: true
+                icon_color: |-
+                  {% if is_state("binary_sensor.0x842e14fffef6d9e5_smoke", "off") %}
+                  green
+                  {% else %}
+                  red
+                  {% endif %}
+                tap_action:
+                  action: more-info
+
+              - type: custom:mushroom-template-card
+                primary: Sink
+                secondary: |-
+                  {% if is_state("binary_sensor.0xec1bbdfffe8f1e42_water_leak", "off") %}
+                  Ok
+                  {% else %}
+                  Leak detected
+                  {% endif %}
+                layout: vertical
+                entity: binary_sensor.0xec1bbdfffe8f1e42_water_leak
+                icon: |-
+                  {% if is_state("binary_sensor.0xec1bbdfffe8f1e42_water_leak", "off") %}
+                  mdi:water-check
+                  {% else %}
+                  mdi:water-alert
+                  {% endif %}
+                multiline_secondary: true
+                icon_color: |-
+                  {% if is_state("binary_sensor.0xec1bbdfffe8f1e42_water_leak", "off") %}
+                  green
+                  {% else %}
+                  red
+                  {% endif %} 
+                tap_action:
+                  action: more-info
+
+              - type: custom:mushroom-template-card
+                primary: Presense
+                secondary: |-
+                  {% if is_state("binary_sensor.kn_occupancy", "off") %}
+                  Clear
+                  {% else %}
+                  Detected
+                  {% endif %}
+                layout: vertical
+                entity: binary_sensor.snzb_03_02
+                icon: |-
+                  {% if is_state("binary_sensor.snzb_03_02_occupancy", "off") %}
+                  mdi:home-off
+                  {% else %}
+                  mdi:home-account
+                  {% endif %}
+                multiline_secondary: true
+                icon_color: |-
+                  {% if is_state("binary_sensor.snzb_03_02_occupancy", "off") %}
+                  grey
+                  {% else %}
+                  amber
+                  {% endif %} 
+                tap_action:
+                  action: more-info
+
+            - type: horizontal-stack
+              cards:
+
+              - type: custom:mushroom-template-card
+                primary: Вход
+                secondary: |-
+                  {% if is_state("binary_sensor.0x00158d0001ab3350_occupancy", "off") %}
+                  Не обнаружено
+                  {% else %}
+                  Движение
+                  {% endif %}
+                layout: vertical
+                entity: binary_sensor.0x00158d0001ab3350_occupancy
+                icon: |-
+                  {% if is_state("binary_sensor.0x00158d0001ab3350_occupancy", "off") %}
+                  mdi:motion-sensor-off
+                  {% else %}
+                  mdi:motion-sensor
+                  {% endif %}
+                multiline_secondary: true
+                icon_color: |-
+                  {% if is_state("binary_sensor.0x00158d0001ab3350_occupancy", "off") %}
+                  grey
+                  {% else %}
+                  amber
+                  {% endif %} 
+                tap_action:
+                  action: more-info
+                  
+              - type: custom:mushroom-template-card
+                primary: Kitchen
+                secondary: |-
+                  {% if is_state("binary_sensor.snzb_03_02_occupancy", "off") %}
+                  Clear
+                  {% else %}
+                  Detected
+                  {% endif %}
+                layout: vertical
+                entity: binary_sensor.snzb_03_02_occupancy
+                icon: |-
+                  {% if is_state("binary_sensor.snzb_03_02_occupancy", "off") %}
+                  mdi:motion-sensor-off
+                  {% else %}
+                  mdi:motion-sensor
+                  {% endif %}
+                multiline_secondary: true
+                icon_color: |-
+                  {% if is_state("binary_sensor.snzb_03_02_occupancy", "off") %}
+                  grey
+                  {% else %}
+                  amber
+                  {% endif %} 
+                tap_action:
+                  action: more-info
+
+
+############################ Column 2 ############################
+
+    - type: vertical-stack
+      cards:
+      
+        - type: markdown
+          style: |
+              ha-card {
+                color: #f8ffd8;
+                --paper-item-icon-color: #f8ffd8;
+                --paper-item-icon-active-color: #f8ffd8;
+                font-weight: bold;
+                font-size: 26px;
+              }     
+          content: >
+              **Monitoring** 
+
+        - type: custom:stack-in-card
+          mode: vertical
+          cards:
+
+            - type: markdown
+              style: |
+                   ha-card {
+                     color: #f8ffd8;
+                     --paper-item-icon-color: #f8ffd8;
+                     --paper-item-icon-active-color: #f8ffd8;
+                     font-weight: bold;
+                     font-size: 14px;
+                   } 
+              content: >
+                 **Sockets**
+            - type: custom:mushroom-chips-card
+              alignment: start
+              chips:
+
+                - type: template
+                  entity: switch.0x00158d000114a1e1
+                  icon: phu:socket-eu
+                  icon_color: |-
+                    {% if is_state("switch.0x00158d000114a1e1", "on") %}
+                    green
+                    {% else %}
+                    red
+                    {% endif %}
+                  content: |-
+                    Xiaomi
+                  tap_action:
+                    action: toggle
+
+                - type: template
+                  entity: sensor.0x00158d000114a1e1_power
+                  icon: mdi:lightning-bolt-circle
+                  icon_color: green
+                  content: |-
+                      {{states ('sensor.0x00158d000114a1e1_power')}} W
+                  tap_action:
+                    action: more-info
+
+                - type: template
+                  entity: sensor.0x00158d000114a1e1_device_temperature
+                  icon: mdi:temperature-celsius
+                  icon_color: amber
+                  content: |-
+                      {{states ('sensor.0x00158d000114a1e1_device_temperature')}} С°
+                  tap_action:
+                    action: more-info
+                    
+                - type: template
+                  entity: sensor.0x00158d000114a1e1_meter
+                  icon: mdi:home-lightning-bolt
+                  icon_color: light-green
+                  content: |-
+                      {{states ('sensor.0x00158d000114a1e1_meter')}} kWh
+                  tap_action:
+                    action: more-info
+
+            - type: markdown
+              content: >
+                 **     **
+            - type: custom:mushroom-chips-card
+              alignment: start
+              chips:
+
+                - type: template
+                  entity: switch.0x00158d0001291d12
+                  icon: phu:socket-eu
+                  icon_color: |-
+                    {% if is_state("switch.0x00158d0001291d12", "on") %}
+                    green
+                    {% else %}
+                    red
+                    {% endif %}
+                  content: |-
+                    TV
+                  tap_action:
+                    action: toggle
+
+                - type: template
+                  entity: sensor.0x00158d0001291d12_power
+                  icon: mdi:lightning-bolt-circle
+                  icon_color: green
+                  content: |-
+                      {{states ('sensor.0x00158d0001291d12_power')}} W
+                  tap_action:
+                    action: more-info
+
+                - type: template
+                  entity: sensor.0x00158d0001291d12_device_temperature
+                  icon: mdi:temperature-celsius
+                  icon_color: amber
+                  content: |-
+                      {{states ('sensor.0x00158d0001291d12_device_temperature')}} С°
+                  tap_action:
+                    action: more-info
+                    
+                - type: template
+                  entity: sensor.0x00158d0001291d12_meter
+                  icon: mdi:home-lightning-bolt
+                  icon_color: light-green
+                  content: |-
+                      {{states ('sensor.0x00158d0001291d12_meter')}} kWh
+                  tap_action:
+                    action: more-info
+
+            - type: markdown
+              content: >
+                 **     **      
+            - type: custom:mushroom-chips-card
+              alignment: start
+              chips:
+
+                - type: template
+                  entity: switch.0x00158d0001fa2934
+                  icon: phu:socket-eu
+                  icon_color: |-
+                    {% if is_state("switch.0x00158d0001fa2934", "on") %}
+                    green
+                    {% else %}
+                    red
+                    {% endif %}
+                  content: |-
+                   Refrigerator
+                  tap_action:
+                    action: toggle
+
+                - type: template
+                  entity: sensor.0x00158d0001fa2934_power
+                  icon: mdi:lightning-bolt-circle
+                  icon_color: green
+                  content: |-
+                      {{states ('sensor.0x00158d0001fa2934_power')}} W
+                  tap_action:
+                    action: more-info
+
+                - type: template
+                  entity: sensor.0x00158d0001fa2934_device_temperature
+                  icon: mdi:temperature-celsius
+                  icon_color: amber
+                  content: |-
+                      {{states ('sensor.0x00158d0001fa2934_device_temperature')}} С°
+                  tap_action:
+                    action: more-info
+                    
+                - type: template
+                  entity: sensor.0x00158d0001fa2934_meter
+                  icon: mdi:home-lightning-bolt
+                  icon_color: light-green
+                  content: |-
+                      {{states ('sensor.0x00158d0001fa2934_meter')}} kWh
+                  tap_action:
+                    action: more-info
+
+            - type: markdown
+              content: >
+                 **     **
+            - type: custom:mushroom-chips-card
+              alignment: start
+              chips:
+
+                - type: template
+                  entity: switch.0xa4c1385bcf7d00c9
+                  icon: phu:socket-eu
+                  icon_color: |-
+                    {% if is_state("switch.0xa4c1385bcf7d00c9", "on") %}
+                    green
+                    {% else %}
+                    red
+                    {% endif %}
+                  content: |-
+                    Kettle
+                  tap_action:
+                    action: toggle
+
+                - type: template
+                  entity: sensor.0xa4c1385bcf7d00c9_power
+                  icon: mdi:lightning-bolt-circle
+                  icon_color: green
+                  content: |-
+                      {{states ('sensor.0xa4c1385bcf7d00c9_power')}} W
+                  tap_action:
+                    action: more-info
+
+                - type: template
+                  entity: sensor.0xa4c1385bcf7d00c9_voltage
+                  icon: mdi:sine-wave
+                  icon_color: green
+                  content: |-
+                      {{states ('sensor.0xa4c1385bcf7d00c9_voltage')}} V
+                  tap_action:
+                    action: more-info
+                    
+                - type: template
+                  entity: sensor.0xa4c1385bcf7d00c9_meter
+                  icon: mdi:home-lightning-bolt
+                  icon_color: light-green
+                  content: |-
+                      {{states ('sensor.0xa4c1385bcf7d00c9_meter')}} kWh
+                  tap_action:
+                    action: more-info
+
+            - type: markdown
+              content: >
+                 **     **
+
+############################ Column 3 ############################
+
+    - type: vertical-stack
+      cards:
+      
+        - type: markdown
+          style: |
+              ha-card {
+                color: #f8ffd8;
+                --paper-item-icon-color: #f8ffd8;
+                --paper-item-icon-active-color: #f8ffd8;
+                font-weight: bold;
+                font-size: 26px;
+              }     
+          content: >
+              **Telemetry** 
+        - type: custom:stack-in-card
+          mode: vertical
+          cards:  
+            - type: markdown
+              style: |
+                   ha-card {
+                     color: #f8ffd8;
+                     --paper-item-icon-color: #f8ffd8;
+                     --paper-item-icon-active-color: #f8ffd8;
+                     font-weight: bold;
+                     font-size: 14px;
+                   } 
+              content: >
+                 **Sensors states**
+            - type: entities
+              style: |
+                   ha-card {
+                     color: #f8ffd8;
+                     --paper-item-icon-color: #f8ffd8;
+                     --paper-item-icon-active-color: #f8ffd8;
+                     font-weight: bold;
+                     font-size: 14px;
+                   } 
+              show_header_toggle: false
+              entities:
+                - type: divider
+                - entity: sensor.0x842e14fffef6d9e5_battery
+                  type: custom:multiple-entity-row
+                  icon: phu:aqara-smoke-detector
+                  state_color: true
+                  name: Smoke Detector
+                  secondary_info: last-changed
+                  state_header: Battery
+                  entities:
+                  - attribute: linkquality
+                    name: Signal
+                - type: divider 
+                - entity: sensor.0xec1bbdfffe8f1e42_battery
+                  type: custom:multiple-entity-row
+                  icon: phu:aqara-waterleak
+                  state_color: true
+                  name: Leak Detector
+                  secondary_info: last-changed
+                  state_header: Battery
+                  entities:
+                  - attribute: linkquality
+                    name: Signal                 
+                - type: divider
+                - entity: sensor.snzb_03_02_battery
+                  type: custom:multiple-entity-row
+                  icon: phu:aqara-motion
+                  state_color: true
+                  name: Motion Detector
+                  secondary_info: last-changed
+                  state_header: Battery
+                  entities:
+                  - attribute: linkquality
+                    name: Signal
+                - type: divider
+                - entity: sensor.snzb_04_02
+                  type: custom:multiple-entity-row
+                  icon: phu:aqara-contact
+                  state_color: true
+                  name: Window Sensor
+                  secondary_info: last-changed
+                  state_header: Battery
+                  entities:
+                  - attribute: linkquality
+                    name: Signal
+                - type: divider
+                - entity: sensor.snzb_01_02_battery
+                  type: custom:multiple-entity-row
+                  icon: phu:aqara-opple
+                  state_color: true
+                  name: Switch
+                  secondary_info: last-changed
+                  state_header: Battery
+                  entities:
+                  - attribute: linkquality
+                    name: Signal
