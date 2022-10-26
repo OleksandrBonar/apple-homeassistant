@@ -163,7 +163,7 @@ cards:
 
               - entity: sensor.last_boot_custom
                 type: custom:multiple-entity-row
-                name: Online -
+                name: Online
                 state_header: Server
                 entities:
                   - entity: sensor.online_custom
@@ -181,6 +181,7 @@ cards:
                 name: IP address
 
 ################# Column 2 #################
+
     - type: vertical-stack
       cards:
 
