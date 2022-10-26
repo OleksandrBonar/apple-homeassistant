@@ -52,8 +52,8 @@ system_energy:
         cycle: monthly
 
   automation:
-    - id: System - Automation - Energy - Tariff Switch
-      alias: system_automation_energy_tariff_switch
+    - id: system_automation_energy_tariff_switch
+      alias: System - Automation - Energy - Tariff Switch
       initial_state: false
       trigger:
         - platform: time
