@@ -386,7 +386,7 @@ cards:
                   type: custom:multiple-entity-row
                   icon: phu:aqara-motion
                   state_color: true
-                  name: Motion Detector
+                  name: Motion Sensor
                   secondary_info: last-changed
                   state_header: Battery
                   entities:
