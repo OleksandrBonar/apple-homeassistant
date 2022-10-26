@@ -35,12 +35,12 @@ entrance_automation:
         - wait_for_trigger:
           - platform: state
             entity_id: sensor.domofon_state
-            to: "Open"
+            to: open
           timeout: "00:10:00"
         - wait_for_trigger:
           - platform: state
             entity_id: sensor.domofon_state
-            to: "Idle"
+            to: idle
           timeout: "00:00:05"
         - service: select.select_option
           target:
