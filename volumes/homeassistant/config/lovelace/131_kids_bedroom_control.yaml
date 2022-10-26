@@ -1,0 +1,145 @@
+##################   Control   ##################
+title: Kids Bedroom
+icon: mdi:human-male-boy
+cards:
+
+############################ Column 1 ############################
+
+    - type: vertical-stack
+      cards:
+      
+        - type: markdown
+          style: |
+              ha-card {
+                font-size: 26px;
+              }          
+          content: >
+             **Control**
+             
+        - type: custom:stack-in-card
+          mode: vertical
+          cards:  
+            - type: markdown
+              content: >
+                 **Lights**
+
+            - type: horizontal-stack
+              cards:        
+                - type: light
+                  entity: light.kids_bedroom
+                  name: Main Light
+
+############################ Column 2 ############################
+
+    - type: vertical-stack
+      cards:
+
+        - type: markdown
+          style: |
+              ha-card {
+                font-size: 26px;
+              }   
+          content: >
+              **Monitoring** 
+
+        - type: custom:stack-in-card
+          mode: vertical
+          cards: 
+
+            - type: markdown
+              content: >
+                 **Sensors**
+
+            - type: glance
+              show_state: true
+              show_name: true
+              state_color: true
+              entities:
+              - entity: binary_sensor.snzb_03_03_occupancy
+                name: Motion
+              - entity: binary_sensor.snzb_04_03_contact
+                name: Window
+              - entity: sensor.snzb_02_03_temperature
+                name: Temperature
+              - entity: sensor.snzb_02_03_humidity
+                name: Humidity
+
+                    
+############################ Column 3 ############################
+
+    - type: vertical-stack
+      cards:
+      
+        - type: markdown
+          style: |
+              ha-card {
+                font-size: 26px;
+              }          
+          content: >
+             **Telemetry**
+                
+        - type: custom:stack-in-card
+          mode: vertical
+          cards: 
+
+            - type: markdown
+              content: >
+                 **Sensors States**
+             
+            - type: entities
+              show_header_toggle: false
+              entities:
+                - entity: sensor.snzb_01_03_battery
+                  type: custom:multiple-entity-row
+                  icon: mdi:light-switch
+                  state_color: true
+                  name: Switch
+                  secondary_info: last-changed
+                  state_header: Battery
+                  entities:
+                  - attribute: linkquality
+                    name: Signal
+                - type: divider
+                - entity: sensor.snzb_03_03_battery
+                  type: custom:multiple-entity-row
+                  icon: mdi:run
+                  state_color: true
+                  name: Motion Sensor
+                  secondary_info: last-changed
+                  state_header: Battery
+                  entities:
+                  - attribute: linkquality
+                    name: Signal
+                - type: divider
+                - entity: sensor.snzb_02_03_battery
+                  type: custom:multiple-entity-row
+                  icon: mdi:coolant-temperature
+                  state_color: true
+                  name: Climate Sensor
+                  secondary_info: last-changed
+                  state_header: Battery
+                  entities:
+                  - attribute: linkquality
+                    name: Signal
+                - type: divider
+                - entity: sensor.0x04cf8cdf3c7cf19e_battery
+                  type: custom:multiple-entity-row
+                  icon: mdi:sun-wireless
+                  state_color: true
+                  name: Light Sensor
+                  secondary_info: last-changed
+                  state_header: Battery
+                  entities:
+                  - attribute: linkquality
+                    name: Signal
+                - type: divider
+                - entity: sensor.snzb_04_03_battery
+                  type: custom:multiple-entity-row
+                  icon: mdi:window-open-variant
+                  state_color: true
+                  name: Windows Sensor
+                  secondary_info: last-changed
+                  state_header: Battery
+                  entities:
+                  - attribute: linkquality
+                    name: Signal
