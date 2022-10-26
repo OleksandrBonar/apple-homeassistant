@@ -1,0 +1,406 @@
+############################ Automation ############################
+title: Automation
+icon: mdi:format-list-bulleted
+cards:
+
+############################ Column 1 ############################
+    - type: vertical-stack
+      cards:
+
+################# Control #################
+
+        - type: custom:stack-in-card
+          mode: vertical
+          cards:
+      
+            - type: markdown
+              style: |
+                   ha-card {
+                     color: #f8ffd8;
+                     --paper-item-icon-color: #f8ffd8;
+                     --paper-item-icon-active-color: #009933;
+                     font-weight: bold;
+                     font-size: 20px;
+                   }          
+              content: >
+                 **Control**
+                 
+            - type: custom:auto-entities
+              show_empty: false
+              card:
+                type: entities
+                show_header_toggle: false
+              filter:
+                include:
+                 - entity_id: automation.control*
+                #   state: 'unavailable'
+                   options:
+                      secondary_info: last-changed
+                      state_color: true  
+
+################# Cameras #################
+
+        - type: custom:stack-in-card
+          mode: vertical
+          cards:
+      
+            - type: markdown
+              style: |
+                   ha-card {
+                     color: #f8ffd8;
+                     --paper-item-icon-color: #f8ffd8;
+                     --paper-item-icon-active-color: #009933;
+                     font-weight: bold;
+                     font-size: 20px;
+                   }          
+              content: >
+                 **Cameras**
+                 
+            - type: custom:auto-entities
+              show_empty: false
+              card:
+                type: entities
+                show_header_toggle: false
+              filter:
+                include:
+                 - entity_id: automation.cam_*
+                #   state: 'unavailable'
+                   options:
+                      secondary_info: last-changed
+                      state_color: true             
+
+################# Hallway #################
+
+        - type: custom:stack-in-card
+          mode: vertical
+          cards:
+      
+            - type: markdown
+              style: |
+                   ha-card {
+                     color: #f8ffd8;
+                     --paper-item-icon-color: #f8ffd8;
+                     --paper-item-icon-active-color: #009933;
+                     font-weight: bold;
+                     font-size: 20px;
+                   }          
+              content: >
+                 **Hallway**
+                 
+            - type: custom:auto-entities
+              show_empty: false
+              card:
+                type: entities
+                show_header_toggle: false
+              filter:
+                include:
+                 - entity_id: automation.entrance_automation_*
+                #   state: 'unavailable'
+                   options:
+                      secondary_info: last-changed
+                      state_color: true
+
+    - type: vertical-stack
+      cards:
+
+################# Kitchen #################
+
+        - type: custom:stack-in-card
+          mode: vertical
+          cards:
+      
+            - type: markdown
+              style: |
+                   ha-card {
+                     color: #f8ffd8;
+                     --paper-item-icon-color: #f8ffd8;
+                     --paper-item-icon-active-color: #009933;
+                     font-weight: bold;
+                     font-size: 20px;
+                   }          
+              content: >
+                 **Kitchen**
+            - type: markdown
+              style: |
+                   ha-card {
+                     color: #f8ffd8;
+                     --paper-item-icon-color: #f8ffd8;
+                     --paper-item-icon-active-color: #f8ffd8;
+                     font-weight: bold;
+                     font-size: 14px;
+                   } 
+              content: >
+                 **Climate**
+            - type: custom:auto-entities
+              show_empty: false
+              card:
+                type: entities
+                show_header_toggle: false
+              filter:
+                include:
+                 - entity_id: automation.kitchen_automation_climate_*
+                   options:
+                      secondary_info: last-changed
+                      state_color: true
+
+            - type: markdown
+              style: |
+                   ha-card {
+                     color: #f8ffd8;
+                     --paper-item-icon-color: #f8ffd8;
+                     --paper-item-icon-active-color: #f8ffd8;
+                     font-weight: bold;
+                     font-size: 14px;
+                   } 
+              content: >
+                 **Motion**
+            - type: custom:auto-entities
+              show_empty: false
+              card:
+                type: entities
+                show_header_toggle: false
+              filter:
+                include:
+                 - entity_id: automation.kitchen_automation_motion_*
+                   options:
+                      secondary_info: last-changed
+                      state_color: true
+                      
+            - type: markdown
+              style: |
+                   ha-card {
+                     color: #f8ffd8;
+                     --paper-item-icon-color: #f8ffd8;
+                     --paper-item-icon-active-color: #f8ffd8;
+                     font-weight: bold;
+                     font-size: 14px;
+                   } 
+              content: >
+                 **Security**
+            - type: custom:auto-entities
+              show_empty: false
+              card:
+                type: entities
+                show_header_toggle: false
+              filter:
+                include:
+                 - entity_id: automation.kitchen_automation_security_*
+                   options:
+                      secondary_info: last-changed
+                      state_color: true
+
+            - type: markdown
+              style: |
+                   ha-card {
+                     color: #f8ffd8;
+                     --paper-item-icon-color: #f8ffd8;
+                     --paper-item-icon-active-color: #f8ffd8;
+                     font-weight: bold;
+                     font-size: 14px;
+                   } 
+              content: >
+                 **Switch**
+            - type: custom:auto-entities
+              show_empty: false
+              card:
+                type: entities
+                show_header_toggle: false
+              filter:
+                include:
+                 - entity_id: automation.kitchen_automation_switch_*
+                   options:
+                      secondary_info: last-changed
+                      state_color: true
+                      
+            - type: custom:auto-entities
+              show_empty: false
+              card:
+                type: entities
+                show_header_toggle: false
+              filter:
+                include:
+                 - entity_id: automation.kitchen_automation_*
+                #   state: 'unavailable'
+                   options:
+                      secondary_info: last-changed
+                      state_color: true
+                exclude:
+                 - entity_id: automation.kitchen_automation_climate_*
+                 - entity_id: automation.kitchen_automation_motion_*
+                 - entity_id: automation.kitchen_automation_security_*
+                 - entity_id: automation.kitchen_automation_switch_*
+
+################# Kids Bedroom #################
+
+        - type: custom:stack-in-card
+          mode: vertical
+          cards:
+      
+            - type: markdown
+              style: |
+                   ha-card {
+                     color: #f8ffd8;
+                     --paper-item-icon-color: #f8ffd8;
+                     --paper-item-icon-active-color: #009933;
+                     font-weight: bold;
+                     font-size: 20px;
+                   }          
+              content: >
+                 **Kids Bedroom**
+            - type: markdown
+              style: |
+                   ha-card {
+                     color: #f8ffd8;
+                     --paper-item-icon-color: #f8ffd8;
+                     --paper-item-icon-active-color: #f8ffd8;
+                     font-weight: bold;
+                     font-size: 14px;
+                   } 
+              content: >
+                 **Climate**
+            - type: custom:auto-entities
+              show_empty: false
+              card:
+                type: entities
+                show_header_toggle: false
+              filter:
+                include:
+                 - entity_id: automation.kids_bedroom_automation_climate_*
+                   options:
+                      secondary_info: last-changed
+                      state_color: true
+
+            - type: markdown
+              style: |
+                   ha-card {
+                     color: #f8ffd8;
+                     --paper-item-icon-color: #f8ffd8;
+                     --paper-item-icon-active-color: #f8ffd8;
+                     font-weight: bold;
+                     font-size: 14px;
+                   } 
+              content: >
+                 **Motion**
+            - type: custom:auto-entities
+              show_empty: false
+              card:
+                type: entities
+                show_header_toggle: false
+              filter:
+                include:
+                 - entity_id: automation.kids_bedroom_automation_motion_*
+                   options:
+                      secondary_info: last-changed
+                      state_color: true
+                      
+            - type: markdown
+              style: |
+                   ha-card {
+                     color: #f8ffd8;
+                     --paper-item-icon-color: #f8ffd8;
+                     --paper-item-icon-active-color: #f8ffd8;
+                     font-weight: bold;
+                     font-size: 14px;
+                   } 
+              content: >
+                 **Security**
+            - type: custom:auto-entities
+              show_empty: false
+              card:
+                type: entities
+                show_header_toggle: false
+              filter:
+                include:
+                 - entity_id: automation.kids_bedroom_automation_security_*
+                   options:
+                      secondary_info: last-changed
+                      state_color: true
+
+            - type: markdown
+              style: |
+                   ha-card {
+                     color: #f8ffd8;
+                     --paper-item-icon-color: #f8ffd8;
+                     --paper-item-icon-active-color: #f8ffd8;
+                     font-weight: bold;
+                     font-size: 14px;
+                   } 
+              content: >
+                 **Switch**
+            - type: custom:auto-entities
+              show_empty: false
+              card:
+                type: entities
+                show_header_toggle: false
+              filter:
+                include:
+                 - entity_id: automation.kids_bedroom_automation_switch_*
+                   options:
+                      secondary_info: last-changed
+                      state_color: true
+                      
+            - type: custom:auto-entities
+              show_empty: false
+              card:
+                type: entities
+                show_header_toggle: false
+              filter:
+                include:
+                 - entity_id: automation.kids_bedroom_automation_*
+                #   state: 'unavailable'
+                   options:
+                      secondary_info: last-changed
+                      state_color: true
+                exclude:
+                 - entity_id: automation.kids_bedroom_automation_climate_*
+                 - entity_id: automation.kids_bedroom_automation_motion_*
+                 - entity_id: automation.kids_bedroom_automation_security_*
+                 - entity_id: automation.kids_bedroom_automation_switch_*
+
+################# Other #################
+
+    - type: vertical-stack
+      cards:
+
+
+        - type: markdown
+          style: |
+               ha-card {
+                 color: #f8ffd8;
+                 --paper-item-icon-color: #f8ffd8;
+                 --paper-item-icon-active-color: #009933;
+                 font-weight: bold;
+                 font-size: 26px;
+               }          
+          content: >
+             **Other**
+        - type: custom:stack-in-card
+          mode: vertical
+          cards:
+      
+            - type: markdown
+              style: |
+                   ha-card {
+                     color: #f8ffd8;
+                     font-weight: bold;
+                     font-size: 16px;
+                   }          
+              content: >
+                 **Automation**
+            - type: custom:auto-entities
+              show_empty: false
+              card:
+                type: entities
+                show_header_toggle: false
+              filter:
+                include:
+                 - domain: automation
+                #   state: 'unavailable'
+                   options:
+                      secondary_info: last-changed
+                      state_color: true
+                exclude:
+                 - entity_id: automation.hallway_automation_*
+                 - entity_id: automation.kitchen_automation_*
+                 - entity_id: automation.kids_bedroom_automation_*
+                 - entity_id: automation.parents_bedroom_automation_*
