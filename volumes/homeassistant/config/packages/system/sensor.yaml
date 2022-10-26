@@ -1,0 +1,95 @@
+system_sensor:
+
+    homeassistant:
+
+      customize:
+        sensor.processor_use:
+          friendly_name: Processor Load
+        sensor.disk_use_percent:
+          friendly_name: Disk Usage
+        sensor.disk_free:
+          friendly_name: Free Space
+        sensor.processor_temperature:
+          friendly_name: CPU Temperature
+        sensor.memory_use_percent:
+          friendly_name: RAM Usage
+        sensor.home_assistant_v2_db_size:
+          friendly_name: HA DB Size
+        sensor.maria_db:
+          friendly_name: Maria DB Size
+        sensor.online_custom:
+          friendly_name: Home Assistant Online -
+        sensor.last_boot_custom:
+          friendly_name: Server Online -
+        sensor.custom_time:
+          friendly_name: Current Time -
+
+    sensor:    
+    - platform: systemmonitor
+      resources:
+      - type: processor_use
+      - type: disk_use_percent
+        arg: /
+      - type: memory_use_percent
+      - type: last_boot
+      - type: disk_free
+        arg: /
+      - type: processor_temperature
+
+    - platform: uptime
+      name: online
+
+    binary_sensor:
+      - platform: workday
+        country: UA
+
+    template:
+    
+      - trigger:
+          - platform: time_pattern
+            seconds: "/30"
+        sensor:
+          - name: time_1_sec
+            state: '{{ as_timestamp(now()) | round(default=0)}}'
+            
+      - sensor:
+      
+          - name: custom_time
+            state: >
+              {{states("sensor.time_1_sec") | int | timestamp_custom("%H:%M:%S") }}
+    # Time since the last reboot of Home Assistant
+          - name: online_custom
+            state: >
+               {% set s = (states("sensor.time_1_sec") | int - as_timestamp(states('sensor.online')) | int) %}
+               {{ '{:d} дн. {:02d}:{:02d}:{:02d}'.format (s // 86400, s % 86400 // 3600, s % 3600 // 60, s % 60) }}
+            #   {% set uptime = as_timestamp (now()) -as_timestamp(states('sensor.online')) | int %}
+            #   {% set minutes = (( uptime % 3600) / 60) | int %}
+            #   {% set hours = ((uptime % 86400) / 3600) | int %}
+            #   {% set days = (uptime / 86400) | int %}
+    
+            #      {% if uptime < 60 %}
+            #       Less than a minute
+            #      {% else %}
+            #       {% if days > 0 %}
+            #          {{ days }} d
+            #       {% endif %}
+            #       {% if hours > 0 %}
+            #          {% if days > 0 %}
+            #           {{ ' ' }}
+            #          {% endif %}
+            #          {{ hours }} h
+            #       {% endif %}
+            #       {% if minutes > 0 %}
+            #          {% if days > 0 or hours > 0 %}
+            #           {{ ' ' }}
+            #          {% endif %}
+            #           {{ minutes }} m
+            #       {% endif %}
+            #      {% endif %}
+            # icon: mdi:clock 
+
+    # Time since last server reboot
+          - name: last_boot_custom
+            state: >
+               {% set s = (states("sensor.time_1_sec") | int - as_timestamp(states('sensor.last_boot')) | int) %}
+               {{ '{:d} d {:02d}:{:02d}:{:02d}'.format (s // 86400, s % 86400 // 3600, s % 3600 // 60, s % 60) }}
