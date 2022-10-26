@@ -1,0 +1,407 @@
+system_telemetry:
+
+#    recorder:
+#      include:
+#        entities:
+#           - sensor.total_load
+#           - sensor.kitchen_total_load
+#           - sensor.lr_total_load
+#           - sensor.bt_total_load
+#           - sensor.dd_total_load
+#           - sensor.da_total_load
+
+    homeassistant:
+
+      customize:
+        sensor.count_automation:
+          friendly_name: Total Automations -
+        sensor.count_automation_on:
+          friendly_name: Active Automations -
+        sensor.count_automation_off:
+          friendly_name: Unactive Automations -
+        sensor.count_automation_unavailable:
+          friendly_name: Unavailable Automations -
+        sensor.count_script:
+          friendly_name: Total Scripts -
+        sensor.count_script_on:
+          friendly_name: Active Scripts -
+        sensor.count_script_off:
+          friendly_name: Unactive Scripts -
+        sensor.count_script_unavailable:
+          friendly_name: Unavailable Scripts -
+        sensor.count_update:
+           friendly_name: Total Addons -
+        sensor.count_update_on:
+           friendly_name: Updates Available -
+        sensor.count_light:
+          friendly_name: Total Lights -
+        sensor.count_light_on:
+          friendly_name: Active Lights -
+        sensor.count_light_off:
+          friendly_name: Unactive Lights -
+        sensor.count_light_unavailable:
+          friendly_name: Unavailable Lights - 
+        sensor.count_switch:
+          friendly_name: Total Switches -
+        sensor.count_switch_on:
+          friendly_name: Active Switches -
+        sensor.count_switch_off:
+          friendly_name: Unactive Switches -
+        sensor.count_switch_unavailable:
+          friendly_name: Unavailable Switches -
+        sensor.count_sensor:
+          friendly_name: Total Sensors -
+        sensor.count_sensor_unavailable:
+          friendly_name: Unavailable Sensors -
+        sensor.count_binary_sensor:
+          friendly_name: Total Binary Sensors -
+        sensor.count_binary_sensor_unavailable:
+          friendly_name: Unavailable Binary Sensors -
+        binary_sensor.notification_time:
+          friendly_name: Notifications
+        binary_sensor.night_time:
+          friendly_name: Night Mode
+
+        sensor.total_load:
+          friendly_name: Total Load
+          device_class: power
+          unit_of_measurement: W
+
+        sensor.hallway_total_load:
+          friendly_name: Hallway Load
+          device_class: power
+          unit_of_measurement: W
+
+        sensor.kitchen_total_load:
+          friendly_name: Kitchen Load
+          device_class: power
+          unit_of_measurement: W
+          
+        sensor.kids_bedroom_total_load:
+          friendly_name: Kids Bedroom Load
+          device_class: power
+          unit_of_measurement: W
+          
+        sensor.parents_bedroom_total_load:
+          friendly_name: Parents Bedroom Load
+          device_class: power
+          unit_of_measurement: W
+
+    input_datetime:
+      notification_start:
+        name: Notification Start
+        has_date: false
+        has_time: true
+
+      notification_stop:
+        name: Notification Stop
+        has_date: false
+        has_time: true
+        
+      night_start:
+        name: Night Mode Start
+        has_date: false
+        has_time: true
+
+      night_stop:
+        name: Night Mode Stop
+        has_date: false
+        has_time: true
+          
+    template:
+
+
+    #   - trigger:
+    #       - platform: time_pattern
+    #         seconds: "/30"
+    #     sensor:
+    #       - name: total_load
+    #         state: >
+    #             {% set variable = namespace(value = {}) %}
+    #             {% set power = namespace(value = 0) %}
+    #             {% for entity in states.sensor if (entity.entity_id.endswith("_power"))
+    #             and states(entity.entity_id) not in ['unavailable','unknown','None']  %}
+    #             {% set variable.value = dict(variable.value, **{entity.name: entity.state }) %}
+    #             {% set power.value = power.value |int + entity.state |int %}
+    #             {% endfor %}
+    #             {{ (power.value) |round(2) }}
+            
+
+    
+      - binary_sensor:
+
+################# Notification Time #################
+
+          - name: notification_time
+            state: >
+                {% set t = now().strftime('%H:%M:%S') %}
+                {% set begin = states("input_datetime.notification_start") %}
+                {% set end = states("input_datetime.notification_stop") %}
+                {% set midnight = now().replace(hour=0, minute=0, second=0).strftime('%H:%M:%S') %}
+                {% if begin <= end %} 
+                {{ (begin <= t < end) }}
+                {% elif midnight == end %} 
+                {{ (begin <= t > end) }}
+                {% elif begin >= end %} 
+                        {%  if begin <= t >= midnight %}                       
+                        {{ (begin <= t > end) }}
+                        {%  elif midnight <= t <= end %}                       
+                        {{ (midnight <= t < end) }}
+                        {%  elif end <= t <= begin %}                       
+                        {{ (midnight <= t <= end) }}
+                        {% endif %}
+                {% endif %}
+            device_class: running
+            
+          - name: night_time
+            state: >
+                {% set t = now().strftime('%H:%M:%S') %}
+                {% set begin = states("input_datetime.night_start") %}
+                {% set end = states("input_datetime.night_stop") %}
+                {% set midnight = now().replace(hour=0, minute=0, second=0).strftime('%H:%M:%S') %}
+                {% if begin <= end %} 
+                {{ (begin <= t < end) }}
+                {% elif midnight == end %} 
+                {{ (begin <= t > end) }}
+                {% elif begin >= end %} 
+                        {%  if begin <= t >= midnight %}                       
+                        {{ (begin <= t > end) }}
+                        {%  elif midnight <= t <= end %}                       
+                        {{ (midnight <= t < end) }}
+                        {%  elif end <= t <= begin %}                       
+                        {{ (midnight <= t <= end) }}
+                        {% endif %}
+                {% endif %}
+            device_class: running
+     
+      - sensor:
+
+################# Consumption Sensors #################
+
+          - name: total_load
+            state: >
+                {{states('sensor.0x00158d0003f46bb6_power')|float + states('sensor.0x842e14fffe51c5ae_power')|float
+                  + states('sensor.kitchen_total_load')|float + states('sensor.lr_total_load')|float 
+                  + states('sensor.bt_total_load')|float + states('sensor.dd_total_load')|float + states('sensor.da_total_load')|float}}
+    # {% set variable = namespace(value = {}) %}
+    # {% set power = namespace(value = 0) %}
+    # {% for entity in states.sensor if (entity.entity_id.endswith("_power"))
+    # and states(entity.entity_id) not in ['unavailable','unknown','None']  %}
+    # {% set variable.value = dict(variable.value, **{entity.name: entity.state }) %}
+    # {% set power.value = power.value |int + entity.state |int %}
+    # {% endfor %}
+    # {{ (power.value) |round(2) }}
+
+          - name: kitchen_total_load
+            state: >
+                {{states('sensor.0x00158d0001d35bc0_power')|float + states('sensor.0xa4c1385bcf7d00c9_power')|float
+                + states('sensor.0xa4c138201dcb67f6_power')|float + states('sensor.0xa4c138d571b656c5_power')|float
+                + states('sensor.0xa4c138273b49e4d0_power')|float + states('sensor.0x000d6f0014bb14b4_power')|float
+                + states('sensor.0x00158d0001fa2934_power')|float + states('sensor.0x00158d0001291d12_power')|float
+                + states('sensor.0x00158d000114a1e1_power')|float}}
+ 
+          - name: lr_total_load
+            state: > 
+                {{states('sensor.0xa4c1388c89a46970_power')|float + states('sensor.0xa4c138f41459f92a_power')|float
+                + states('sensor.0xa4c1384452a34172_power')|float  + states('sensor.0xa4c1387c6584d955_power')|float + states('sensor.lr_strip_usb_power')|float
+                + states('sensor.lr_usb_socket_power')|float + states('sensor.lr_6x_power_strip_power')|float}}  
+ 
+          - name: bt_total_load
+            state: > 
+                {{states('sensor.0x00158d00015751f4_power')|float + states('sensor.0x540f57fffe78ba20_power')|float}}
+                
+          - name: dd_total_load
+            state: > 
+                {{states('sensor.0x00158d0001a2ccab_power')|float + states('sensor.0x00158d00030a6e78_power')|float + states('sensor.0x00158d000153dd8e_power')|float}}
+          - name: da_total_load
+            state: > 
+                {{states('sensor.0x00158d00010ec4b8_power')|float + states('sensor.0x00158d00012896cb_power')|float + states('sensor.0x04cf8cdf3c764e0a_power')|float}}
+
+################# Automation #################
+
+          - name: count_automation
+            state: >
+                  {%- set domains = ['automation'] -%}
+                  {%- for domain in domains -%}
+                    {%- for item in states[domain] -%}
+                      {% if loop.first %}
+                        {{loop.length}}
+                      {% endif %}
+                    {%- endfor -%}
+                  {%- endfor -%}
+            icon: mdi:head
+            
+          - name: count_automation_on
+            state: "{{states.automation | selectattr ('state', 'equalto', 'on') | list | length}}"
+            icon: mdi:head-check
+
+          - name: count_automation_off
+            state: "{{states.automation | selectattr ('state', 'equalto', 'off') | list | length}}"
+            icon: mdi:head-remove            
+
+          - name: count_automation_unavailable
+            state: "{{states.automation | selectattr ('state', 'equalto', 'unavailable') | list | length}}"
+            icon: mdi:head-question
+            
+################# Scripts #################
+
+          - name: count_script
+            state: >
+                  {%- set domains = ['script'] -%}
+                  {%- for domain in domains -%}
+                    {%- for item in states[domain] -%}
+                      {% if loop.first %}
+                        {{loop.length}}
+                      {% endif %}
+                    {%- endfor -%}
+                  {%- endfor -%}
+            icon: mdi:file
+            
+          - name: count_script_on
+            state: "{{states.script | selectattr ('state', 'equalto', 'on') | list | length}}"
+            icon: mdi:file-check
+
+          - name: count_script_off
+            state: "{{states.script | selectattr ('state', 'equalto', 'off') | list | length}}"
+            icon: mdi:file-remove            
+
+          - name: count_script_unavailable
+            state: "{{states.script | selectattr ('state', 'equalto', 'unavailable') | list | length}}"
+            icon: mdi:file-question
+
+################# Updates #################
+
+          - name: count_update
+            state: >
+                  {%- set domains = ['update'] -%}
+                  {%- for domain in domains -%}
+                    {%- for item in states[domain] -%}
+                      {% if loop.first %}
+                        {{loop.length}}
+                      {% endif %}
+                    {%- endfor -%}
+                  {%- endfor -%}
+            icon: mdi:monitor-dashboard
+            
+          - name: count_update_on
+            state: "{{states.update | selectattr ('state', 'equalto', 'on') | list | length}}"
+            icon: mdi:monitor-arrow-down-variant
+            
+################# Lights #################
+
+          - name: count_light
+            state: >
+                  {%- set domains = ['light'] -%}
+                  {%- for domain in domains -%}
+                    {%- for item in states[domain] -%}
+                      {% if loop.first %}
+                        {{loop.length}}
+                      {% endif %}
+                    {%- endfor -%}
+                  {%- endfor -%}
+            icon: mdi:lightbulb-group
+            
+          - name: count_light_on
+            state: "{{states.light | selectattr ('state', 'equalto', 'on') | list | length}}"
+            icon: mdi:lightbulb-on
+
+          - name: count_light_off
+            state: "{{states.light | selectattr ('state', 'equalto', 'off') | list | length}}"
+            icon: mdi:lightbulb
+
+          - name: count_light_unavailable
+            state: >
+                {% set variable = namespace(value = {}) %}
+                {% for entity in states.light if is_state(entity.entity_id, 'unavailable')   
+                   and not (entity.entity_id.endswith("_virtual")) %}
+                 {% set variable.value = dict(variable.value, **{entity.name: entity.state }) %}
+                {% endfor %}
+                {% if (variable.value | length) | int > 0 %}
+                {{ variable.value | length }}
+                {% else %}
+                 0
+                {% endif %}
+            icon: mdi:lightbulb-question
+
+################# Switches #################
+
+          - name: count_switch
+            state: >
+                  {%- set domains = ['switch'] -%}
+                  {%- for domain in domains -%}
+                    {%- for item in states[domain] -%}
+                      {% if loop.first %}
+                        {{loop.length}}
+                      {% endif %}
+                    {%- endfor -%}
+                  {%- endfor -%}
+            icon: mdi:power
+            
+          - name: count_switch_on
+            state: "{{states.switch | selectattr ('state', 'equalto', 'on') | list | length}}"
+            icon: mdi:power-plug
+
+          - name: count_switch_off
+            state: "{{states.switch | selectattr ('state', 'equalto', 'off') | list | length}}"
+            icon: mdi:power-plug-off
+
+          - name: count_switch_unavailable
+            state: "{{states.switch | selectattr ('state', 'equalto', 'unavailable') | list | length}}"
+            icon: mdi:power-plug-outline
+            
+################# Sensors #################
+
+          - name: count_sensor
+            state: >
+                  {%- set domains = ['sensor'] -%}
+                  {%- for domain in domains -%}
+                    {%- for item in states[domain] -%}
+                      {% if loop.first %}
+                        {{loop.length}}
+                      {% endif %}
+                    {%- endfor -%}
+                  {%- endfor -%}
+            icon: mdi:eye
+            
+          - name: count_sensor_unavailable
+            state: "{{states.sensor | selectattr ('state', 'equalto', 'unavailable') | list | length}}"
+            icon: mdi:eye-off
+            
+################# Binary Sensors #################
+
+          - name: count_binary_sensor
+            state: >
+                  {%- set domains = ['binary_sensor'] -%}
+                  {%- for domain in domains -%}
+                    {%- for item in states[domain] -%}
+                      {% if loop.first %}
+                        {{loop.length}}
+                      {% endif %}
+                    {%- endfor -%}
+                  {%- endfor -%}
+            icon: mdi:numeric-10-circle
+
+          - name: count_window_sensor
+            state: "{{states.binary_sensor | selectattr('state', 'equalto', 'on') | selectattr('attributes.device_class', 'equalto', 'window') | list | count | int }}"
+            
+          - name: count_binary_sensor_unavailable
+            state: "{{states.binary_sensor | selectattr ('state', 'equalto', 'unavailable') | list | length}}"
+            icon: mdi:alert-circle
+
+################# Camers #################
+
+          - name: count_camera
+            state: >
+                  {%- set domains = ['camera'] -%}
+                  {%- for domain in domains -%}
+                    {%- for item in states[domain] -%}
+                      {% if loop.first %}
+                        {{loop.length}}
+                      {% endif %}
+                    {%- endfor -%}
+                  {%- endfor -%}
+            icon: mdi:cctv
+            
+          - name: count_camera_unavailable
+            state: "{{states.camera | selectattr ('state', 'equalto', 'unavailable') | list | length}}"
+            icon: mdi:alert-circle
