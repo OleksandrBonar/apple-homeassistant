@@ -100,17 +100,6 @@ cards:
                   - attribute: linkquality
                     name: Signal
                 - type: divider
-                - entity: sensor.snzb_03_03_battery
-                  type: custom:multiple-entity-row
-                  icon: mdi:run
-                  state_color: true
-                  name: Motion Sensor
-                  secondary_info: last-changed
-                  state_header: Battery
-                  entities:
-                  - attribute: linkquality
-                    name: Signal
-                - type: divider
                 - entity: sensor.snzb_02_03_battery
                   type: custom:multiple-entity-row
                   icon: mdi:coolant-temperature
@@ -133,11 +122,22 @@ cards:
                   - attribute: linkquality
                     name: Signal
                 - type: divider
+                - entity: sensor.snzb_03_03_battery
+                  type: custom:multiple-entity-row
+                  icon: mdi:run
+                  state_color: true
+                  name: Motion Sensor
+                  secondary_info: last-changed
+                  state_header: Battery
+                  entities:
+                  - attribute: linkquality
+                    name: Signal
+                - type: divider
                 - entity: sensor.snzb_04_03_battery
                   type: custom:multiple-entity-row
                   icon: mdi:window-open-variant
                   state_color: true
-                  name: Windows Sensor
+                  name: Window Sensor
                   secondary_info: last-changed
                   state_header: Battery
                   entities:
