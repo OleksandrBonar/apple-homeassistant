@@ -52,24 +52,27 @@ energy:
         cycle: monthly
 
   automation:
-    trigger:
-      - platform: time
-        at: "07:00:00"
-        variables:
-          tariff: "peak"
-      - platform: time
-        at: "23:00:00"
-        variables:
-          tariff: "offpeak"
-    action:
-      - service: select.select_option
-        target:
-          entity_id:
-            - select.daily_total_energy
-            - select.daily_light_energy
-            - select.daily_socket_energy
-            - select.monthly_total_energy
-            - select.monthly_light_energy
-            - select.monthly_socket_energy
-        data:
-          option: "{{ tariff }}"
+    - id: System - Automation - Energy - Tariff Switch
+      alias: system_automation_energy_tariff_switch
+      initial_state: false
+      trigger:
+        - platform: time
+          at: "07:00:00"
+          variables:
+            tariff: "peak"
+        - platform: time
+          at: "23:00:00"
+          variables:
+            tariff: "offpeak"
+      action:
+        - service: select.select_option
+          target:
+            entity_id:
+              - select.daily_total_energy
+              - select.daily_light_energy
+              - select.daily_socket_energy
+              - select.monthly_total_energy
+              - select.monthly_light_energy
+              - select.monthly_socket_energy
+          data:
+            option: "{{ tariff }}"
