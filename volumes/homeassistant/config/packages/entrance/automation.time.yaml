@@ -56,7 +56,7 @@ entrance_automation_time:
       trigger:
         - platform: state
           entity_id: sensor.domofon_state
-          to: "Open"
+          to: open
       condition:
         - or:
           - condition: sun
