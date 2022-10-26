@@ -1,3 +1,4 @@
 title: Home Assistant
 views:
   - !include lovelace/001_overview.yaml
+  - !include lovelace/121_kitchen_control.yaml
