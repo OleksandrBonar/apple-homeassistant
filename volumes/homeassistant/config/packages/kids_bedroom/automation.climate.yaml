@@ -5,7 +5,7 @@ kids_bedroom_automation_climate:
       initial_state: true
       trigger:
         - platform: state
-          entity_id: binary_sensor.snzb_04_03_contact
+          entity_id: binary_sensor.snzb_04_03_01_contact
           to: "off"
           for:
             hours: 2
