@@ -85,7 +85,7 @@ cards:
               entities:
               - entity: binary_sensor.snzb_03_03_occupancy
                 name: Motion
-              - entity: binary_sensor.snzb_04_03_contact
+              - entity: binary_sensor.snzb_04_03_01_contact
                 name: Window
               - entity: sensor.snzb_02_03_temperature
                 name: Temperature
@@ -121,7 +121,18 @@ cards:
                   type: custom:multiple-entity-row
                   icon: mdi:light-switch
                   state_color: true
-                  name: Switch
+                  name: Switch 1
+                  secondary_info: last-changed
+                  state_header: Battery
+                  entities:
+                  - attribute: linkquality
+                    name: Signal
+                - type: divider
+                - entity: sensor.snzb_04_03_02_battery
+                  type: custom:multiple-entity-row
+                  icon: mdi:window-open-variant
+                  state_color: true
+                  name: Switch 2
                   secondary_info: last-changed
                   state_header: Battery
                   entities:
@@ -161,7 +172,7 @@ cards:
                   - attribute: linkquality
                     name: Signal
                 - type: divider
-                - entity: sensor.snzb_04_03_battery
+                - entity: sensor.snzb_04_03_01_battery
                   type: custom:multiple-entity-row
                   icon: mdi:window-open-variant
                   state_color: true
