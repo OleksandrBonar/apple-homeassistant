@@ -33,7 +33,7 @@ all_automation_security:
             entity_id: binary_sensor.snzb_04_02_contact
             state: "on"
           - condition: state
-            entity_id: binary_sensor.snzb_04_03_contact
+            entity_id: binary_sensor.snzb_04_03_01_contact
             state: "on"
           - condition: state
             entity_id: binary_sensor.snzb_04_04_contact
