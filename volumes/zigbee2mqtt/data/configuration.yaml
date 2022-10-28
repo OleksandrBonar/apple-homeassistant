@@ -45,6 +45,8 @@ devices:
   '0x00124b0022ea6fe2':
     friendly_name: snzb_04_02
   '0x00124b0022d3222b':
-    friendly_name: snzb_04_03
+    friendly_name: snzb_04_03_01
+  '0x00124b002519a36e':
+    friendly_name: snzb_04_03_02
   '0x00124b0022ebd80f':
     friendly_name: snzb_04_04
