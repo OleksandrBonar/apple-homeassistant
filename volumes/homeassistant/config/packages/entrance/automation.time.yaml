@@ -66,10 +66,10 @@ entrance_automation_time:
             after: sunset
           - condition: sun
             before: sunrise
-        - or:
-          - condition: state
-            entity_id: light.hallway
-            state: off
+#        - or:
+#          - condition: state
+#            entity_id: light.hallway
+#            state: off
 #          - condition: state
 #            entity_id: light.entrance
 #            state: off
@@ -86,12 +86,12 @@ entrance_automation_time:
 #            - service: light.turn_on
 #              target:
 #                entity_id: light.hallway
-        - choose:
-          - conditions:
-            - condition: state
-              entity_id: light.hallway
-              state: off
-            sequence:
+#        - choose:
+#          - conditions:
+#            - condition: state
+#              entity_id: light.hallway
+#              state: off
+#            sequence:
             - service: light.turn_on
               target:
                 entity_id: light.hallway
