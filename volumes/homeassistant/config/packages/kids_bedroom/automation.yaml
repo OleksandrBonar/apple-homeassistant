@@ -115,7 +115,7 @@ kids_bedroom_automation:
       initial_state: true
       trigger:
         - platform: state
-          entity_id: sensor.snzb_04_03_02_contact
+          entity_id: binary_sensor.snzb_04_03_02_contact
           to:
             - "on"
             - "off"
