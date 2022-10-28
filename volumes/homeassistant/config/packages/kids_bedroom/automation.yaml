@@ -117,8 +117,8 @@ kids_bedroom_automation:
         - platform: state
           entity_id: sensor.snzb_04_03_02_contact
           to:
-            - on
-            - off
+            - "on"
+            - "off"
       condition:
         - condition: state
           entity_id: person.oleksandr
