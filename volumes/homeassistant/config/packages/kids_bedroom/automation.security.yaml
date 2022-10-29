@@ -21,7 +21,7 @@ kids_bedroom_automation_security:
       initial_state: true
       trigger:
         - platform: state
-          entity_id: binary_sensor.snzb_03_03_occupancy
+          entity_id: binary_sensor.snzb_03_03_01_occupancy
           to: "on"
       condition:
         - condition: state
