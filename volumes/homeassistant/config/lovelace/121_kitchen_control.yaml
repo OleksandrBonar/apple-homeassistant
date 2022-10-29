@@ -95,9 +95,9 @@ cards:
                 name: Motion
               - entity: binary_sensor.snzb_04_02_contact
                 name: Window
-              - entity: sensor.snzb_02_02_temperature
+              - entity: sensor.snzb_02_02_01_temperature
                 name: Temperature
-              - entity: sensor.snzb_02_02_humidity
+              - entity: sensor.snzb_02_02_01_humidity
                 name: Humidity
 
         - type: custom:stack-in-card
@@ -353,7 +353,18 @@ cards:
                   type: custom:multiple-entity-row
                   icon: phu:aqara-opple
                   state_color: true
-                  name: Switch
+                  name: Button
+                  secondary_info: last-changed
+                  state_header: Battery
+                  entities:
+                  - attribute: linkquality
+                    name: Signal
+                - type: divider
+                - entity: sensor.snzb_02_02_01_battery
+                  type: custom:multiple-entity-row
+                  icon: mdi:coolant-temperature
+                  state_color: true
+                  name: Climate Sensor
                   secondary_info: last-changed
                   state_header: Battery
                   entities:
