@@ -5,7 +5,7 @@ kitchen_automation_security:
       initial_state: true
       trigger:
         - platform: state
-          entity_id: binary_sensor.snzb_04_02_contact
+          entity_id: binary_sensor.snzb_04_02_01_contact
           to: "on"
       condition:
         - condition: state
@@ -21,7 +21,7 @@ kitchen_automation_security:
       initial_state: true
       trigger:
         - platform: state
-          entity_id: binary_sensor.snzb_03_02_occupancy
+          entity_id: binary_sensor.snzb_03_02_01_occupancy
           to: "on"
       condition:
         - condition: state
