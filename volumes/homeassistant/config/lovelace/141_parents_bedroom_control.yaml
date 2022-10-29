@@ -84,9 +84,9 @@ cards:
                 name: Motion
               - entity: binary_sensor.snzb_04_04_contact
                 name: Window
-              - entity: sensor.snzb_02_04_temperature
+              - entity: sensor.snzb_02_04_01_temperature
                 name: Temperature
-              - entity: sensor.snzb_02_04_humidity
+              - entity: sensor.snzb_02_04_01_humidity
                 name: Humidity
 
                     
@@ -125,7 +125,7 @@ cards:
                   - attribute: linkquality
                     name: Signal
                 - type: divider
-                - entity: sensor.snzb_02_04_battery
+                - entity: sensor.snzb_02_04_01_battery
                   type: custom:multiple-entity-row
                   icon: mdi:coolant-temperature
                   state_color: true
