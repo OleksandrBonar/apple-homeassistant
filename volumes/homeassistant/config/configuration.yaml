@@ -30,7 +30,9 @@ frontend:
 map:
 history:
 recorder:
+  auto_purge: true
   purge_keep_days: 1460
+  commit_interval: 60
   include:
     domains:
       - light
@@ -43,7 +45,7 @@ recorder:
     entities:
       - light.balcony
       - light.entrance
-#logbook:
+logbook:
 media_source:
 mobile_app:
 sun:
