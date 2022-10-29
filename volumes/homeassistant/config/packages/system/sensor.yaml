@@ -1,5 +1,14 @@
 system_sensor:
 
+    recorder:
+      include:
+        entities:
+          - sensor.processor_use
+          - sensor.disk_use_percent
+          - sensor.memory_use_percent
+          - sensor.disk_free
+          - sensor.processor_temperature
+
     homeassistant:
 
       customize:
