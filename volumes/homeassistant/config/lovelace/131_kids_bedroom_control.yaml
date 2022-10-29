@@ -83,7 +83,7 @@ cards:
               show_name: true
               state_color: true
               entities:
-                - entity: binary_sensor.snzb_03_03_occupancy
+                - entity: binary_sensor.snzb_03_03_01_occupancy
                   name: Motion
                 - entity: binary_sensor.snzb_04_03_01_contact
                   name: Window
@@ -117,7 +117,7 @@ cards:
             - type: entities
               show_header_toggle: false
               entities:
-                - entity: sensor.snzb_01_03_battery
+                - entity: sensor.snzb_01_03_01_battery
                   type: custom:multiple-entity-row
                   icon: mdi:light-switch
                   state_color: true
@@ -161,7 +161,7 @@ cards:
                   - attribute: linkquality
                     name: Signal
                 - type: divider
-                - entity: sensor.snzb_03_03_battery
+                - entity: sensor.snzb_03_03_01_battery
                   type: custom:multiple-entity-row
                   icon: mdi:run
                   state_color: true
