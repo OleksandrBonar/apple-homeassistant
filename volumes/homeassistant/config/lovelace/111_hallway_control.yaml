@@ -118,7 +118,7 @@ cards:
                   type: custom:multiple-entity-row
                   icon: mdi:light-switch
                   state_color: true
-                  name: Switch
+                  name: Button
                   secondary_info: last-changed
                   state_header: Battery
                   entities:
