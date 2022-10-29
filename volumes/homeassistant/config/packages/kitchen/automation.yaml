@@ -5,7 +5,7 @@ kitchen_automation:
       initial_state: true
       trigger:
         - platform: state
-          entity_id: binary_sensor.snzb_03_02_occupancy
+          entity_id: binary_sensor.snzb_03_02_01_occupancy
           to: "on"
       condition:
         - condition: state
@@ -31,7 +31,7 @@ kitchen_automation:
       initial_state: true
       trigger:
         - platform: state
-          entity_id: binary_sensor.snzb_03_02_occupancy
+          entity_id: binary_sensor.snzb_03_02_01_occupancy
           from: "on"
           to: "off"
           for:
@@ -55,12 +55,12 @@ kitchen_automation:
           target:
             entity_id: light.kitchen
 
-    - id: kitchen_automation_switch_single
-      alias: Kitchen - Automation - Switch - Single
+    - id: kitchen_automation_button_single
+      alias: Kitchen - Automation - Button - Single
       initial_state: true
       trigger:
         - platform: state
-          entity_id: sensor.snzb_01_02_action
+          entity_id: sensor.snzb_01_02_01_action
           to: "single"
       condition:
         - condition: state
@@ -71,12 +71,12 @@ kitchen_automation:
           target:
             entity_id: light.kitchen
 
-    - id: kitchen_automation_switch_double
-      alias: Kitchen - Automation - Switch - Double
+    - id: kitchen_automation_button_double
+      alias: Kitchen - Automation - Button - Double
       initial_state: true
       trigger:
         - platform: state
-          entity_id: sensor.snzb_01_02_action
+          entity_id: sensor.snzb_01_02_01_action
           to: "double"
       condition:
         - condition: state
@@ -90,12 +90,12 @@ kitchen_automation:
               - light.kids_bedroom
               - light.parents_bedroom
 
-    - id: kitchen_automation_switch_long
-      alias: Kitchen - Automation - Switch - Long
+    - id: kitchen_automation_button_long
+      alias: Kitchen - Automation - Button - Long
       initial_state: true
       trigger:
         - platform: state
-          entity_id: sensor.snzb_01_02_action
+          entity_id: sensor.snzb_01_02_01_action
           to: "long"
       condition:
         - condition: state
