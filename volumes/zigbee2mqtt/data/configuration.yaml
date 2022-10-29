@@ -23,30 +23,30 @@ devices:
   '0x00124b00246ea33a':
     friendly_name: domofon
   '0x00124b002266532b':
-    friendly_name: snzb_01_01
+    friendly_name: snzb_01_01_01
   '0x00124b0022658858':
-    friendly_name: snzb_01_02
+    friendly_name: snzb_01_02_01
   '0x00124b002268ac57':
-    friendly_name: snzb_01_03
+    friendly_name: snzb_01_03_01
   '0x00124b002268bb5a':
-    friendly_name: snzb_01_04
+    friendly_name: snzb_01_04_01
   '0x00124b0024cc7933':
-    friendly_name: snzb_02_04
+    friendly_name: snzb_02_04_01
   '0x00124b00251c48d1':
-    friendly_name: snzb_03_01
+    friendly_name: snzb_03_01_01
   '0x00124b00251c45aa':
-    friendly_name: snzb_03_02
+    friendly_name: snzb_03_02_01
   '0x00124b00251c48ec':
-    friendly_name: snzb_03_03
+    friendly_name: snzb_03_03_01
   '0x00124b00251c42f1':
-    friendly_name: snzb_03_04
+    friendly_name: snzb_03_04_01
   '0x00124b00251c26f5':
-    friendly_name: snzb_04_01
+    friendly_name: snzb_04_01_01
   '0x00124b0022ea6fe2':
-    friendly_name: snzb_04_02
+    friendly_name: snzb_04_02_01
   '0x00124b0022d3222b':
     friendly_name: snzb_04_03_01
   '0x00124b002519a36e':
     friendly_name: snzb_04_03_02
   '0x00124b0022ebd80f':
-    friendly_name: snzb_04_04
+    friendly_name: snzb_04_04_01
