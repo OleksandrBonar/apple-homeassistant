@@ -11,7 +11,10 @@ all_automation_security:
           event: leave
       condition:
         - condition: state
-          entity_id: binary_sensor.snzb_04_01_contact
+          entity_id: binary_sensor.snzb_04_01_01_contact
+          state: "on"
+        - condition: state
+          entity_id: binary_sensor.snzb_04_05_01_contact
           state: "on"
       action:
         - service: notify.telegram_user_oleksandr
@@ -30,13 +33,10 @@ all_automation_security:
       condition:
         - or:
           - condition: state
-            entity_id: binary_sensor.snzb_04_02_contact
+            entity_id: binary_sensor.snzb_04_02_01_contact
             state: "on"
           - condition: state
             entity_id: binary_sensor.snzb_04_03_01_contact
-            state: "on"
-          - condition: state
-            entity_id: binary_sensor.snzb_04_04_contact
             state: "on"
       action:
         - service: notify.telegram_user_oleksandr
