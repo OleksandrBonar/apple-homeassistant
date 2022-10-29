@@ -45,7 +45,7 @@ hallway_automation:
       initial_state: true
       trigger:
         - platform: state
-          entity_id: binary_sensor.snzb_03_01_occupancy
+          entity_id: binary_sensor.snzb_03_01_01_occupancy
           to: "on"
       condition:
         - condition: state
@@ -68,7 +68,7 @@ hallway_automation:
       initial_state: true
       trigger:
         - platform: state
-          entity_id: binary_sensor.snzb_03_01_occupancy
+          entity_id: binary_sensor.snzb_03_01_01_occupancy
           from: "on"
           to: "off"
           for:
@@ -94,7 +94,7 @@ hallway_automation:
       initial_state: true
       trigger:
         - platform: state
-          entity_id: sensor.snzb_01_01_action
+          entity_id: sensor.snzb_01_01_01_action
           to: "single"
       condition:
         - condition: state
@@ -110,7 +110,7 @@ hallway_automation:
       initial_state: true
       trigger:
         - platform: state
-          entity_id: sensor.snzb_01_01_action
+          entity_id: sensor.snzb_01_01_01_action
           to: "double"
       condition:
         - condition: state
@@ -129,7 +129,7 @@ hallway_automation:
       initial_state: true
       trigger:
         - platform: state
-          entity_id: sensor.snzb_01_01_action
+          entity_id: sensor.snzb_01_01_01_action
           to: "long"
       condition:
         - condition: state
