@@ -30,7 +30,7 @@ parents_bedroom_automation:
       initial_state: true
       trigger:
         - platform: state
-          entity_id: binary_sensor.snzb_03_04_occupancy
+          entity_id: binary_sensor.snzb_03_04_01_occupancy
           to: "on"
       condition:
         - condition: state
@@ -56,7 +56,7 @@ parents_bedroom_automation:
       initial_state: true
       trigger:
         - platform: state
-          entity_id: binary_sensor.snzb_03_04_occupancy
+          entity_id: binary_sensor.snzb_03_04_01_occupancy
           from: "on"
           to: "off"
           for:
@@ -80,12 +80,12 @@ parents_bedroom_automation:
           target:
             entity_id: light.parents_bedroom
 
-    - id: parents_bedroom_automation_switch_single
-      alias: Parents Bedroom - Automation - Switch - Single
+    - id: parents_bedroom_automation_button_single
+      alias: Parents Bedroom - Automation - Button - Single
       initial_state: true
       trigger:
         - platform: state
-          entity_id: sensor.snzb_01_04_action
+          entity_id: sensor.snzb_01_04_01_action
           to: "single"
       condition:
         - condition: state
@@ -96,12 +96,12 @@ parents_bedroom_automation:
           target:
             entity_id: light.parents_bedroom
 
-    - id: parents_bedroom_automation_switch_double
-      alias: Parents Bedroom - Automation - Switch - Double
+    - id: parents_bedroom_automation_button_double
+      alias: Parents Bedroom - Automation - Button - Double
       initial_state: true
       trigger:
         - platform: state
-          entity_id: sensor.snzb_01_04_action
+          entity_id: sensor.snzb_01_04_01_action
           to: "double"
       condition:
         - condition: state
@@ -115,12 +115,12 @@ parents_bedroom_automation:
               - light.kitchen
               - light.kids_bedroom
 
-    - id: parents_bedroom_automation_switch_long
-      alias: Parents Bedroom - Automation - Switch - Long
+    - id: parents_bedroom_automation_button_long
+      alias: Parents Bedroom - Automation - Button - Long
       initial_state: true
       trigger:
         - platform: state
-          entity_id: sensor.snzb_01_04_action
+          entity_id: sensor.snzb_01_04_01_action
           to: "long"
       condition:
         - condition: state
