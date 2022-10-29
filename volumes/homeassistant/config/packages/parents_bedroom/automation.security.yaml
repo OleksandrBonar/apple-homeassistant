@@ -1,27 +1,11 @@
 parents_bedroom_automation_security:
   automation:
-    - id: parents_bedroom_automation_security_window_open_me_away
-      alias: Parents Bedroom - Automation - Security - Window Open - Me Away
-      initial_state: true
-      trigger:
-        - platform: state
-          entity_id: binary_sensor.snzb_04_04_contact
-          to: "on"
-      condition:
-        - condition: state
-          entity_id: person.oleksandr
-          state: "not_home"
-      action:
-        - service: notify.telegram_user_oleksandr
-          data:
-            message: "_Security_: An open window was found in the parents bedroom."
-
     - id: parents_bedroom_automation_security_motion_on_me_away
       alias: Parents Bedroom - Automation - Security - Motion On - Me Away
       initial_state: true
       trigger:
         - platform: state
-          entity_id: binary_sensor.snzb_03_04_occupancy
+          entity_id: binary_sensor.snzb_03_04_01_occupancy
           to: "on"
       condition:
         - condition: state
