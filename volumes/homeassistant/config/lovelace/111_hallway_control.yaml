@@ -80,13 +80,13 @@ cards:
               show_name: true
               state_color: true
               entities:
+              - entity: binary_sensor.snzb_04_01_contact
+                name: Door
               - entity: binary_sensor.snzb_03_01_occupancy
                 name: Motion
-              - entity: binary_sensor.snzb_04_01_contact
-                name: Window
-              - entity: sensor.snzb_02_01_temperature
+              - entity: sensor.snzb_02_01_01_temperature
                 name: Temperature
-              - entity: sensor.snzb_02_01_humidity
+              - entity: sensor.snzb_02_01_01_humidity
                 name: Humidity
 
                     
@@ -125,7 +125,7 @@ cards:
                   - attribute: linkquality
                     name: Signal
                 - type: divider
-                - entity: sensor.snzb_02_01_battery
+                - entity: sensor.snzb_02_01_01_battery
                   type: custom:multiple-entity-row
                   icon: mdi:coolant-temperature
                   state_color: true
@@ -162,7 +162,7 @@ cards:
                   type: custom:multiple-entity-row
                   icon: mdi:window-open-variant
                   state_color: true
-                  name: Window Sensor
+                  name: Door Sensor
                   secondary_info: last-changed
                   state_header: Battery
                   entities:
