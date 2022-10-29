@@ -1,0 +1,17 @@
+balcony_automation_security:
+  automation:
+    - id: balcony_automation_security_door_open_me_away
+      alias: Balcony - Automation - Security - Door Open - Me Away
+      initial_state: true
+      trigger:
+        - platform: state
+          entity_id: binary_sensor.snzb_04_05_01_contact
+          to: "on"
+      condition:
+        - condition: state
+          entity_id: person.oleksandr
+          state: "not_home"
+      action:
+        - service: notify.telegram_user_oleksandr
+          data:
+            message: "_Security_: The door is open in the balcony."
