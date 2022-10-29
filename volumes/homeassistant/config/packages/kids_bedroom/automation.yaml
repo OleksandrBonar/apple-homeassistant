@@ -5,7 +5,7 @@ kids_bedroom_automation:
       initial_state: true
       trigger:
         - platform: state
-          entity_id: binary_sensor.snzb_03_03_occupancy
+          entity_id: binary_sensor.snzb_03_03_01_occupancy
           to: "on"
       condition:
         - condition: state
@@ -31,7 +31,7 @@ kids_bedroom_automation:
       initial_state: true
       trigger:
         - platform: state
-          entity_id: binary_sensor.snzb_03_03_occupancy
+          entity_id: binary_sensor.snzb_03_03_01_occupancy
           from: "on"
           to: "off"
           for:
@@ -55,12 +55,12 @@ kids_bedroom_automation:
           target:
             entity_id: light.kids_bedroom
 
-    - id: kids_bedroom_automation_switch01_single
-      alias: Kids Bedroom - Automation - Switch01 - Single
+    - id: kids_bedroom_automation_button_single
+      alias: Kids Bedroom - Automation - Button - Single
       initial_state: true
       trigger:
         - platform: state
-          entity_id: sensor.snzb_01_03_action
+          entity_id: sensor.snzb_01_03_01_action
           to: "single"
       condition:
         - condition: state
@@ -71,12 +71,12 @@ kids_bedroom_automation:
           target:
             entity_id: light.kids_bedroom
 
-    - id: kids_bedroom_automation_switch01_double
-      alias: Kids Bedroom - Automation - Switch01 - Double
+    - id: kids_bedroom_automation_button_double
+      alias: Kids Bedroom - Automation - Button - Double
       initial_state: true
       trigger:
         - platform: state
-          entity_id: sensor.snzb_01_03_action
+          entity_id: sensor.snzb_01_03_01_action
           to: "double"
       condition:
         - condition: state
@@ -90,12 +90,12 @@ kids_bedroom_automation:
               - light.kitchen
               - light.parents_bedroom
 
-    - id: kids_bedroom_automation_switch01_long
-      alias: Kids Bedroom - Automation - Switch01 - Long
+    - id: kids_bedroom_automation_button_long
+      alias: Kids Bedroom - Automation - Button - Long
       initial_state: true
       trigger:
         - platform: state
-          entity_id: sensor.snzb_01_03_action
+          entity_id: sensor.snzb_01_03_01_action
           to: "long"
       condition:
         - condition: state
@@ -110,8 +110,8 @@ kids_bedroom_automation:
               - light.kids_bedroom
               - light.parents_bedroom
 
-    - id: kids_bedroom_automation_switch02_single
-      alias: Kids Bedroom - Automation - Switch02 - Single
+    - id: kids_bedroom_automation_switch_single
+      alias: Kids Bedroom - Automation - Switch - Single
       initial_state: true
       trigger:
         - platform: state
