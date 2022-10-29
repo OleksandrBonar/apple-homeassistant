@@ -91,9 +91,9 @@ cards:
               show_name: true
               state_color: true
               entities:
-              - entity: binary_sensor.snzb_03_02_occupancy
+              - entity: binary_sensor.snzb_03_02_01_occupancy
                 name: Motion
-              - entity: binary_sensor.snzb_04_02_contact
+              - entity: binary_sensor.snzb_04_02_01_contact
                 name: Window
               - entity: sensor.snzb_02_02_01_temperature
                 name: Temperature
@@ -349,7 +349,7 @@ cards:
                    } 
               show_header_toggle: false
               entities:
-                - entity: sensor.snzb_01_02_battery
+                - entity: sensor.snzb_01_02_01_battery
                   type: custom:multiple-entity-row
                   icon: phu:aqara-opple
                   state_color: true
@@ -393,7 +393,7 @@ cards:
                   - attribute: linkquality
                     name: Signal                 
                 - type: divider
-                - entity: sensor.snzb_03_02_battery
+                - entity: sensor.snzb_03_02_01_battery
                   type: custom:multiple-entity-row
                   icon: phu:aqara-motion
                   state_color: true
@@ -404,7 +404,7 @@ cards:
                   - attribute: linkquality
                     name: Signal
                 - type: divider
-                - entity: sensor.snzb_04_02_battery
+                - entity: sensor.snzb_04_02_01_battery
                   type: custom:multiple-entity-row
                   icon: phu:aqara-contact
                   state_color: true
