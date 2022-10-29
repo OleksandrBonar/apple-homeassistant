@@ -89,8 +89,8 @@ hallway_automation:
           target:
             entity_id: light.hallway
 
-    - id: hallway_automation_switch_single
-      alias: Hallway - Automation - Switch - Single
+    - id: hallway_automation_button_single
+      alias: Hallway - Automation - Button - Single
       initial_state: true
       trigger:
         - platform: state
@@ -105,8 +105,8 @@ hallway_automation:
           target:
             entity_id: light.hallway
 
-    - id: hallway_automation_switch_double
-      alias: Hallway - Automation - Switch - Double
+    - id: hallway_automation_button_double
+      alias: Hallway - Automation - Button - Double
       initial_state: true
       trigger:
         - platform: state
@@ -124,8 +124,8 @@ hallway_automation:
               - light.kids_bedroom
               - light.parents_bedroom
 
-    - id: hallway_automation_switch_long
-      alias: Hallway - Automation - Switch - Long
+    - id: hallway_automation_button_long
+      alias: Hallway - Automation - Button - Long
       initial_state: true
       trigger:
         - platform: state
