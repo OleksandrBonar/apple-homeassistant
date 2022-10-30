@@ -1,0 +1,7 @@
+balcony_customize:
+    homeassistant:
+      customize:
+        snzb_02_05_01:
+          friendly_name: Balcony, Climate Sensor
+        snzb_03_05_01:
+          friendly_name: Balcony, Motion Sensor
