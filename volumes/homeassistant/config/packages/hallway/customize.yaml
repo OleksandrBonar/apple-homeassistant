@@ -1,0 +1,11 @@
+hallway_customize:
+    homeassistant:
+      customize:
+        snzb_01_01_01:
+          friendly_name: Hallway, Button
+        snzb_02_01_01:
+          friendly_name: Hallway, Climate Sensor
+        snzb_03_01_01:
+          friendly_name: Hallway, Motion Sensor
+        snzb_04_01_01:
+          friendly_name: Hallway, Door Sensor
