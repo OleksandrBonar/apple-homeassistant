@@ -1,13 +1,30 @@
 kids_bedroom_customize:
     homeassistant:
       customize:
-        snzb_01_03_01:
+
+        sensor.snzb_01_03_01_action:
           friendly_name: Kids Bedroom, Button
-        snzb_02_03_01:
+        sensor.snzb_01_03_01_battery:
+          friendly_name: Kids Bedroom, Button
+
+        sensor.snzb_02_03_01_temperature:
           friendly_name: Kids Bedroom, Climate Sensor
-        snzb_03_03_01:
+        sensor.snzb_02_03_01_humidity:
+          friendly_name: Kids Bedroom, Climate Sensor
+        sensor.snzb_02_03_01_battery:
+          friendly_name: Kids Bedroom, Climate Sensor
+
+        binary_sensor.snzb_03_03_01_occupancy:
           friendly_name: Kids Bedroom, Motion Sensor
-        snzb_04_03_01:
+        sensor.snzb_03_03_01_battery:
+          friendly_name: Kids Bedroom, Motion Sensor
+
+        binary_sensor.snzb_04_03_01_contact:
           friendly_name: Kids Bedroom, Window Sensor
-        snzb_04_03_02:
+        sensor.snzb_04_03_01_battery:
+          friendly_name: Kids Bedroom, Window Sensor
+
+        binary_sensor.snzb_04_03_02_contact:
+          friendly_name: Kids Bedroom, Switch
+        sensor.snzb_04_03_02_battery:
           friendly_name: Kids Bedroom, Switch
