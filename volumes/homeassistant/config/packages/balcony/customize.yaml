@@ -1,7 +1,15 @@
 balcony_customize:
     homeassistant:
       customize:
-        snzb_02_05_01:
+
+        sensor.snzb_02_05_01_temperature:
           friendly_name: Balcony, Climate Sensor
-        snzb_03_05_01:
+        sensor.snzb_02_05_01_humidity:
+          friendly_name: Balcony, Climate Sensor
+        sensor.snzb_02_05_01_battery:
+          friendly_name: Balcony, Climate Sensor
+
+        binary_sensor.snzb_03_05_01_contact:
+          friendly_name: Balcony, Motion Sensor
+        sensor.snzb_03_05_01_battery:
           friendly_name: Balcony, Motion Sensor
