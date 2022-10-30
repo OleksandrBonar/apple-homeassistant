@@ -1,0 +1,5 @@
+entrance_customize:
+    homeassistant:
+      customize:
+        domofon:
+          friendly_name: Entrance, Domofon
