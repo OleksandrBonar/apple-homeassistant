@@ -1,0 +1,13 @@
+kids_bedroom_customize:
+    homeassistant:
+      customize:
+        snzb_01_03_01:
+          friendly_name: Kids Bedroom, Button
+        snzb_02_03_01:
+          friendly_name: Kids Bedroom, Climate Sensor
+        snzb_03_03_01:
+          friendly_name: Kids Bedroom, Motion Sensor
+        snzb_04_03_01:
+          friendly_name: Kids Bedroom, Window Sensor
+        snzb_04_03_02:
+          friendly_name: Kids Bedroom, Switch
