@@ -2,24 +2,24 @@ kitchen_customize:
     homeassistant:
       customize:
 
-        sensor.snzb_01_03_01_action:
+        sensor.snzb_01_02_01_action:
           friendly_name: Kitchen, Button
-        sensor.snzb_01_03_01_battery:
+        sensor.snzb_01_02_01_battery:
           friendly_name: Kitchen, Button
 
-        sensor.snzb_02_03_01_temperature:
+        sensor.snzb_02_02_01_temperature:
           friendly_name: Kitchen, Climate Sensor
-        sensor.snzb_02_03_01_humidity:
+        sensor.snzb_02_02_01_humidity:
           friendly_name: Kitchen, Climate Sensor
-        sensor.snzb_02_03_01_battery:
+        sensor.snzb_02_02_01_battery:
           friendly_name: Kitchen, Climate Sensor
 
-        binary_sensor.snzb_03_03_01_occupancy:
+        binary_sensor.snzb_03_02_01_occupancy:
           friendly_name: Kitchen, Motion Sensor
-        sensor.snzb_03_03_01_battery:
+        sensor.snzb_03_02_01_battery:
           friendly_name: Kitchen, Motion Sensor
 
-        binary_sensor.snzb_04_03_01_contact:
+        binary_sensor.snzb_04_02_01_contact:
           friendly_name: Kitchen, Window Sensor
-        sensor.snzb_04_03_01_battery:
+        sensor.snzb_04_02_01_battery:
           friendly_name: Kitchen, Window Sensor
