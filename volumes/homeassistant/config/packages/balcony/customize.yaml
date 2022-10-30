@@ -13,3 +13,8 @@ balcony_customize:
           friendly_name: Balcony, Motion Sensor
         sensor.snzb_03_05_01_battery:
           friendly_name: Balcony, Motion Sensor
+
+        binary_sensor.snzb_04_05_01_contact:
+          friendly_name: Balcony, Door Sensor
+        sensor.snzb_04_05_01_battery:
+          friendly_name: Balcony, Door Sensor
