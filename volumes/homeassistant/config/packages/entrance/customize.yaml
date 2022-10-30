@@ -1,5 +1,7 @@
 entrance_customize:
     homeassistant:
       customize:
-        domofon:
+        sensor.domofon_state:
+          friendly_name: Entrance, Domofon
+        sensor.domofon_battery:
           friendly_name: Entrance, Domofon
