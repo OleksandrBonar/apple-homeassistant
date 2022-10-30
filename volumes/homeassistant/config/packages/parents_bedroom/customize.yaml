@@ -1,11 +1,25 @@
 parents_bedroom_customize:
     homeassistant:
       customize:
-        snzb_01_04_01:
+
+        sensor.snzb_01_04_01_action:
           friendly_name: Parents Bedroom, Button
-        snzb_02_04_01:
+        sensor.snzb_01_04_01_battery:
+          friendly_name: Parents Bedroom, Button
+
+        sensor.snzb_02_04_01_temperature:
           friendly_name: Parents Bedroom, Climate Sensor
-        snzb_03_04_01:
+        sensor.snzb_02_04_01_humidity:
+          friendly_name: Parents Bedroom, Climate Sensor
+        sensor.snzb_02_04_01_battery:
+          friendly_name: Parents Bedroom, Climate Sensor
+
+        binary_sensor.snzb_03_04_01_occupancy:
           friendly_name: Parents Bedroom, Motion Sensor
-        snzb_04_04_01:
+        sensor.snzb_03_04_01_battery:
+          friendly_name: Parents Bedroom, Motion Sensor
+
+        binary_sensor.snzb_04_04_01_contact:
+          friendly_name: Parents Bedroom, Window Sensor
+        sensor.snzb_04_04_01_battery:
           friendly_name: Parents Bedroom, Window Sensor
