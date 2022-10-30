@@ -1,0 +1,11 @@
+parents_bedroom_customize:
+    homeassistant:
+      customize:
+        snzb_01_04_01:
+          friendly_name: Parents Bedroom, Button
+        snzb_02_04_01:
+          friendly_name: Parents Bedroom, Climate Sensor
+        snzb_03_04_01:
+          friendly_name: Parents Bedroom, Motion Sensor
+        snzb_04_04_01:
+          friendly_name: Parents Bedroom, Window Sensor
