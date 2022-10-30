@@ -4,12 +4,12 @@ all_sensor:
     - platform: template
       sensors:
         outdoor_temperature:
-          friendly_name: "Outdoor Temperature"
+          friendly_name: "Outdoor, Temperature"
           unit_of_measurement: "°C"
           device_class: temperature
           value_template: "{{ state_attr('weather.home', 'temperature') }}"
         outdoor_humidity:
-          friendly_name: "Outdoor Humidity"
+          friendly_name: "Outdoor, Humidity"
           unit_of_measurement: "%"
           device_class: humidity
           value_template: "{{ state_attr('weather.home', 'humidity') }}"
