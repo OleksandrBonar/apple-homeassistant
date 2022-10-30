@@ -1,11 +1,25 @@
 hallway_customize:
     homeassistant:
       customize:
-        snzb_01_01_01:
+
+        sensor.snzb_01_01_01_action:
           friendly_name: Hallway, Button
-        snzb_02_01_01:
+        sensor.snzb_01_01_01_battery:
+          friendly_name: Hallway, Button
+
+        sensor.snzb_02_01_01_temperature:
           friendly_name: Hallway, Climate Sensor
-        snzb_03_01_01:
+        sensor.snzb_02_01_01_humidity:
+          friendly_name: Hallway, Climate Sensor
+        sensor.snzb_02_01_01_battery:
+          friendly_name: Hallway, Climate Sensor
+
+        binary_sensor.snzb_03_01_01_occupancy:
           friendly_name: Hallway, Motion Sensor
-        snzb_04_01_01:
+        sensor.snzb_03_01_01_battery:
+          friendly_name: Hallway, Motion Sensor
+
+        binary_sensor.snzb_04_01_01_contact:
+          friendly_name: Hallway, Door Sensor
+        sensor.snzb_04_01_01_battery:
           friendly_name: Hallway, Door Sensor
