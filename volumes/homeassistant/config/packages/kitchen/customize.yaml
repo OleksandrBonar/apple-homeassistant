@@ -1,0 +1,11 @@
+kitchen_customize:
+    homeassistant:
+      customize:
+        snzb_01_03_01:
+          friendly_name: Kitchen, Button
+        snzb_02_03_01:
+          friendly_name: Kitchen, Climate Sensor
+        snzb_03_03_01:
+          friendly_name: Kitchen, Motion Sensor
+        snzb_04_03_01:
+          friendly_name: Kichen, Window Sensor
