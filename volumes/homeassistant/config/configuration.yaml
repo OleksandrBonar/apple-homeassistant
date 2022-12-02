@@ -50,6 +50,7 @@ media_source:
 mobile_app:
 sun:
 energy:
+bluetooth:
 
 #zone: !include zone.yaml
 sensor: !include sensor.yaml
