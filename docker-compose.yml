@@ -13,6 +13,7 @@ services:
     volumes:
       - ./volumes/homeassistant/config:/config
       - /etc/localtime:/etc/localtime:ro
+      - /run/dbus:/run/dbus:ro
   mosquitto:
     image: eclipse-mosquitto:2.0.14    
     restart: unless-stopped
