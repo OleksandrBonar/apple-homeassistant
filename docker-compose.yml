@@ -1,7 +1,7 @@
 version: "3.9"
 services:
   homeassistant:
-    image: ghcr.io/home-assistant/home-assistant:2022.4.6
+    image: ghcr.io/home-assistant/home-assistant:latest
     restart: unless-stopped
     privileged: true
     hostname: homeassistant
@@ -15,14 +15,14 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - /run/dbus:/run/dbus:ro
   mosquitto:
-    image: eclipse-mosquitto:2.0.14    
+    image: eclipse-mosquitto:latest   
     restart: unless-stopped
     hostname: mosquitto
     network_mode: host
     volumes:
       - ./volumes/mosquitto/config:/mosquitto/config
   zigbee2mqtt:
-    image: koenkk/zigbee2mqtt:1.25.0
+    image: koenkk/zigbee2mqtt:latest
     restart: unless-stopped
     hostname: zigbee2mqtt
     network_mode: host
@@ -36,4 +36,4 @@ services:
     environment:
       - TZ=Europe/Kiev
     devices:
-      - /dev/ttyACM0:/dev/ttyACM0
+      - /dev/serial/by-id/usb-1a86_USB_Serial-if00-port0:/dev/ttyACM0
