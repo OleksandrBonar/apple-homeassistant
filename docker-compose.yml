@@ -32,6 +32,9 @@ services:
       - type: bind
         source: ./volumes/zigbee2mqtt/data/configuration.yaml
         target: /app/configuration.yaml
+      - type: bind
+        source: ./volumes/zigbee2mqtt/data/DIYRuZ_Zintercom.js
+        target: /app/data/DIYRuZ_Zintercom.js
       - /run/udev:/run/udev:ro
     environment:
       - TZ=Europe/Kiev
