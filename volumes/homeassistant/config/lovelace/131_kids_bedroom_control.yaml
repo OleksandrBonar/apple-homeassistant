@@ -82,10 +82,22 @@ cards:
               show_name: true
               state_color: true
               entities:
-                - entity: sensor.kids_bedroom_sensor_apparent_temperature
-                  name: Apparent Temperature
-                - entity: sensor.kids_bedroom_sensor_dew_point
+                - entity: sensor.kids_bedroom_sensor_climate_dew_point
                   name: Dew Point
+                - entity: sensor.kids_bedroom_sensor_climate_heat_index
+                  name: Heat Index
+                - entity: sensor.kids_bedroom_sensor_climate_humidex
+                  name: Humidex
+                - entity: sensor.kids_bedroom_sensor_climate_humidex_perception
+                  name: Humidex Perception
+                - entity: sensor.kids_bedroom_sensor_climate_thermal_perception
+                  name: Thermal Perception
+                - entity: sensor.kids_bedroom_sensor_climate_absolute_humidity
+                  name: Absolute Humidity
+                - entity: sensor.kids_bedroom_sensor_climate_frost_point
+                  name: Frost Point
+                - entity: sensor.kids_bedroom_sensor_climate_frost_risk
+                  name: Frost Risk
 
         - type: custom:stack-in-card
           mode: vertical
