@@ -50,9 +50,9 @@ balcony_sensor:
           value_template: >-
             {% set temp = states('sensor.snzb_02_05_01_temperature') | float(0) %}
             {% set dewpoint = states('sensor.balcony_sensor_dew_point') | float(0) %}
-            {% set e = 6.11 * exp(5417.7530 * ((1 / 273.16) - (1 / (dewpoint + 273.15)))) %}
-            {% set h = (0.5555) * (e - 10.0) %}
-            {{ (temp + h) | round(2) }}
+            {% set ev = 6.11 * exp(5417.7530 * ((1 / 273.16) - (1 / (dewpoint + 273.15)))) %}
+            {% set hv = (0.5555) * (ev - 10.0) %}
+            {{ (temp + hv) | round(2) }}
             
         balcony_sensor_humidex_perception:
           friendly_name: "Balcony Sensor Humidex Perception: "
