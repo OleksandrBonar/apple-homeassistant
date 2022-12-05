@@ -57,10 +57,10 @@ kids_bedroom_sensor:
               {% if rh < 13 and t >= 80 and t <= 112 %}
                 {% adjust = ((13-rh)/4)  * ((17-((t-95)|abs)/17)|sqrt) %}
                 {% set hi = hi - adjust %}
-              {% elseif rh > 85 and t >= 80 and t <= 87 %}
+              {% elif rh > 85 and t >= 80 and t <= 87 %}
                 {% set adjust = ((rh-85)/10) * ((87-t)/5) %}
                 {% set hi = hi + adjust %}
-              {% elseif t < 80 %}
+              {% elif t < 80 %}
                 {$ set hi = 0.5 * (t + 61.0 + ((t-68.0)*1.2) + (rh*0.094)) %}
               {% endif %}
             {% endif %}
