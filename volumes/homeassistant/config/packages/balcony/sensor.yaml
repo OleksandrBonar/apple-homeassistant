@@ -9,7 +9,7 @@ balcony_sensor:
           value_template: >-
             {% set temp = states('sensor.snzb_02_05_01_temperature') | float(0) %}
             {% set humidity = states('sensor.snzb_02_05_01_humidity') | float(0) %}
-            {% if t >= 0.0 %}
+            {% if temp >= 0.0 %}
               {% set a = 7.5 %}
               {% set b = 237.3 %}
             {% else %}
