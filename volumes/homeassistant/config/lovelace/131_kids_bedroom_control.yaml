@@ -68,7 +68,22 @@ cards:
                 font-size: 26px;
               }   
           content: >
-              **Monitoring** 
+              **Monitoring**
+
+        - type: custom:stack-in-card
+          mode: vertical
+          cards: 
+
+            - type: markdown
+              content: >
+                 **Sensors**
+            - type: glance
+              show_state: true
+              show_name: true
+              state_color: true
+              entities:
+                - entity: sensor.kids_bedroom_sensor_apparent_temperature
+                  name: Apparent Temperature
 
         - type: custom:stack-in-card
           mode: vertical
