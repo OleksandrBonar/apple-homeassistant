@@ -71,3 +71,25 @@ balcony_sensor:
             {% else %}
               COMFORTABLE
             {% endif %}
+
+        balcony_sensor_thermal_perception:
+          friendly_name: "Balcony Sensor Thermal Perception: "
+          value_template: >-
+            {% set dewpoint = states('sensor.balcony_sensor_dew_point') | float(0) %}
+            {% if dewpoint < 10 %}
+              DRY
+            {% elif dewpoint < 13 %}
+              VERY_COMFORTABLE
+            {% elif dewpoint < 16 %}
+              COMFORTABLE
+            {% elif dewpoint < 18 %}
+              OK_BUT_HUMID
+            {% elif dewpoint < 21 %}
+              SOMEWHAT_UNCOMFORTABLE
+            {% elif dewpoint < 24 %}
+              QUITE_UNCOMFORTABLE
+            {% elif dewpoint < 26 %}
+              EXTREMELY_UNCOMFORTABLE
+            {% else %}
+              SEVERELY_HIGH
+            {% endif %}
