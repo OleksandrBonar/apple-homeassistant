@@ -118,8 +118,8 @@ balcony_sensor:
             {% set dewpoint = states('sensor.balcony_sensor_dew_point') | float(0) %}
             {% set T = temp + 273.15 %}
             {% set Td = dewpoint + 273.15 %}
-            {{ round((Td + (2671.02 / ((2954.61 / T) + 2.193665 * log(T) - 13.3448)) - T) - 273.15, 2) %}
-            
+            {{ ((Td + (2671.02 / ((2954.61 / T) + 2.193665 * log(T) - 13.3448)) - T) - 273.15) | round(2) %}
+
         balcony_sensor_frost_risk:
           friendly_name: "Balcony Sensor Frost Risk: "
           value_template: >-
