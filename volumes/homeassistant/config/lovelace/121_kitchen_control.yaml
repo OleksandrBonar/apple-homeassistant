@@ -91,6 +91,21 @@ cards:
               show_name: true
               state_color: true
               entities:
+              - entity: sensor.kitchen_sensor_apparent_temperature
+                name: Apparent Temperature
+
+        - type: custom:stack-in-card
+          mode: vertical
+          cards: 
+
+            - type: markdown
+              content: >
+                 **Sensors**
+            - type: glance
+              show_state: true
+              show_name: true
+              state_color: true
+              entities:
               - entity: binary_sensor.snzb_03_02_01_occupancy
                 name: Motion
               - entity: binary_sensor.snzb_04_02_01_contact
