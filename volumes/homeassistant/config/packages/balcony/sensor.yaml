@@ -30,10 +30,10 @@ balcony_sensor:
             {% set a0 = 373.15 / (273.15 + states('sensor.snzb_02_05_01_temperature') | float(0)) %}
             {% set sum = -7.90298 * (a0 - 1) %}
             {% set sum = sum + 5.02808 * log(a0, 10) %}
-            {% set sum = sum + -1.3816e-7 * (pow(10, (11.344 * (1 - 1 / a0))) - 1) %}
-            {% set sum = sum + 8.1328e-3 * (pow(10, (-3.49149 * (a0 - 1))) - 1) %}
+            {% set sum = sum + -1.3816e-7 * (10 ** (11.344 * (1 - 1 / a0)) - 1) %}
+            {% set sum = sum + 8.1328e-3 * (10 ** (-3.49149 * (a0 - 1)) - 1) %}
             {% set sum = sum + log(1013.246, 10) %}
-            {% set vp = pow(10, sum - 3) * states('sensor.snzb_02_05_01_humidity') | float(0) %}
+            {% set vp = (10 ** (sum - 3)) * states('sensor.snzb_02_05_01_humidity') | float(0) %}
             {% set td = log(vp / 0.61078) %}
             {% set td = (241.88 * td) / (17.558 - td) %}
             {{ td | round(2) }}
