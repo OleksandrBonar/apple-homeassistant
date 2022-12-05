@@ -93,6 +93,10 @@ cards:
                   name: Thermal Perception
                 - entity: sensor.balcony_sensor_absolute_humidity
                   name: Absolute Humidity
+                - entity: sensor.balcony_sensor_frost_point
+                  name: Frost Point
+                - entity: sensor.balcony_sensor_frost_risk
+                  name: Frost Risk
 
         - type: custom:stack-in-card
           mode: vertical
