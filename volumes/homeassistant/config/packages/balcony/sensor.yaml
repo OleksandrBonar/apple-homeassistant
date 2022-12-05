@@ -93,3 +93,18 @@ balcony_sensor:
             {% else %}
               SEVERELY_HIGH
             {% endif %}
+
+        balcony_sensor_absolute_humidity:
+          friendly_name: "Balcony Sensor Absolute Humidity: "
+          device_class: humidity
+          unit_of_measurement: "g/m3"
+          value_template: >-
+            {% set temp = states('sensor.snzb_02_05_01_temperature') | float(0) %}
+            {% set humidity = states('sensor.snzb_02_05_01_humidity') | float(0) %}
+            {% set abs_temperature = temp + 273.15 %}
+            {% set abs_humidity = 6.112 %}
+            {% set abs_humidity = abs_humidity * (exp((17.67 * temp) / (243.5 + temp))) %}
+            {% set abs_humidity = abs_humidity * humidity %}
+            {% set abs_humidity = abs_humidity * 2.1674 %}
+            {% set abs_humidity = abs_humidity / abs_temperature %}
+            {{ abs_humidity | round(2) }}
