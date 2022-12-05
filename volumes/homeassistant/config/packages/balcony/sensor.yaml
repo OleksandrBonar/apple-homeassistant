@@ -54,7 +54,7 @@ balcony_sensor:
             {% set h = (0.5555) * (e - 10.0) %}
             {{ (temp + h) | round(2) }}
             
-        balcony_sensor_humidex:
+        balcony_sensor_humidex_perception:
           friendly_name: "Balcony Sensor Humidex Perception: "
           value_template: >-
             {% set humidex = states('sensor.balcony_sensor_humidex') | float(0) %}
