@@ -84,6 +84,8 @@ cards:
               entities:
                 - entity: sensor.kids_bedroom_sensor_apparent_temperature
                   name: Apparent Temperature
+                - entity: sensor.kids_bedroom_sensor_dew_point
+                  name: Dew Point
 
         - type: custom:stack-in-card
           mode: vertical
