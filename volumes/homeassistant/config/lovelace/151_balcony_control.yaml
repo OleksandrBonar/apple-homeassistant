@@ -85,6 +85,8 @@ cards:
                   name: Apparent Temperature
                 - entity: sensor.balcony_sensor_dew_point
                   name: Dew Point
+                - entity: sensor.balcony_sensor_dew_point2
+                  name: Dew Point2
 
         - type: custom:stack-in-card
           mode: vertical
