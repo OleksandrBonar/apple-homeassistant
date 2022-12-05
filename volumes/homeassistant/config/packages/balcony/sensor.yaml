@@ -50,7 +50,7 @@ balcony_sensor:
           value_template: >-
             {% set temp = states('sensor.snzb_02_05_01_temperature') | float(0) %}
             {% set dewpoint = states('sensor.balcony_sensor_dew_point') | float(0) %}
-            {% set ev = 6.11 * exp(5417.7530 * ((1 / 273.16) - (1 / (dewpoint + 273.15)))) %}
+            {% set ev = 6.11 * e**(5417.7530 * ((1 / 273.16) - (1 / (dewpoint + 273.15)))) %}
             {% set hv = (0.5555) * (ev - 10.0) %}
             {{ (temp + hv) | round(2) }}
             
@@ -103,7 +103,7 @@ balcony_sensor:
             {% set humidity = states('sensor.snzb_02_05_01_humidity') | float(0) %}
             {% set abs_temperature = temp + 273.15 %}
             {% set abs_humidity = 6.112 %}
-            {% set abs_humidity = abs_humidity * (exp((17.67 * temp) / (243.5 + temp))) %}
+            {% set abs_humidity = abs_humidity * (e**((17.67 * temp) / (243.5 + temp))) %}
             {% set abs_humidity = abs_humidity * humidity %}
             {% set abs_humidity = abs_humidity * 2.1674 %}
             {% set abs_humidity = abs_humidity / abs_temperature %}
