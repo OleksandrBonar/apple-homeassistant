@@ -40,6 +40,25 @@ parents_bedroom_sensor:
           device_class: energy
           unit_of_measurement: kWh
           icon_template: mdi:counter
+        parents_bedroom_sensor_dew_point:
+          friendly_name: "Parents Bedroom Sensor Dew Point: "
+          device_class: temperature
+          unit_of_measurement: C
+          value_template: >-
+            {% set temp = states('sensor.snzb_02_04_01_temperature') | float(0) %}
+            {% set humidity = states('sensor.snzb_02_04_01_humidity') | float(0) %}
+            {% if temp >= 0.0 %}
+              {% set a = 7.5 %}
+              {% set b = 237.3 %}
+            {% else %}
+              {% set a = 7.6 %}
+              {% set b = 240.7 %}
+            {% endif %}
+            {% set sdd = (6.1078 * (10.0 ** ((a * temp) / (b + temp)))) %}
+            {% set dd = (humidity / 100 * sdd) %}
+            {% set v = (dd / 6.107) | log(10) %}
+            {% set td = ((b * v) / (a - v)) %}
+            {{ td | round(2) }}
         parents_bedroom_sensor_apparent_temperature:
           friendly_name: "Parents Bedrooom Sensor Apparent Temperature: "
           device_class: temperature
