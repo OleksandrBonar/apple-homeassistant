@@ -61,7 +61,7 @@ kids_bedroom_sensor:
                 {% set adjust = ((rh-85)/10) * ((87-t)/5) %}
                 {% set hi = hi + adjust %}
               {% elif t < 80 %}
-                {$ set hi = 0.5 * (t + 61.0 + ((t-68.0)*1.2) + (rh*0.094)) %}
+                {% set hi = 0.5 * (t + 61.0 + ((t-68.0)*1.2) + (rh*0.094)) %}
               {% endif %}
             {% endif %}
             {% set apparent_temp = (hi - 32) * 5/9 %}
