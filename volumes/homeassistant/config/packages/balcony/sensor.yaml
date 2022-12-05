@@ -17,36 +17,9 @@ balcony_sensor:
             {% set td = log(vp / 0.61078) %}
             {% set td = (241.88 * td) / (17.558 - td) %}
             {{ td | round(2) }}
-            
+
         balcony_sensor_heat_index:
           friendly_name: "Balcony Sensor Heat Index: "
-          device_class: temperature
-          unit_of_measurement: C
-          value_template: >-
-            {% set temp = states('sensor.snzb_02_05_01_temperature') | float(0) %}
-            {% set humidity = states('sensor.snzb_02_05_01_humidity') | float(0) %}
-            {% set fahrenheit = temp * 9/5 + 32 %}
-            {% set hi = 0.5 * (fahrenheit + 61.0 + ((fahrenheit - 68.0) * 1.2) + (humidity * 0.094)) %}
-            {% if hi > 79 %}
-              {% set hi = -42.379 + 2.04901523 * fahrenheit %}
-              {% set hi = hi + 10.14333127 * humidity %}
-              {% set hi = hi + -0.22475541 * fahrenheit * humidity %}
-              {% set hi = hi + -0.00683783 * (fahrenheit ** 2) %}
-              {% set hi = hi + -0.05481717 * (humidity ** 2) %}
-              {% set hi = hi + 0.00122874 * (fahrenheit ** 2) * humidity %}
-              {% set hi = hi + 0.00085282 * fahrenheit * (humidity ** 2) %}
-              {% set hi = hi + -0.00000199 * (fahrenheit ** 2) * (humidity ** 2) %}
-              {% if humidity < 13 and fahrenheit >= 80 and fahrenheit <= 112 %}
-                {% set hi = hi - ((13 - humidity) * 0.25) * sqrt((17 - abs(fahrenheit - 95)) * 0.05882) %}
-              {% elif humidity > 85 and fahrenheit >= 80 and fahrenheit <= 87 %}
-                {% set hi = hi + ((humidity - 85) * 0.1) * ((87 - fahrenheit) * 0.2) %}
-              {% endif %}
-            {% endif %}
-            {% set hi = (hi - 32) * 5/9 %}
-            {{ hi | round(2) }}
-
-        balcony_sensor_apparent_temperature:
-          friendly_name: "Balcony Sensor Apparent Temperature: "
           device_class: temperature
           unit_of_measurement: C
           value_template: >-
@@ -71,3 +44,30 @@ balcony_sensor:
             {% endif %}
             {% set apparent_temp = (hi - 32) * 5/9 %}
             {{ apparent_temp | round(2) }}
+
+        balcony_sensor_humidex:
+          friendly_name: "Balcony Sensor Humidex: "
+          value_template: >-
+            {% set temp = states('sensor.snzb_02_05_01_temperature') | float(0) %}
+            {% set dewpoint = states('sensor.balcony_sensor_dew_point') | float(0) %}
+            {% set e = 6.11 * exp(5417.7530 * ((1 / 273.16) - (1 / (dewpoint + 273.15)))) %}
+            {% set h = (0.5555) * (e - 10.0) %}
+            {{ (temp + h) | round(2) }}
+            
+        balcony_sensor_humidex:
+          friendly_name: "Balcony Sensor Humidex Perception: "
+          value_template: >-
+            {% set humidex = states('sensor.balcony_sensor_humidex') | float(0) %}
+            {% if humidex > 54 %}
+              HEAT_STROKE
+            {% elif humidex >= 45 %}
+              DANGEROUS_DISCOMFORT
+            {% elif humidex >= 40 %}
+              GREAT_DISCOMFORT
+            {% elif humidex >= 35 %}
+              EVIDENT_DISCOMFORT
+            {% elif humidex >= 30 %}
+              NOTICABLE_DISCOMFORT
+            {% else %}
+              COMFORTABLE
+            {% endif %}
