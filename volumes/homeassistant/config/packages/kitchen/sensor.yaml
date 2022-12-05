@@ -40,3 +40,29 @@ kitchen_sensor:
           device_class: energy
           unit_of_measurement: kWh
           icon_template: mdi:counter
+        kitchen_sensor_apparent_temperature:
+          friendly_name: "Kitchen Bedrooom Sensor Apparent Temperature: "
+          device_class: temperature
+          unit_of_measurement: C
+          value_template: >-
+            {% set temp = states('sensor.snzb_02_02_01_temperature') | float(0) %}
+            {% set humidity = states('sensor.snzb_02_02_01_humidity') | float(0) %}
+            {% set t = temp * 9/5 + 32 %}
+            {% set rh = humidity %}
+            {% set hi = 0 %}
+            {% if t <= 40.0 %}
+              {% set hi = t %}
+            {% else %}
+              {% set hi = (-42.379 + 2.04901523*t + 10.14333127*rh - 0.22475541*t*rh - 0.00683783*t*t - 0.05481717*rh*rh + 0.00122874*t*t*rh + 0.00085282*t*rh*rh - 0.00000199*t*t*rh*rh) %}
+              {% if rh < 13 and t >= 80 and t <= 112 %}
+                {% set adjust = ((13-rh)/4)  * ((17-((t-95)|abs)/17)|sqrt) %}
+                {% set hi = hi - adjust %}
+              {% elif rh > 85 and t >= 80 and t <= 87 %}
+                {% set adjust = ((rh-85)/10) * ((87-t)/5) %}
+                {% set hi = hi + adjust %}
+              {% elif t < 80 %}
+                {% set hi = 0.5 * (t + 61.0 + ((t-68.0)*1.2) + (rh*0.094)) %}
+              {% endif %}
+            {% endif %}
+            {% set apparent_temp = (hi - 32) * 5/9 %}
+            {{ apparent_temp | round(2) }}
