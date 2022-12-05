@@ -81,8 +81,10 @@ cards:
               show_name: true
               state_color: true
               entities:
-              - entity: sensor.parents_bedroom_sensor_apparent_temperature
-                name: Apparent Temperature
+                - entity: sensor.parents_bedroom_sensor_apparent_temperature
+                  name: Apparent Temperature
+                - entity: sensor.parents_bedroom_sensor_dew_point
+                  name: Dew Point
 
         - type: custom:stack-in-card
           mode: vertical
