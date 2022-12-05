@@ -44,7 +44,7 @@ kids_bedroom_sensor:
           friendly_name: "Kids Bedrooom Sensor Apparent Temperature: "
           device_class: temperature
           unit_of_measurement: C
-          state: >
+          value_template: >-
             {% set temp = states(‘sensor.snzb_02_03_01_temperature’) | float(0) %}
             {% set humidity = states(‘sensor.snzb_02_03_01_humidity’) | float(0) %}
             {% set t = temp * 9/5 + 32 %}
