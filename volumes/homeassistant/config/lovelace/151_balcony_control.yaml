@@ -81,12 +81,18 @@ cards:
               show_name: true
               state_color: true
               entities:
-                - entity: sensor.balcony_sensor_apparent_temperature
-                  name: Apparent Temperature
                 - entity: sensor.balcony_sensor_dew_point
                   name: Dew Point
                 - entity: sensor.balcony_sensor_heat_index
                   name: Heat Index
+                - entity: sensor.balcony_sensor_humidex
+                  name: Humidex
+                - entity: sensor.balcony_sensor_humidex_perception
+                  name: Humidex Perception
+                - entity: sensor.balcony_sensor_thermal_perception
+                  name: Thermal Perception
+                - entity: sensor.balcony_sensor_absolute_humidity
+                  name: Absolute Humidity
 
         - type: custom:stack-in-card
           mode: vertical
