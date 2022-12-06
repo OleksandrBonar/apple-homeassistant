@@ -109,13 +109,9 @@ cards:
               show_name: true
               state_color: true
               entities:
-              - entity: binary_sensor.snzb_04_05_01_contact
-                name: Door
-              - entity: binary_sensor.snzb_03_05_01_occupancy
-                name: Motion
-              - entity: sensor.snzb_02_05_01_temperature
+              - entity: sensor.outdoor_sensor_climate_temperature
                 name: Temperature
-              - entity: sensor.snzb_02_05_01_humidity
+              - entity: sensor.outdoor_sensor_climate_humidity
                 name: Humidity
 
                     
