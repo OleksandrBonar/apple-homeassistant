@@ -5,7 +5,7 @@ balcony_sensor:
         balcony_sensor_dew_point:
           friendly_name: "Balcony Sensor Dew Point: "
           device_class: temperature
-          unit_of_measurement: C
+          unit_of_measurement: "°C"
           value_template: >-
             {% set temp = states('sensor.snzb_02_05_01_temperature') | float(0) %}
             {% set humidity = states('sensor.snzb_02_05_01_humidity') | float(0) %}
@@ -23,7 +23,7 @@ balcony_sensor:
         balcony_sensor_heat_index:
           friendly_name: "Balcony Sensor Heat Index: "
           device_class: temperature
-          unit_of_measurement: C
+          unit_of_measurement: "°C"
           value_template: >-
             {% set temp = states('sensor.snzb_02_05_01_temperature') | float(0) %}
             {% set humidity = states('sensor.snzb_02_05_01_humidity') | float(0) %}
@@ -50,7 +50,7 @@ balcony_sensor:
         balcony_sensor_humidex:
           friendly_name: "Balcony Sensor Humidex: "
           device_class: temperature
-          unit_of_measurement: C
+          unit_of_measurement: "°C"
           value_template: >-
             {% set temp = states('sensor.snzb_02_05_01_temperature') | float(0) %}
             {% set dewpoint = states('sensor.balcony_sensor_dew_point') | float(0) %}
@@ -116,7 +116,7 @@ balcony_sensor:
         balcony_sensor_frost_point:
           friendly_name: "Balcony Sensor Frost Point: "
           device_class: temperature
-          unit_of_measurement: C
+          unit_of_measurement: "°C"
           value_template: >-
             {% set temp = states('sensor.snzb_02_05_01_temperature') | float(0) %}
             {% set dewpoint = states('sensor.balcony_sensor_dew_point') | float(0) %}
@@ -132,15 +132,11 @@ balcony_sensor:
             {% set absolutehumidity = states('sensor.balcony_sensor_absolute_humidity') | float(0) %}
             {% set frostpoint = states('sensor.balcony_sensor_frost_point') | float(0) %}
             {% if temp <= 1 and frostpoint <= 0 %}
-              # Frost unlikely despite the temperature
-              # or high probability of frost
               {% if absolutehumidity <= thresholdAbsHumidity %}
                 LOW
               {% else %}
                 HIGH
               {% endif %}
-            # Frost probable despite the temperature
-            # or No risk of frost
             {% elif temp <= 4 and frostpoint <= 0.5 and absolutehumidity > thresholdAbsHumidity %}
               MEDIUM
             {% else %}
