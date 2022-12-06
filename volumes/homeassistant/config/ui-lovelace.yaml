@@ -7,3 +7,4 @@ views:
   - !include lovelace/131_kids_bedroom_control.yaml
   - !include lovelace/141_parents_bedroom_control.yaml
   - !include lovelace/151_balcony_control.yaml
+  - !include lovelace/161_outdoor_control.yaml
