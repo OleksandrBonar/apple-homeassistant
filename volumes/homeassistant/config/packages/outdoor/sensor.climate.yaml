@@ -15,7 +15,7 @@ outdoor_sensor_climate:
         outdoor_sensor_climate_dew_point:
           friendly_name: "Outdoor Sensor Climate Dew Point: "
           device_class: temperature
-          unit_of_measurement: C
+          unit_of_measurement: "°C"
           value_template: >-
             {% set temp = states('sensor.outdoor_sensor_climate_temperature') | float(0) %}
             {% set humidity = states('sensor.outdoor_sensor_climate_humidity') | float(0) %}
@@ -32,7 +32,7 @@ outdoor_sensor_climate:
         outdoor_sensor_climate_heat_index:
           friendly_name: "Outdoor Sensor Climate Heat Index: "
           device_class: temperature
-          unit_of_measurement: C
+          unit_of_measurement: "°C"
           value_template: >-
             {% set temp = states('sensor.outdoor_sensor_climate_temperature') | float(0) %}
             {% set humidity = states('sensor.outdoor_sensor_climate_humidity') | float(0) %}
@@ -58,7 +58,7 @@ outdoor_sensor_climate:
         outdoor_sensor_climate_humidex:
           friendly_name: "Outdoor Sensor Climate Humidex: "
           device_class: temperature
-          unit_of_measurement: C
+          unit_of_measurement: "°C"
           value_template: >-
             {% set temp = states('sensor.outdoor_sensor_climate_temperature') | float(0) %}
             {% set dewpoint = states('sensor.outdoor_sensor_climate_dew_point') | float(0) %}
@@ -120,7 +120,7 @@ outdoor_sensor_climate:
         outdoor_sensor_climate_frost_point:
           friendly_name: "Outdoor Sensor Climate Frost Point: "
           device_class: temperature
-          unit_of_measurement: C
+          unit_of_measurement: "°C"
           value_template: >-
             {% set temp = states('sensor.outdoor_sensor_climate_temperature') | float(0) %}
             {% set dewpoint = states('sensor.outdoor_sensor_climate_dew_point') | float(0) %}
@@ -135,15 +135,11 @@ outdoor_sensor_climate:
             {% set absolutehumidity = states('sensor.outdoor_sensor_climate_absolute_humidity') | float(0) %}
             {% set frostpoint = states('sensor.outdoor_sensor_climate_frost_point') | float(0) %}
             {% if temp <= 1 and frostpoint <= 0 %}
-              # Frost unlikely despite the temperature
-              # or high probability of frost
               {% if absolutehumidity <= thresholdAbsHumidity %}
                 LOW
               {% else %}
                 HIGH
               {% endif %}
-            # Frost probable despite the temperature
-            # or No risk of frost
             {% elif temp <= 4 and frostpoint <= 0.5 and absolutehumidity > thresholdAbsHumidity %}
               MEDIUM
             {% else %}
