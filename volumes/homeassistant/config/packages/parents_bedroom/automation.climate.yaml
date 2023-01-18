@@ -17,3 +17,7 @@ parents_bedroom_automation_climate:
         - service: notify.telegram_user_oleksandr
           data:
             message: "_Climate_: It's time to open the window in the parents bedroom for ventilation."
+        - service: tts.google_translate_say
+          entity_id: media_player.vlc_telnet
+          data:
+            message: "Пора проветрить комнату родителей."
