@@ -17,31 +17,31 @@ hallway_sensor:
     - platform: template
       sensors:
         hallway_sensor_energy_light_daily:
-          friendly_name: "Hallway Sensor Energy Light Daily: "
+          friendly_name: "Hallway, Energy Light Daily"
           value_template: "{{ states('sensor.hallway_sensor_light_on_duration_daily') | float * 5 * 8 * 0.001 | round(6) }}"
           device_class: energy
           unit_of_measurement: kWh
           icon_template: mdi:counter
         hallway_sensor_energy_light_monthly:
-          friendly_name: "Hallway Sensor Energy Light Monthly: "
+          friendly_name: "Hallway, Energy Light Monthly"
           value_template: "{{ states('sensor.hallway_sensor_light_on_duration_monthly') | float * 5 * 8 * 0.001 | round(6) }}"
           device_class: energy
           unit_of_measurement: kWh
           icon_template: mdi:counter
         hallway_sensor_energy_socket_daily:
-          friendly_name: "Hallway Sensor Energy Socket Daily: "
+          friendly_name: "Hallway, Energy Socket Daily"
           value_template: "{{ 0 }}"
           device_class: energy
           unit_of_measurement: kWh
           icon_template: mdi:counter
         hallway_sensor_energy_socket_monthly:
-          friendly_name: "Hallway Sensor Energy Socket Monthly: "
+          friendly_name: "Hallway, Energy Socket Monthly"
           value_template: "{{ 0 }}"
           device_class: energy
           unit_of_measurement: kWh
           icon_template: mdi:counter
         hallway_sensor_dew_point:
-          friendly_name: "Hallway Sensor Dew Point: "
+          friendly_name: "Hallway, Dew Point"
           device_class: temperature
           unit_of_measurement: C
           value_template: >-
@@ -60,7 +60,7 @@ hallway_sensor:
             {% set td = ((b * v) / (a - v)) %}
             {{ td | round(2) }}
         hallway_sensor_apparent_temperature:
-          friendly_name: "Hallway Sensor Apparent Temperature: "
+          friendly_name: "Hallway, Apparent Temperature"
           device_class: temperature
           unit_of_measurement: C
           value_template: >-
