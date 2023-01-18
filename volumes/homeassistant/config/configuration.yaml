@@ -4,9 +4,11 @@ homeassistant:
   longitude: !secret home_longitude
   elevation: 0
   unit_system: metric
-  time_zone: "Europe/Kiev"
-  external_url: "http://192.168.0.111:8123"
-  internal_url: "http://192.168.0.111:8123"
+  time_zone: Europe/Kiev
+  country: UA
+  currency: UAH
+  external_url: !secret home_external_url
+  internal_url: !secret_home_internal_url
   packages: !include_dir_merge_named packages
 
 lovelace:
