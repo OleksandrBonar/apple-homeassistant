@@ -17,31 +17,31 @@ parents_bedroom_sensor:
     - platform: template
       sensors:
         parents_bedroom_sensor_energy_light_daily:
-          friendly_name: "Parents Bedroom Sensor Energy Light Daily: "
+          friendly_name: "Parents Bedroom, Energy Light Daily"
           value_template: "{{ states('sensor.parents_bedroom_sensor_light_on_duration_daily') | float * 8 * 8 * 0.001 | round(6) }}"
           device_class: energy
           unit_of_measurement: kWh
           icon_template: mdi:counter
         parents_bedroom_sensor_energy_light_monthly:
-          friendly_name: "Parents Bedroom Sensor Energy Light Monthly: "
+          friendly_name: "Parents Bedroom, Energy Light Monthly"
           value_template: "{{ states('sensor.parents_bedroom_sensor_light_on_duration_monthly') | float * 8 * 8 * 0.001 | round(6) }}"
           device_class: energy
           unit_of_measurement: kWh
           icon_template: mdi:counter
         parents_bedroom_sensor_energy_socket_daily:
-          friendly_name: "Parents Bedroom Sensor Energy Socket Daily: "
+          friendly_name: "Parents Bedroom, Energy Socket Daily"
           value_template: "{{ 0 }}"
           device_class: energy
           unit_of_measurement: kWh
           icon_template: mdi:counter
         parents_bedroom_sensor_energy_socket_monthly:
-          friendly_name: "Parents Bedroom Sensor Energy Socket Monthly: "
+          friendly_name: "Parents Bedroom, Energy Socket Monthly"
           value_template: "{{ 0 }}"
           device_class: energy
           unit_of_measurement: kWh
           icon_template: mdi:counter
         parents_bedroom_sensor_dew_point:
-          friendly_name: "Parents Bedroom Sensor Dew Point: "
+          friendly_name: "Parents Bedroom, Dew Point"
           device_class: temperature
           unit_of_measurement: C
           value_template: >-
@@ -60,7 +60,7 @@ parents_bedroom_sensor:
             {% set td = ((b * v) / (a - v)) %}
             {{ td | round(2) }}
         parents_bedroom_sensor_apparent_temperature:
-          friendly_name: "Parents Bedrooom Sensor Apparent Temperature: "
+          friendly_name: "Parents Bedrooom, Apparent Temperature"
           device_class: temperature
           unit_of_measurement: C
           value_template: >-
