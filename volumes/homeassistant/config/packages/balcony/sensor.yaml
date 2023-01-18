@@ -3,7 +3,7 @@ balcony_sensor:
     - platform: template
       sensors:
         balcony_sensor_dew_point:
-          friendly_name: "Balcony Sensor Dew Point: "
+          friendly_name: "Balcony, Dew Point"
           device_class: temperature
           unit_of_measurement: "°C"
           value_template: >-
@@ -21,7 +21,7 @@ balcony_sensor:
             {{ td | round(2) }}
 
         balcony_sensor_heat_index:
-          friendly_name: "Balcony Sensor Heat Index: "
+          friendly_name: "Balcony, Heat Index"
           device_class: temperature
           unit_of_measurement: "°C"
           value_template: >-
@@ -48,7 +48,7 @@ balcony_sensor:
             {{ apparent_temp | round(2) }}
 
         balcony_sensor_humidex:
-          friendly_name: "Balcony Sensor Humidex: "
+          friendly_name: "Balcony, Humidex"
           device_class: temperature
           unit_of_measurement: "°C"
           value_template: >-
@@ -59,7 +59,7 @@ balcony_sensor:
             {{ (temp + hv) | round(2) }}
             
         balcony_sensor_humidex_perception:
-          friendly_name: "Balcony Sensor Humidex Perception: "
+          friendly_name: "Balcony, Humidex Perception"
           value_template: >-
             {% set humidex = states('sensor.balcony_sensor_humidex') | float(0) %}
             {% if humidex > 54 %}
@@ -77,7 +77,7 @@ balcony_sensor:
             {% endif %}
 
         balcony_sensor_thermal_perception:
-          friendly_name: "Balcony Sensor Thermal Perception: "
+          friendly_name: "Balcony, Thermal Perception"
           value_template: >-
             {% set dewpoint = states('sensor.balcony_sensor_dew_point') | float(0) %}
             {% if dewpoint < 10 %}
@@ -99,7 +99,7 @@ balcony_sensor:
             {% endif %}
 
         balcony_sensor_absolute_humidity:
-          friendly_name: "Balcony Sensor Absolute Humidity: "
+          friendly_name: "Balcony, Absolute Humidity"
           device_class: humidity
           unit_of_measurement: "g/m3"
           value_template: >-
@@ -114,7 +114,7 @@ balcony_sensor:
             {{ abs_humidity | round(2) }}
 
         balcony_sensor_frost_point:
-          friendly_name: "Balcony Sensor Frost Point: "
+          friendly_name: "Balcony, Frost Point"
           device_class: temperature
           unit_of_measurement: "°C"
           value_template: >-
@@ -125,7 +125,7 @@ balcony_sensor:
             {{ ((Td + (2671.02 / ((2954.61 / T) + 2.193665 * log(T) - 13.3448)) - T) - 273.15) | round(2) }}
 
         balcony_sensor_frost_risk:
-          friendly_name: "Balcony Sensor Frost Risk: "
+          friendly_name: "Balcony, Frost Risk"
           value_template: >-
             {% set temp = states('sensor.snzb_02_05_01_temperature') | float(0) %}
             {% set thresholdAbsHumidity = 2.8 %}
