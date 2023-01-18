@@ -36,9 +36,9 @@ hallway_automation_security:
           data:
             message: "_Security_: The door is open in the hallway."
         - service: tts.google_translate_say
-          entity_id: media_player.cmus
+          entity_id: media_player.vlc_telnet
           data:
-            message: "Test"
+            message: "Тревога! Обнаружено проникновение в дом!"
 
     - id: hallway_automation_security_door_close_me_away
       alias: Hallway - Automation - Security - Door Close - Me Away
@@ -75,3 +75,7 @@ hallway_automation_security:
         - service: notify.telegram_user_oleksandr
           data:
             message: "_Security_: Motion detected in the hallway."
+        - service: tts.google_translate_say
+          entity_id: media_player.vlc_telnet
+          data:
+            message: "Тревога! Обнаружено движение в коридоре!"
