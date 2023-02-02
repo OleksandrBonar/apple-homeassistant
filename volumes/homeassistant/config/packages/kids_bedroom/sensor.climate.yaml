@@ -3,7 +3,7 @@ kids_bedroom_sensor_climate:
     - platform: template
       sensors:
         kids_bedroom_sensor_climate_dew_point:
-          friendly_name: "Kids Bedroom Sensor Climate Dew Point: "
+          friendly_name: "Kids Bedroom, Dew Point"
           device_class: temperature
           unit_of_measurement: "°C"
           value_template: >-
@@ -20,7 +20,7 @@ kids_bedroom_sensor_climate:
             {% set td = (241.88 * td) / (17.558 - td) %}
             {{ td | round(2) }}
         kids_bedroom_sensor_climate_heat_index:
-          friendly_name: "Kids Bedroom Sensor Climate Heat Index: "
+          friendly_name: "Kids Bedroom, Heat Index"
           device_class: temperature
           unit_of_measurement: "°C"
           value_template: >-
@@ -46,7 +46,7 @@ kids_bedroom_sensor_climate:
             {% set apparent_temp = (hi - 32) * 5/9 %}
             {{ apparent_temp | round(2) }}
         kids_bedroom_sensor_climate_humidex:
-          friendly_name: "Kids Bedroom Sensor Climate Humidex: "
+          friendly_name: "Kids Bedroom, Humidex"
           device_class: temperature
           unit_of_measurement: "°C"
           value_template: >-
@@ -56,7 +56,7 @@ kids_bedroom_sensor_climate:
             {% set hv = (0.5555) * (ev - 10.0) %}
             {{ (temp + hv) | round(2) }}
         kids_bedroom_sensor_climate_humidex_perception:
-          friendly_name: "Kids Bedroom Sensor Climate Humidex Perception: "
+          friendly_name: "Kids Bedroom, Humidex Perception"
           value_template: >-
             {% set humidex = states('sensor.kids_bedroom_sensor_climate_humidex') | float(0) %}
             {% if humidex > 54 %}
@@ -73,7 +73,7 @@ kids_bedroom_sensor_climate:
               COMFORTABLE
             {% endif %}
         kids_bedroom_sensor_climate_thermal_perception:
-          friendly_name: "Kids Bedroom Sensor Climate Thermal Perception: "
+          friendly_name: "Kids Bedroom, Thermal Perception"
           value_template: >-
             {% set dewpoint = states('sensor.kids_bedroom_sensor_climate_dew_point') | float(0) %}
             {% if dewpoint < 10 %}
@@ -94,7 +94,7 @@ kids_bedroom_sensor_climate:
               SEVERELY_HIGH
             {% endif %}
         kids_bedroom_sensor_climate_absolute_humidity:
-          friendly_name: "Kids Bedroom Sensor Climate Absolute Humidity: "
+          friendly_name: "Kids Bedroom, Absolute Humidity"
           device_class: humidity
           unit_of_measurement: "g/m3"
           value_template: >-
@@ -108,7 +108,7 @@ kids_bedroom_sensor_climate:
             {% set abs_humidity = abs_humidity / abs_temperature %}
             {{ abs_humidity | round(2) }}
         kids_bedroom_sensor_climate_frost_point:
-          friendly_name: "Kids Bedroom Sensor Climate Frost Point: "
+          friendly_name: "Kids Bedroom, Frost Point"
           device_class: temperature
           unit_of_measurement: "°C"
           value_template: >-
@@ -118,7 +118,7 @@ kids_bedroom_sensor_climate:
             {% set Td = dewpoint + 273.15 %}
             {{ ((Td + (2671.02 / ((2954.61 / T) + 2.193665 * log(T) - 13.3448)) - T) - 273.15) | round(2) }}
         kids_bedroom_sensor_climate_frost_risk:
-          friendly_name: "Kids Bedroom Sensor Climate Frost Risk: "
+          friendly_name: "Kids Bedroom, Frost Risk"
           value_template: >-
             {% set temp = states('sensor.snzb_02_03_01_temperature') | float(0) %}
             {% set thresholdAbsHumidity = 2.8 %}
