@@ -4,8 +4,69 @@ homekit:
     name: "Home Assistant Bridge"
     mode: bridge
     filter:
-      include_domains:
-        - camera
-        - light
-        - sensor
-        - binary_sensor
+      include_entities:
+
+        - light.balcony
+        - sensor.balcony_sensor_absolute_humidity
+        - sensor.snzb_02_05_01_battery
+        - sensor.snzb_02_05_01_temperature
+        - sensor.snzb_02_05_01_humidity
+        - sensor.balcony_sensor_dew_point
+        - sensor.balcony_sensor_frost_point
+        - sensor.balcony_sensor_frost_risk
+        - sensor.balcony_sensor_heat_index
+        - sensor.balcony_sensor_humidex
+        - sensor.balcony_sensor_humidex_perception
+        - sensor.balcony_sensor_thermal_perception
+
+        - light.hallway
+        - sensor.snzb_01_01_01_battery
+        - sensor.snzb_02_01_01_battery
+        - sensor.snzb_02_01_01_temperature
+        - sensor.snzb_02_01_01_humidity
+        - sensor.hallway_sensor_dew_point
+        - binary_sensor.snzb_03_01_01_occupancy
+        - sensor.snzb_03_01_01_battery
+
+        - light.kids_bedroom
+        - sensor.kids_bedroom_sensor_climate_absolute_humidity
+        - sensor.snzb_01_03_01_battery
+        - sensor.snzb_02_03_01_battery
+        - sensor.snzb_02_03_01_temperature
+        - sensor.snzb_02_03_01_humidity
+        - sensor.kids_bedroom_sensor_climate_dew_point
+        - sensor.kids_bedroom_sensor_climate_frost_point
+        - sensor.kids_bedroom_sensor_climate_frost_risk
+        - sensor.kids_bedroom_sensor_climate_heat_index
+        - sensor.kids_bedroom_sensor_climate_humidex
+        - sensor.kids_bedroom_sensor_climate_humidex_perception
+        - binary_sensor.snzb_03_03_01_occupancy
+        - sensor.snzb_03_03_01_battery
+        - binary_sensor.snzb_04_03_02_contact
+        - sensor.snzb_04_03_02_battery
+        - sensor.kids_bedroom_sensor_climate_thermal_perception
+
+        - light.kitchen
+        - sensor.kitchen_apparent_temperature
+        - sensor.snzb_01_02_01_battery
+        - sensor.snzb_02_02_01_battery
+        - sensor.snzb_02_02_01_temperature
+        - sensor.snzb_02_02_01_humidity
+        - sensor.kitchen_sensor_dew_point
+        - binary_sensor.snzb_03_02_01_occupancy
+        - sensor.snzb_03_02_01_battery
+
+        - person.oleksandr
+
+        - sensor.outdoor_sensor_climate_absolute_humidity
+        - sensor.outdoor_sensor_climate_dew_point
+        - sensor.outdoor_sensor_climate_frost_point
+        - sensor.outdoor_sensor_climate_frost_risk
+        - sensor.outdoor_sensor_climate_heat_index
+        - sensor.outdoor_sensor_climate_humidex
+        - sensor.outdoor_sensor_climate_humidex_perception
+        - sensor.outdoor_sensor_climate_humidity
+        - sensor.outdoor_sensor_climate_temperature
+        - sensor.outdoor_sensor_climate_thermal_perception
+
+        - light.parents_bedroom
