@@ -6,6 +6,9 @@ start:
 start-cmus:
 	cmus --listen 0.0.0.0 &
 
+start-vlc:
+	vlc -I telnet --telnet-port=4212 --telnet-password=password &
+
 stop:
 	docker-compose stop
 
