@@ -8,7 +8,7 @@ homeassistant:
   country: UA
   currency: UAH
   external_url: !secret home_external_url
-  internal_url: !secret_home_internal_url
+  internal_url: !secret home_internal_url
   packages: !include_dir_merge_named packages
 
 lovelace:
