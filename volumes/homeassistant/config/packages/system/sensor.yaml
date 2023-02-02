@@ -13,25 +13,25 @@ system_sensor:
 
       customize:
         sensor.processor_use:
-          friendly_name: Processor Load
+          friendly_name: "Processor Load"
         sensor.disk_use_percent:
-          friendly_name: Disk Usage
+          friendly_name: "Disk Usage"
         sensor.disk_free:
-          friendly_name: Free Space
+          friendly_name: "Free Space"
         sensor.processor_temperature:
-          friendly_name: CPU Temperature
+          friendly_name: "CPU Temperature"
         sensor.memory_use_percent:
-          friendly_name: RAM Usage
+          friendly_name: "RAM Usage"
         sensor.home_assistant_v2_db_size:
-          friendly_name: HA DB Size
+          friendly_name: "HA DB Size"
         sensor.maria_db:
-          friendly_name: Maria DB Size
+          friendly_name: "Maria DB Size"
         sensor.online_custom:
-          friendly_name: Home Assistant Online -
+          friendly_name: "Home Assistant Online"
         sensor.last_boot_custom:
-          friendly_name: Server Online -
+          friendly_name: "Server Online"
         sensor.custom_time:
-          friendly_name: Current Time -
+          friendly_name: "Current Time"
 
     sensor:    
     - platform: systemmonitor
