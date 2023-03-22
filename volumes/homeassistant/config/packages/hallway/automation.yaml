@@ -72,7 +72,7 @@ hallway_automation:
           from: "on"
           to: "off"
           for:
-            minutes: 10
+            minutes: 15
       condition:
         - condition: state
           entity_id: person.oleksandr
