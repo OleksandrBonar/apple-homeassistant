@@ -35,7 +35,7 @@ kids_bedroom_automation:
           from: "on"
           to: "off"
           for:
-            minutes: 20
+            minutes: 30
       condition:
         - condition: state
           entity_id: person.oleksandr
