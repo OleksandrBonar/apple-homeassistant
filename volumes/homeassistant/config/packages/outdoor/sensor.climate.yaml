@@ -6,12 +6,12 @@ outdoor_sensor_climate:
           friendly_name: "Outdoor, Temperature"
           unit_of_measurement: "°C"
           device_class: temperature
-          value_template: "{{ state_attr('weather.home', 'temperature') }}"
+          value_template: "{{ state_attr('weather.forecast_korolenka', 'temperature') }}"
         outdoor_sensor_climate_humidity:
           friendly_name: "Outdoor, Humidity"
           unit_of_measurement: "%"
           device_class: humidity
-          value_template: "{{ state_attr('weather.home', 'humidity') }}"
+          value_template: "{{ state_attr('weather.forecast_korolenka', 'humidity') }}"
         outdoor_sensor_climate_dew_point:
           friendly_name: "Outdoor, Dew Point"
           device_class: temperature
