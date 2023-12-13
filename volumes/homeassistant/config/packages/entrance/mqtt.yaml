@@ -24,7 +24,7 @@ entrance_mqtt:
       - name: "Entrance Switch"
         object_id: entrance
         availability:
-          - topic: "urelay/0x0001/system/getstate"
+          - topic: "urelay/0x0001/system/getonline"
         state_topic: "urelay/0x0001/channel/0x01/getstate"
         command_topic: "urelay/0x0001/channel/0x01/setvalue"
         optimistic: false
