@@ -20,6 +20,15 @@ entrance_mqtt:
         state_topic: "urelay/0x0001/channel/0x01/getvalue"
         command_topic: "urelay/0x0001/channel/0x01/setvalue"
         retain: true
+    switch:
+      - name: "Entrance Switch"
+        object_id: entrance
+        availability:
+          - topic: "urelay/0x0001/system/getstate"
+        state_topic: "urelay/0x0001/channel/0x01/getstate"
+        command_topic: "urelay/0x0001/channel/0x01/setvalue"
+        optimistic: false
+        retain: true
     # light:
     #   - name: "Entrance Light"
     #     object_id: entrance
@@ -31,12 +40,12 @@ entrance_mqtt:
     #     brightness_command_topic: "udevice/0x20220607/light/0x0001/setbrightness"
     #     brightness_scale: 100
     #     retain: true
-    switch:
-      - name: "Entrance Switch"
-        object_id: entrance
-        availability:
-          - topic: "udevice/0x20220607/system/getstate"
-        state_topic: "udevice/0x20220607/switch/0x0001/getstate"
-        command_topic: "udevice/0x20220607/switch/0x0001/setvalue"
-        optimistic: false
-        retain: true
+    # switch:
+    #   - name: "Entrance Switch"
+    #     object_id: entrance
+    #     availability:
+    #       - topic: "udevice/0x20220607/system/getstate"
+    #     state_topic: "udevice/0x20220607/switch/0x0001/getstate"
+    #     command_topic: "udevice/0x20220607/switch/0x0001/setvalue"
+    #     optimistic: false
+    #     retain: true
