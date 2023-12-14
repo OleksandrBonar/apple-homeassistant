@@ -19,7 +19,7 @@ entrance_telegram_domofon:
         - wait_for_trigger:
           - platform: state
             entity_id: sensor.domofon_state
-            to: "Open"
+            to: open
           timeout: "00:00:05"
         - service: telegram_bot.edit_message
           data:
@@ -32,7 +32,7 @@ entrance_telegram_domofon:
         - wait_for_trigger:
           - platform: state
             entity_id: sensor.domofon_state
-            to: "Idle"
+            to: idle
           timeout: "00:00:05"
 
     - alias: Entrance - Domofon - Telegram Control - domofon_reject
@@ -53,7 +53,7 @@ entrance_telegram_domofon:
         - wait_for_trigger:
           - platform: state
             entity_id: sensor.domofon_state
-            to: "Drop"
+            to: drop
           timeout: "00:00:05"
         - service: switch.turn_off
           target:
@@ -61,7 +61,7 @@ entrance_telegram_domofon:
         - wait_for_trigger:
           - platform: state
             entity_id: sensor.domofon_state
-            to: "Idle"
+            to: idle
           timeout: "00:00:05"
         - service: telegram_bot.edit_message
           data:
