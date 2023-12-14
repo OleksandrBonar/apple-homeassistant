@@ -43,7 +43,7 @@ entrance_telegram_command_menu:
                   entity_id: select.domofon_mode
                   state: once
                 then:
-              - service: select.select_option
+                  - service: select.select_option
                     target:
                       entity_id: select.domofon_mode
                     data:
