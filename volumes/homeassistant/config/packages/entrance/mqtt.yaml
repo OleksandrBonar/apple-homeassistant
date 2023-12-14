@@ -25,7 +25,7 @@ entrance_mqtt:
         object_id: entrance
         availability:
           - topic: "urelay/0x0001/system/getonline"
-        state_topic: "urelay/0x0001/channel/0x01/getstate"
+        state_topic: "urelay/0x0001/channel/0x01/getvalue"
         command_topic: "urelay/0x0001/channel/0x01/setvalue"
         optimistic: false
         retain: true
