@@ -38,11 +38,22 @@ entrance_telegram_command_menu:
             - condition: template
               value_template: "{{ trigger.event.data.command == '/entrance_domofon_once_toggle' }}"
             sequence:
-              - service: select.select_option
-                target:
+              - if:
+                - condition: state
                   entity_id: select.domofon_mode
-                data:
-                  option: once
+                  state: once
+                then:
+              - service: select.select_option
+                    target:
+                      entity_id: select.domofon_mode
+                    data:
+                      option: never
+                else:                
+                  - service: select.select_option
+                    target:
+                      entity_id: select.domofon_mode
+                    data:
+                      option: once
               - delay:
                   milliseconds: 500
               - service: telegram_bot.answer_callback_query
