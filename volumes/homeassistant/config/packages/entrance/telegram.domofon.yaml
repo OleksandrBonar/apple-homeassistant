@@ -12,7 +12,7 @@ entrance_telegram_domofon:
         - service: telegram_bot.answer_callback_query
           data:
             callback_query_id: "{{ trigger.event.data.id }}"
-            message: "{{ 'Opening...' if is_state('sensor.domofon_state', 'Ring') else 'No incoming call' }}"
+            message: "{{ 'Opening...' if is_state('sensor.domofon_state', 'ring') else 'No incoming call' }}"
         - service: switch.turn_on
           target:
             entity_id: switch.domofon_once
@@ -25,7 +25,7 @@ entrance_telegram_domofon:
           data:
             chat_id: "{{ trigger.event.data.chat_id }}"
             message_id: "{{ trigger.event.data.message.message_id }}"
-            message: "_Intercom_: incoming call... {% if is_state('sensor.domofon_state', 'Open') %}*open!*{% endif %}"
+            message: "_Intercom_: incoming call... {% if is_state('sensor.domofon_state', 'open') %}*open!*{% endif %}"
         - service: switch.turn_off
           target:
             entity_id: switch.domofon_once
@@ -46,7 +46,7 @@ entrance_telegram_domofon:
         - service: telegram_bot.answer_callback_query
           data:
             callback_query_id: "{{ trigger.event.data.id }}"
-            message: "{{ 'Rejecting...' if is_state('sensor.domofon_state', 'Ring') else 'No incoming call' }}"
+            message: "{{ 'Rejecting...' if is_state('sensor.domofon_state', 'ring') else 'No incoming call' }}"
         - service: switch.turn_on
           target:
             entity_id: switch.domofon_drop
@@ -67,5 +67,5 @@ entrance_telegram_domofon:
           data:
             chat_id: "{{ trigger.event.data.chat_id }}"
             message_id: "{{ trigger.event.data.message.message_id }}"
-            message: "_Intercom_: incoming call... {% if is_state('sensor.domofon_state', 'Idle') %}*rejected!*{% endif %}"
+            message: "_Intercom_: incoming call... {% if is_state('sensor.domofon_state', 'idle') %}*rejected!*{% endif %}"
 
