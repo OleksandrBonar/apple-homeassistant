@@ -19,7 +19,7 @@ hallway_automation:
       initial_state: true
       trigger:
         - platform: state
-          entity_id: binary_sensor.snzb_04_01_contact
+          entity_id: binary_sensor.snzb_04_01_01_contact
           not_from:
             - "unknown"
             - "unavailable"
