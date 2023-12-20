@@ -1,0 +1,84 @@
+##################   Control   ##################
+title: Entrance
+icon: mdi:coat-rack
+cards:
+
+############################ Column 1 ############################
+
+    - type: vertical-stack
+      cards:
+      
+        - type: markdown
+          style: |
+              ha-card {
+                font-size: 26px;
+              }          
+          content: >
+             **Control**
+             
+        - type: custom:stack-in-card
+          mode: vertical
+          cards:  
+            - type: markdown
+              style: |
+                   ha-card {
+                     color: #f8ffd8;
+                     --paper-item-icon-color: #f8ffd8;
+                     --paper-item-icon-active-color: #f8ffd8;
+                     font-weight: bold;
+                     font-size: 14px;
+                   } 
+              content: >
+                 **Lights**
+            - type: horizontal-stack
+              cards:
+
+                - type: button
+                  name: Main Light
+                  entity: light.entrance
+                  tap_action:
+                    action: toggle   
+
+            - type: conditional
+              conditions:
+                - entity: light.entrance
+                  state: "on"
+              card:
+                  type: custom:mushroom-light-card
+                  entity: light.entrance
+                  name: Main Light
+                  icon_type: none
+                  primary_info: name
+                  secondary_info: none
+                  use_light_color: true
+                  show_brightness_control: true
+                  show_color_temp_control: true
+                  show_color_control: false
+                  collapsible_controls: true
+
+############################ Column 2 ############################
+
+    - type: vertical-stack
+      cards:
+
+        - type: markdown
+          style: |
+              ha-card {
+                font-size: 26px;
+              }   
+          content: >
+              **Monitoring**
+
+                    
+############################ Column 3 ############################
+
+    - type: vertical-stack
+      cards:
+      
+        - type: markdown
+          style: |
+              ha-card {
+                font-size: 26px;
+              }          
+          content: >
+             **Telemetry**
