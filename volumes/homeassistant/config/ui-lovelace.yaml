@@ -2,6 +2,7 @@ title: Home Assistant
 views:
   - !include lovelace/001_overview.yaml
   - !include lovelace/002_automation.yaml
+  - !include lovelace/101_entrance_control.yaml
   - !include lovelace/111_hallway_control.yaml
   - !include lovelace/121_kitchen_control.yaml
   - !include lovelace/131_kids_bedroom_control.yaml
