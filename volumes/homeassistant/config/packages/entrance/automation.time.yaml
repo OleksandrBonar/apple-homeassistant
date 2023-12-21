@@ -66,13 +66,6 @@ entrance_automation_time:
             after: sunset
           - condition: sun
             before: sunrise
-        - or:
-          - condition: state
-            entity_id: light.hallway
-            state: off
-          - condition: state
-            entity_id: light.entrance
-            state: off
       action:
         - if:
           - condition: state
