@@ -23,7 +23,7 @@ hallway_automation:
           not_from:
             - unknown
             - unavailable
-          to: on
+          to: "on"
       condition:
         - condition: state
           entity_id: person.oleksandr
@@ -36,7 +36,7 @@ hallway_automation:
         - if:
           - condition: state
             entity_id: light.hallway
-            state: off
+            state: "off"
           then:
             - service: light.turn_on
               target:
@@ -44,7 +44,7 @@ hallway_automation:
         - if:
           - condition: state
             entity_id: light.entrance
-            state: off
+            state: "off"
           then:
             - service: light.turn_on
               target:
@@ -56,7 +56,7 @@ hallway_automation:
       trigger:
         - platform: state
           entity_id: binary_sensor.snzb_03_01_01_occupancy
-          to: on
+          to: "on"
       condition:
         - condition: state
           entity_id: person.oleksandr
@@ -67,7 +67,7 @@ hallway_automation:
           below: 8
         - condition: state
           entity_id: light.hallway
-          state: off
+          state: "off"
       action:
         - service: light.turn_on
           target:
@@ -79,8 +79,8 @@ hallway_automation:
       trigger:
         - platform: state
           entity_id: binary_sensor.snzb_03_01_01_occupancy
-          from: on
-          to: off
+          from: "on"
+          to: "off"
           for:
             minutes: 15
       condition:
@@ -93,7 +93,7 @@ hallway_automation:
           below: 8
         - condition: state
           entity_id: light.hallway
-          state: on
+          state: "on"
       action:
         - service: light.turn_off
           target:
