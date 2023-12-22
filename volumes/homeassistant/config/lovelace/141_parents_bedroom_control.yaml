@@ -143,7 +143,7 @@ cards:
                   - attribute: linkquality
                     name: Signal
                 - type: divider
-                - entity: sensor.snzb_04_04_02_battery
+                - entity: sensor.snzb_04_04_01_battery
                   type: custom:multiple-entity-row
                   icon: mdi:window-open-variant
                   state_color: true
@@ -159,17 +159,6 @@ cards:
                   icon: mdi:coolant-temperature
                   state_color: true
                   name: Climate Sensor
-                  secondary_info: last-changed
-                  state_header: Battery
-                  entities:
-                  - attribute: linkquality
-                    name: Signal
-                - type: divider
-                - entity: sensor.0x04cf8cdf3c7cf19e_battery
-                  type: custom:multiple-entity-row
-                  icon: mdi:sun-wireless
-                  state_color: true
-                  name: Light Sensor
                   secondary_info: last-changed
                   state_header: Battery
                   entities:
