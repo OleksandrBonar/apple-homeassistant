@@ -28,7 +28,7 @@ entrance_automation_time:
       condition:
         - condition: state
           entity_id: person.oleksandr
-          state: "home"
+          state: home
       action:
         - service: light.turn_on
           target:
@@ -46,7 +46,7 @@ entrance_automation_time:
       condition:
         - condition: state
           entity_id: person.oleksandr
-          state: "home"
+          state: home
       action:
         - service: light.turn_off
           target:
@@ -58,11 +58,11 @@ entrance_automation_time:
       trigger:
         - platform: state
           entity_id: sensor.domofon_state
-          to: "open"
+          to: open
       condition:
         - condition: state
           entity_id: person.oleksandr
-          state: "home"
+          state: home
         - or:
           - condition: sun
             after: sunset
