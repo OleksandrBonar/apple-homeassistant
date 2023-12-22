@@ -42,7 +42,7 @@ cards:
             - type: conditional
               conditions:
                 - entity: light.parents_bedroom
-                  state: "on"
+                  state: on
               card:
                   type: custom:mushroom-light-card
                   entity: light.parents_bedroom
@@ -100,6 +100,8 @@ cards:
               entities:
               - entity: binary_sensor.snzb_03_04_01_occupancy
                 name: Motion
+              - entity: binary_sensor.snzb_04_04_01_contact
+                name: Window
               - entity: sensor.snzb_02_04_01_temperature
                 name: Temperature
               - entity: sensor.snzb_02_04_01_humidity
