@@ -15,7 +15,7 @@ entrance_automation_zone:
           - conditions:
             - condition: state
               entity_id: switch.domofon_sound
-              state: on
+              state: "on"
             sequence:
               - service: switch.turn_off
                 target:
